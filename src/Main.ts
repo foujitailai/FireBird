@@ -49,14 +49,15 @@ class Main extends eui.UILayer {
 
         //inject the custom material parser
         //注入自定义的素材解析器
-        let assetAdapter = new AssetAdapter();
-        egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
-        egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
+        // let assetAdapter = new AssetAdapter();
+        // egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
+        // egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
 
 
-        this.runGame().catch(e => {
-            console.log(e);
-        })
+        // this.runGame().catch(e => {
+        //     console.log(e);
+        // })
+        this.runPhysics();
     }
 
     private async runGame() {
@@ -161,11 +162,6 @@ class Main extends eui.UILayer {
 
 
 
-        this.addEventListener(egret.Event.ENTER_FRAME, this.loop, this);
-        this.createWorld();
-        this.createBodies();
-        this.createDebug();
-
     }
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
@@ -221,6 +217,38 @@ class Main extends eui.UILayer {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+    private selfBody : p2.Body;
+    private runPhysics():void {
+
+        this._keyDown = 0;
+        this._keyUp = 0;
+        this._keyLeft = 0;
+        this._keyRight = 0;
+ 
+
+        this.addEventListener(egret.Event.ENTER_FRAME, this.loop, this);
+        this.createWorld();
+        this.createBodies();
+        this.createDebug();
+
+
+        var src = this;
+        document.addEventListener("keydown", function onkeydown(event:KeyboardEvent){src.onKeyDown(event);});
+        document.addEventListener("keyup", function onkeyup(event:KeyboardEvent){src.onKeyUp(event);});
+
+        // this.addEventListener("keydown", this.onKeyDown, this);
+    }
     
     private createWorld(): void {
         var wrd: p2.World = new p2.World();
@@ -230,6 +258,13 @@ class Main extends eui.UILayer {
         
         this.world.on("beginContact",function(event){
             console.log("on target sensor BEG bodyA.id:"+event.bodyA.id+",bodyB.id:"+event.bodyB.id);
+            let body = event.bodyA;
+            if (!this.selfBody)return;
+            if (event.bodyA.id == this.selfBody.id)
+            {
+                body = event.bodyB;
+            }
+            this.world.removeBody(body);
         });
         this.world.on("endContact",function(event){
             console.log("on target sensor END bodyA.id:"+event.bodyA.id+",bodyB.id:"+event.bodyB.id);
@@ -238,12 +273,21 @@ class Main extends eui.UILayer {
     private createBodies(): void {
         //var boxShape: p2.Shape = new p2.Rectangle(100, 50);
         var boxShape: p2.Shape = new p2.Box({width: 100, height: 50});
+        boxShape.sensor = true;
         var boxBody: p2.Body = new p2.Body({ mass: 1, position: [200, 200] });
         boxBody.addShape(boxShape);
         this.world.addBody(boxBody);
+        this.selfBody = boxBody;
 
         //var boxShape: p2.Shape = new p2.Rectangle(50, 50);
         var boxShape: p2.Shape = new p2.Box({width: 50, height: 50});
+        boxShape.sensor = true;
+        var boxBody: p2.Body = new p2.Body({ mass: 0, position: [200, 180], angularVelocity: 1 });
+        boxBody.addShape(boxShape);
+        this.world.addBody(boxBody);
+        
+        var boxShape: p2.Shape = new p2.Box({width: 50, height: 50});
+        boxShape.sensor = true;
         var boxBody: p2.Body = new p2.Body({ mass: 1, position: [200, 180], angularVelocity: 1 });
         boxBody.addShape(boxShape);
         this.world.addBody(boxBody);
@@ -255,8 +299,61 @@ class Main extends eui.UILayer {
         this.addChild(sprite);
         this.debugDraw.setSprite(sprite);
     }
+    private _keyDown : number;
+    private _keyUp : number;
+    private _keyLeft : number;
+    private _keyRight : number;
+ 
     private loop(): void {
+        //this.selfBody.applyForceLocal([0, this._keyUp * 2], [0,1]);
+        this.selfBody.velocity = [(this._keyLeft - this._keyRight) * -200, (this._keyUp - this._keyDown) * -200];
+        //this.selfBody.angularVelocity = (this._keyLeft - this._keyRight) * 4;
+
         this.world.step(60 / 1000);
         this.debugDraw.drawDebug();
+    }
+
+    private onKeyDown(evt): void {
+        //console.log("evt.keyCode:" + evt.keyCode);
+        var target: any;
+        // if (evt.keyCode == 'v')
+        // for(target in PcKeyBoardHelper.instance.list) {
+        //     var vo: KeyVo = PcKeyBoardHelper.instance.list[target];
+        //     vo.callback.call(vo.target,evt);
+        // }
+        
+        // keycode 38 = Up ↑
+        // keycode 40 = Down ↓
+        // keycode 37 = Left ←
+        // keycode 39 = Right →
+        switch(evt.keyCode)
+        {
+            case 38: this._keyUp = 1;
+                // this.selfBody.applyForceLocal([0, 1],[0,0]);
+                break;
+            case 40: this._keyDown = 1;
+                // this.selfBody.applyForceLocal([0, -1],[0,0]);
+                break;
+            case 37: this._keyLeft = 1;
+                // this.selfBody.position[0] = -1;
+                break;
+            case 39: this._keyRight = 1;
+                // this.selfBody.position[0] = 1;
+                break;
+        }
+    }
+ 
+    private onKeyUp(evt): void {
+        switch(evt.keyCode)
+        {
+            case 38: this._keyUp = 0;
+                break;
+            case 40: this._keyDown = 0;
+                break;
+            case 37: this._keyLeft = 0;
+                break;
+            case 39: this._keyRight = 0;
+                break;
+        }
     }
 }
