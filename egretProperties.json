@@ -1,6 +1,6 @@
 {
-	"engineVersion": "5.2.4",
-	"compilerVersion": "5.2.4",
+	"engineVersion": "5.2.5",
+	"compilerVersion": "5.2.5",
 	"template": {},
 	"target": {
 		"current": "web"
@@ -32,7 +32,7 @@
 		},
 		{
 			"name": "physics",
-      "path": "F:/GitHub/egret-game-library/physics/libsrc"
+			"path": "../egret-game-library-5.2.5/physics/libsrc"
 		}
 	]
 }

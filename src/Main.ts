@@ -255,26 +255,34 @@ class Main extends eui.UILayer {
         wrd.sleepMode = p2.World.BODY_SLEEPING;
         wrd.gravity = [0, 10];
         this.world = wrd;
+        var myclass = this;
         
         this.world.on("beginContact",function(event){
             console.log("on target sensor BEG bodyA.id:"+event.bodyA.id+",bodyB.id:"+event.bodyB.id);
+
+            if (!myclass.selfBody)
+                return;
+            if (event.bodyA.id != myclass.selfBody.id &&
+                event.bodyB.id != myclass.selfBody.id)
+                return;
+
             let body = event.bodyA;
-            if (!this.selfBody)return;
-            if (event.bodyA.id == this.selfBody.id)
+            if (event.bodyA.id == myclass.selfBody.id)
             {
                 body = event.bodyB;
             }
-            this.world.removeBody(body);
+            console.log("REMOVE BODY!!!!!!!!!!!")
+            myclass.world.removeBody(body);
         });
         this.world.on("endContact",function(event){
-            console.log("on target sensor END bodyA.id:"+event.bodyA.id+",bodyB.id:"+event.bodyB.id);
+            //console.log("on target sensor END bodyA.id:"+event.bodyA.id+",bodyB.id:"+event.bodyB.id);
         });
     }
     private createBodies(): void {
         //var boxShape: p2.Shape = new p2.Rectangle(100, 50);
         var boxShape: p2.Shape = new p2.Box({width: 100, height: 50});
         boxShape.sensor = true;
-        var boxBody: p2.Body = new p2.Body({ mass: 1, position: [200, 200] });
+        var boxBody: p2.Body = new p2.Body({ mass: 1, position: [400, 200] });
         boxBody.addShape(boxShape);
         this.world.addBody(boxBody);
         this.selfBody = boxBody;
