@@ -39,6 +39,7 @@ class p2DebugDraw {
     public constructor(world: p2.World) {
         this.world = world;
     }
+    public getSprite():egret.Sprite {return this.sprite;}
     public setSprite(sprite: egret.Sprite) {
         this.sprite = sprite;
     }

@@ -57,9 +57,13 @@ class Main extends eui.UILayer {
         // this.runGame().catch(e => {
         //     console.log(e);
         // })
-        this.runPhysics().catch(e => {
+        // this.runPhysics().catch(e => {
+        //     console.log(e);
+        // });
+        this.runMyGame().catch(e => {
             console.log(e);
         });
+        
         // this.runPhysics22();
     }
 
@@ -449,4 +453,44 @@ class Main extends eui.UILayer {
                 break;
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    private _selfBody : p2.Body;
+    private async runMyGame() {
+        await this.loadResource();
+
+        this._keyDown = 0;
+        this._keyUp = 0;
+        this._keyLeft = 0;
+        this._keyRight = 0;
+ 
+
+        this.addEventListener(egret.Event.ENTER_FRAME, this.loop, this);
+        this.createWorld();
+        this.createBodies();
+        this.createDebug();
+
+
+        var src = this;
+        document.addEventListener("keydown", function onkeydown(event:KeyboardEvent){src.onKeyDown(event);});
+        document.addEventListener("keyup", function onkeyup(event:KeyboardEvent){src.onKeyUp(event);});
+
+        // this.addEventListener("keydown", this.onKeyDown, this);
+    }
+    
+
+
+
+
+
 }
