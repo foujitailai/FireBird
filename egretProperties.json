@@ -32,7 +32,7 @@
 		},
 		{
 			"name": "physics",
-			"path": "../egret-game-library-5.2.5/physics/libsrc"
+			"path": "../egret-game-library/physics/libsrc"
 		}
 	]
 }

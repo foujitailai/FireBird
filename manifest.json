@@ -10,10 +10,21 @@
 	],
 	"game": [
 		"bin-debug/AssetAdapter.js",
+		"bin-debug/DragHelper.js",
 		"bin-debug/LoadingUI.js",
 		"bin-debug/Main.js",
 		"bin-debug/p2DebugDraw.js",
 		"bin-debug/Platform.js",
-		"bin-debug/ThemeAdapter.js"
+		"bin-debug/ThemeAdapter.js",
+		"bin-debug/scene/BuoyancyScene.js",
+		"bin-debug/scene/HeightfieldScene.js",
+		"bin-debug/scene/KinematicScene.js",
+		"bin-debug/scene/LockScene.js",
+		"bin-debug/scene/PistonScene.js",
+		"bin-debug/scene/RayReflectScene.js",
+		"bin-debug/scene/RestitutionScene.js",
+		"bin-debug/scene/SleepScene.js",
+		"bin-debug/scene/SpringsScene.js",
+		"bin-debug/scene/TearableScene.js"
 	]
 }

@@ -34,12 +34,16 @@ class p2DebugDraw {
     private COLOR_D_WAKE: number = 0xe5b2b2;
     private COLOR_K: number = 0x7f7fe5;
     private COLOR_S: number = 0x7fe57f;
+    private lineWidth:number = 1;
 
     public constructor(world: p2.World) {
         this.world = world;
     }
     public setSprite(sprite: egret.Sprite) {
         this.sprite = sprite;
+    }
+    public setLineWidth(value:number):void{
+        this.lineWidth = value;
     }
     public drawDebug(): void {
         this.sprite.graphics.clear();
@@ -64,6 +68,16 @@ class p2DebugDraw {
                 }
             }
         }
+    }
+    public drawRay(start, end, color?){
+        // Draw line
+        var g: egret.Graphics = this.sprite.graphics;
+
+        g.lineStyle(this.lineWidth, color);
+        g.moveTo(start[0], start[1]);
+        g.lineTo(end[0], end[1]);
+
+        g.endFill();
     }
     private drawCircle(shape: p2.Circle, b: p2.Body): void {
         var color: number = this.getColor(b);

@@ -57,7 +57,10 @@ class Main extends eui.UILayer {
         // this.runGame().catch(e => {
         //     console.log(e);
         // })
-        this.runPhysics();
+        this.runPhysics().catch(e => {
+            console.log(e);
+        });
+        // this.runPhysics22();
     }
 
     private async runGame() {
@@ -227,9 +230,45 @@ class Main extends eui.UILayer {
 
 
 
+    private runPhysics22(): void {
+        var value:number = 5;
+        switch (value){
+            case 1:
+                this.addChild(new RayReflectScene());
+                break;
+            case 2:
+                this.addChild(new BuoyancyScene());
+                break;
+            case 3:
+                this.addChild(new HeightfieldScene());
+                break;
+            case 4:
+                this.addChild(new TearableScene());
+                break;
+            case 5:
+                this.addChild(new KinematicScene());
+                break;
+            case 6:
+                this.addChild(new RestitutionScene());
+                break;
+            case 7:
+                this.addChild(new LockScene());
+                break;
+            case 8:
+                this.addChild(new SleepScene());
+                break;
+            case 9:
+                this.addChild(new SpringsScene());
+                break;
+            case 10:
+                this.addChild(new PistonScene());
+                break;
+        }
+    }
 
     private selfBody : p2.Body;
-    private runPhysics():void {
+    private async runPhysics() {
+        await this.loadResource();
 
         this._keyDown = 0;
         this._keyUp = 0;
@@ -253,7 +292,7 @@ class Main extends eui.UILayer {
     private createWorld(): void {
         var wrd: p2.World = new p2.World();
         wrd.sleepMode = p2.World.BODY_SLEEPING;
-        wrd.gravity = [0, 10];
+        wrd.gravity = [0, 0];
         this.world = wrd;
         var myclass = this;
         
@@ -282,23 +321,41 @@ class Main extends eui.UILayer {
         //var boxShape: p2.Shape = new p2.Rectangle(100, 50);
         var boxShape: p2.Shape = new p2.Box({width: 100, height: 50});
         boxShape.sensor = true;
-        var boxBody: p2.Body = new p2.Body({ mass: 1, position: [400, 200] });
+        var boxBody: p2.Body = new p2.Body({ mass: 1, position: [400, 200], type:p2.Body.DYNAMIC });
         boxBody.addShape(boxShape);
         this.world.addBody(boxBody);
         this.selfBody = boxBody;
+        
+        let icon: egret.Bitmap = this.createBitmapByName("checkbox_select_disabled_png");
+        this.addChild(icon);
+        this.selfBody.displays = [icon];
+        icon.width = 100;
+        icon.height = 100;
+        icon.anchorOffsetX = icon.width / 2;
+        icon.anchorOffsetY = icon.height / 2;
+        // this.selfBody.angularVelocity = 1;
+        this.selfBody.velocity = [-10,0];
+        this.selfBody.damping = 0;
 
         //var boxShape: p2.Shape = new p2.Rectangle(50, 50);
         var boxShape: p2.Shape = new p2.Box({width: 50, height: 50});
         boxShape.sensor = true;
-        var boxBody: p2.Body = new p2.Body({ mass: 0, position: [200, 180], angularVelocity: 1 });
+        var boxBody: p2.Body = new p2.Body({ mass: 0, position: [200, 180], angularVelocity: 1, type:p2.Body.KINEMATIC });
         boxBody.addShape(boxShape);
         this.world.addBody(boxBody);
         
         var boxShape: p2.Shape = new p2.Box({width: 50, height: 50});
         boxShape.sensor = true;
-        var boxBody: p2.Body = new p2.Body({ mass: 1, position: [200, 180], angularVelocity: 1 });
+        var boxBody: p2.Body = new p2.Body({ mass: 0, position: [200, 480], angularVelocity: 1 });
         boxBody.addShape(boxShape);
         this.world.addBody(boxBody);
+    }
+    private createSprite(): egret.Sprite {
+        var result: egret.Sprite = new egret.Sprite();
+        result.graphics.beginFill(0x37827A);
+        result.graphics.drawRect(0,0,80,40);
+        result.graphics.endFill();
+        return result;
     }
     private createDebug(): void {
         //创建调试试图
@@ -312,13 +369,41 @@ class Main extends eui.UILayer {
     private _keyLeft : number;
     private _keyRight : number;
  
+    private _dddd : number = 0;
     private loop(): void {
-        //this.selfBody.applyForceLocal([0, this._keyUp * 2], [0,1]);
+        // 平滑加速度（如果不去每帧设置，会被衰竭掉，可以通过damping=0来去掉衰竭）
+        //this.selfBody.applyForceLocal([(this._keyLeft - this._keyRight) * -20, (this._keyUp - this._keyDown) * -20], undefined);
+        // 直接速度（每秒的速度，如果不去每帧设置，会被衰竭掉，可以通过damping=0来去掉衰竭）
         this.selfBody.velocity = [(this._keyLeft - this._keyRight) * -200, (this._keyUp - this._keyDown) * -200];
         //this.selfBody.angularVelocity = (this._keyLeft - this._keyRight) * 4;
 
-        this.world.step(60 / 1000);
+        if (this._dddd<=0) this._dddd = egret.getTimer();
+        var tim = egret.getTimer();
+        var dxx = tim - this._dddd;
+        this._dddd = tim;
+        
+        // console.log("" + egret.getTimer() +
+        //     " self body velocity= " + this.selfBody.velocity[0] + ", " + this.selfBody.velocity[1] +
+        //     " pos= " + this.selfBody.position[0] + ", "+ this.selfBody.position[1]);
+
+        this.world.step(dxx/1000);
         this.debugDraw.drawDebug();
+
+        var stageHeight: number = this.stage.stageHeight;
+        var factor: number = 50;
+        var boxBody: p2.Body = this.selfBody;
+        var box: egret.DisplayObject = this.selfBody.displays[0];
+        if (box) {
+            box.x = boxBody.position[0];
+            box.y = boxBody.position[1];
+            box.rotation = (boxBody.angle + boxBody.shapes[0].angle) * 180 / Math.PI;
+            if (boxBody.sleepState == p2.Body.SLEEPING) {
+                box.alpha = 0.5;
+            }
+            else {
+                box.alpha = 1;
+            }
+        }
     }
 
     private onKeyDown(evt): void {
