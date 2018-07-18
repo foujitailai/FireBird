@@ -8,20 +8,59 @@ class Helper
         return result;
     }
 
-	public static CreateActor(id: number, world: p2.World, con: egret.DisplayObjectContainer): Actor
+    public static SetCollision(actorType: EnumActorType, shape: p2.Shape, isActor: boolean)
+    {
+        if (isActor)
+        {
+            shape.collisionGroup =
+                (actorType == EnumActorType.Player) ?
+                    EnumCollisionType.MY_ACTOR :
+                    EnumCollisionType.ENEMY_ACTOR;
+        }
+        else
+        {
+            shape.collisionGroup =
+                (actorType == EnumActorType.Player) ?
+                    EnumCollisionType.MY_BULLET :
+                    EnumCollisionType.ENEMY_BULLET;
+        }
+
+        if (actorType == EnumActorType.Player)
+        {
+            shape.collisionMask =
+                EnumCollisionType.GROUND |
+                EnumCollisionType.HELL |
+                EnumCollisionType.ENEMY_ACTOR |
+                EnumCollisionType.ENEMY_BULLET;
+        }
+        else
+        {
+            shape.collisionMask =
+                EnumCollisionType.GROUND |
+                EnumCollisionType.HELL |
+                EnumCollisionType.MY_ACTOR |
+                EnumCollisionType.MY_BULLET;
+        }
+    }
+
+	public static CreateActor(actorType: EnumActorType, resId: number, world: p2.World, con: egret.DisplayObjectContainer): Actor
 	{
 		//TODO 通过id得到对应的配置数据
 		let data = new ActorData();
-		data.ActorType = EnumActorType.Player;
+		data.ActorType = actorType;
 		data.SpriteName = "checkbox_select_disabled_png";
 
 
-        let boxShape: p2.Shape = new p2.Box({width: 100, height: 50});
-        boxShape.sensor = true;
-        let boxBody: p2.Body = new p2.Body({ mass: 1, position: [0, 0], type:p2.Body.DYNAMIC });
-        boxBody.damping = 0;
-        boxBody.addShape(boxShape);
-        
+
+        let shape: p2.Shape = new p2.Box({width: 100, height: 50});
+        shape.sensor = true;
+
+        Helper.SetCollision(actorType, shape, true);
+
+        let body: p2.Body = new p2.Body({ mass: 1, position: [0, 0], type:p2.Body.DYNAMIC });
+        body.damping = 0;
+        body.addShape(shape);
+
         let pic: egret.Bitmap = Helper.CreateBitmapByName(data.SpriteName);
         pic.width = 100;
         pic.height = 100;
@@ -29,16 +68,88 @@ class Helper
         pic.anchorOffsetY = pic.height / 2;
         con.addChild(pic);
 
-        boxBody.displays = [pic];
+        body.displays = [pic];
 
-        world.addBody(boxBody);
+        world.addBody(body);
 
 
 		let actor = new Actor();
-		actor.Body = boxBody;
+		actor.Body = body;
 		actor.Data = data;
 		actor.Display = pic;
 		return actor;
 	}
+
+	public static CreateBullet(actor: Actor, world: p2.World, con: egret.DisplayObjectContainer): Bullet
+    {
+        //TODO 通过id得到对应的配置数据
+        let data = new BulletData();
+        data.BulletType = EnumBulletType.Normal;
+        data.SpriteName = "thumb_png";
+        data.Actor = actor;
+
+        let shape: p2.Shape = new p2.Circle({radius: 10});
+        shape.sensor = true;
+
+        Helper.SetCollision(actor.Data.ActorType, shape, false);
+
+        let body: p2.Body = new p2.Body({ mass: 1, position: [0, 0], type:p2.Body.DYNAMIC });
+        body.damping = 0;
+        body.addShape(shape);
+
+        let pic: egret.Bitmap = Helper.CreateBitmapByName(data.SpriteName);
+        pic.width = 20;
+        pic.height = 20;
+        pic.anchorOffsetX = pic.width / 2;
+        pic.anchorOffsetY = pic.height / 2;
+        con.addChild(pic);
+
+        body.displays = [pic];
+
+        world.addBody(body);
+
+        body.position = [actor.Body.position[0] + 50, actor.Body.position[1]];
+        body.velocity = [1000, 0];
+
+
+        let bullet = new Bullet();
+        bullet.Body = body;
+        bullet.Data = data;
+        bullet.Display = pic;
+        return bullet;
+    }
+
+    public static CreateGround(world: p2.World, con: egret.DisplayObjectContainer): Ground
+    {
+        let data = new GroundData();
+        data.SpriteName = "checkbox_select_disabled_png";
+
+        let shape: p2.Shape = new p2.Box({width: 640, height: 100});
+        shape.sensor = true;
+
+        shape.collisionGroup = EnumCollisionType.GROUND;
+
+        let body: p2.Body = new p2.Body({ mass: 0, position: [0, 0], type:p2.Body.STATIC });
+        body.damping = 0;
+        body.addShape(shape);
+
+        let pic: egret.Bitmap = Helper.CreateBitmapByName(data.SpriteName);
+        pic.width = 640;
+        pic.height = 100;
+        pic.anchorOffsetX = pic.width / 2;
+        pic.anchorOffsetY = pic.height / 2;
+        con.addChild(pic);
+
+        body.displays = [pic];
+
+        world.addBody(body);
+
+
+        let ground = new Ground();
+        ground.Body = body;
+        ground.Data = data;
+        ground.Display = pic;
+        return ground;
+    }
 
 }

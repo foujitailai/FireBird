@@ -8,6 +8,8 @@ class Battle extends egret.DisplayObjectContainer
 
     private onAddToStage(): void
     {
+        this.CreateCollisionTable();
+
         // this.width = this.stage.width;
         // this.createGameScene();
         this.AddTestIcon();
@@ -38,37 +40,8 @@ class Battle extends egret.DisplayObjectContainer
         this.DestroyControllableActor();
 
         this.DestroyScene();
-    }
 
-    private _gameObjects: { [key: number]: GameObject; } = {};
-
-    private _lastTime : number = 0;
-    private OnUpdate():void
-    {
-        // 计算当前帧的时间间隔
-        let curTime = egret.getTimer();
-        let delta = (curTime - this._lastTime) / 1000;
-        this._lastTime = curTime;
-
-
-
-        // 直接速度（每秒的速度，如果不去每帧设置，会被衰竭掉，可以通过damping=0来去掉衰竭）
-        //this._self.Body.velocity = [(this._keyLeft - this._keyRight) * -200, (this._keyUp - this._keyDown) * -200];
-        this._self.Body.velocity = [0, 200];
-
-
-
-        // 更新物理引擎时间
-        this._world.step(delta);
-
-        // 显示物理引擎里面的数据
-        this._debugDraw.drawDebug();
-
-        for (let k in this._gameObjects)
-        {
-            let v = this._gameObjects[k];
-            v.Sync();
-        }
+        this.DestroyCollisionTable();
     }
 
     private _world: p2.World;
@@ -116,23 +89,100 @@ class Battle extends egret.DisplayObjectContainer
         }
     }
 
+
+    private GetGameObjectByP2Id(p2Id : number) : GameObject
+    {
+        for (let k in this._gameObjects)
+        {
+            let v = this._gameObjects[k];
+            if (v.Body.id == p2Id)
+            {
+                return v;
+            }
+        }
+        return null;
+    }
+
+    private _collisionTable : CollisionTable;
+    private GetCollitionTableType(go: GameObject):EnumCollisionTableType
+    {
+        if (go instanceof Actor)
+        {
+            let actor = <Actor> go;
+            if (actor.Data.ActorType == EnumActorType.Player)
+            {
+                return EnumCollisionTableType.MY_ACTOR;
+            }
+            else
+            {
+                return EnumCollisionTableType.ENEMY_ACTOR;
+            }
+        }
+        else if (go instanceof Bullet)
+        {
+            let bullet = <Bullet> go;
+            if (bullet.Data.Actor.Data.ActorType == EnumActorType.Player)
+            {
+                return EnumCollisionTableType.MY_BULLET;
+            }
+            else
+            {
+                return EnumCollisionTableType.ENEMY_BULLET;
+            }
+        }
+        else if (go instanceof Ground)
+        {
+            let ground = <Ground> go;
+            if (ground.Id == this._groundTop.Id)
+            {
+                return EnumCollisionTableType.TOP_GROUND;
+            }
+            else
+            {
+                return EnumCollisionTableType.BOTTOM_GROUND;
+            }
+        }
+        return EnumCollisionTableType.NONE;
+    }
+
+    private DoCollision(aGO: GameObject, bGO: GameObject) : void
+    {
+        if (!aGO || !bGO)
+        {
+            return;
+        }
+
+        let aType = this.GetCollitionTableType(aGO);
+        let bType = this.GetCollitionTableType(bGO);
+        let action = this._collisionTable.FindAction(aType, bType);
+        if (action)
+        {
+            action.apply(aGO, bGO);
+        }
+    }
+
     private OnBeginContact(event:any):void
     {
         console.log("on target sensor BEG bodyA.id:"+event.bodyA.id+",bodyB.id:"+event.bodyB.id);
 
-        if (!this._self || !this._self.Body)
-            return;
-        if (event.bodyA.id != this._self.Body.id &&
-            event.bodyB.id != this._self.Body.id)
-            return;
+        let aGO = this.GetGameObjectByP2Id(event.bodyA.id);
+        let bGO = this.GetGameObjectByP2Id(event.bodyB.id);
+        this.DoCollision(aGO, bGO)
 
-        let body = event.bodyA;
-        if (event.bodyA.id == this._self.Body.id)
-        {
-            body = event.bodyB;
-        }
-        console.log("REMOVE BODY!!!!!!!!!!!")
-        this._world.removeBody(body);
+        // if (!this._self || !this._self.Body)
+        //     return;
+        //
+        // if (event.bodyA.id != this._self.Body.id &&
+        //     event.bodyB.id != this._self.Body.id)
+        //     return;
+        //
+        // let body = event.bodyA;
+        // if (event.bodyA.id == this._self.Body.id)
+        // {
+        //     body = event.bodyB;
+        // }
+        // console.log("REMOVE BODY!!!!!!!!!!!")
+        // this._world.removeBody(body);
     }
 
     private OnEndContact(event:any):void
@@ -140,9 +190,19 @@ class Battle extends egret.DisplayObjectContainer
         console.log("on target sensor END bodyA.id:"+event.bodyA.id+",bodyB.id:"+event.bodyB.id);
     }
 
+    private _groundTop : Ground;
+    private _groundBottom : Ground;
     private CreateWallOnTopBottom():void
     {
         //TODO 添加上下反弹墙
+        this._groundTop = Helper.CreateGround(this._world, this);
+        this._groundTop.SetPosition(this.stage.width / 2, this._groundTop.Display.height / 2);
+        this._gameObjects[this._groundTop.Id] = this._groundTop;
+
+        this._groundBottom = Helper.CreateGround(this._world, this);
+        let h = this.stage.$stageHeight;
+        this._groundBottom.SetPosition(this.stage.width / 2,  h - this._groundBottom.Display.height / 2);
+        this._gameObjects[this._groundBottom.Id] = this._groundBottom;
     }
 
     private CreateWallOnLeftRight():void
@@ -167,8 +227,8 @@ class Battle extends egret.DisplayObjectContainer
     private CreateControllableActor():void
     {
         //TODO 添加控制的主角
-        this._self = Helper.CreateActor(1, this._world, this);
-        this._self.SetPosition(300, 100);
+        this._self = Helper.CreateActor(EnumActorType.Player, 1, this._world, this);
+        this._self.SetPosition(100, 100);
         this._gameObjects[this._self.Id] = this._self;
 
         //TODO 绑定键盘控制
@@ -191,7 +251,7 @@ class Battle extends egret.DisplayObjectContainer
 
     private onTouch(e:egret.TouchEvent):void
     {
-        console.log("clicked");
+        // console.log("clicked");
 
         this.OnFire();
         this.OnJump();
@@ -200,13 +260,19 @@ class Battle extends egret.DisplayObjectContainer
     private OnFire():void
     {
         //TODO 发射子弹
-        console.log("OnFire");
+        // console.log("OnFire");
+
+        let bullet = Helper.CreateBullet(this._self, this._world, this);
+        this._gameObjects[bullet.Id] = bullet;
     }
 
     private OnJump():void
     {
         //TODO 向上跳
-        console.log("OnJump");
+        // console.log("OnJump");
+        //this._self.Body.applyImpulseLocal([0,-100], undefined);
+        this._forceUp = Battle.JUMP_VELOCITY;
+        this._forceDown = 0;
     }
 
     private _keyDown : number = 0;
@@ -226,14 +292,13 @@ class Battle extends egret.DisplayObjectContainer
             case 40: this._keyDown = 1; break;
             case 37: this._keyLeft = 1; break;
             case 39: this._keyRight = 1; break;
-            case 39: this._keyRight = 1; break;
             case 32:
                 this.OnFire(); break;
             case 86:
                 this.OnJump(); break;
         }
     }
- 
+
     private onKeyUp(evt): void
     {
         switch(evt.keyCode)
@@ -263,6 +328,86 @@ class Battle extends egret.DisplayObjectContainer
 
 
 
+    private _gameObjects: { [key: number]: GameObject; } = {};
+
+    private _lastTime : number = 0;
+    private _delta : number = 0;
+    private OnUpdate():void
+    {
+        // 计算当前帧的时间间隔
+        let curTime = egret.getTimer();
+        this._delta = (curTime - this._lastTime) / 1000;
+        this._lastTime = curTime;
+
+
+
+        // 直接速度（每秒的速度，如果不去每帧设置，会被衰竭掉，可以通过damping=0来去掉衰竭）
+        //this._self.Body.velocity = [(this._keyLeft - this._keyRight) * -200, (this._keyUp - this._keyDown) * -200];
+        //this._self.Body.velocity = [0, 200];
+        this.UpdateSelf();
+
+
+
+        // 更新物理引擎时间
+        this._world.step(this._delta);
+
+        // 显示物理引擎里面的数据
+        this._debugDraw.drawDebug();
+
+        for (let k in this._gameObjects)
+        {
+            let v = this._gameObjects[k];
+            v.SyncPy2View();
+        }
+    }
+
+
+    /**
+     * 跳起时给的力
+     * @type {number}
+     */
+    private static readonly JUMP_VELOCITY:number = 2000;
+    /**
+     * 每帧在衰减的力
+     * @type {number}
+     */
+    private static readonly JUMP_DAMPING:number = 100;
+    /**
+     * 重力做用的力
+     * @type {number}
+     */
+    private static readonly GRAVITY_VELOCITY:number = 800;
+    private _forceUp: number = 0;
+    private _forceDown: number = 0;
+    private UpdateSelf():void
+    {
+        let velocityY = Battle.GRAVITY_VELOCITY;
+
+        // 检测是否有在上升？
+        if (this._forceUp > 0)
+        {
+            // 如果有，就加上升的值，同时还要将上升的值衰减下来
+            velocityY -= this._forceUp;
+            this._forceUp -= Battle.JUMP_DAMPING;
+            if (this._forceUp < 0)
+            {
+                this._forceUp = 0;
+            }
+        }
+        // 检测是否有在下降？
+        if (this._forceDown > 0)
+        {
+            // 如果有，就加上升的值，同时还要将上升的值衰减下来
+            velocityY += this._forceDown;
+            this._forceDown -= Battle.JUMP_DAMPING;
+            if (this._forceDown < 0)
+            {
+                this._forceDown = 0;
+            }
+        }
+
+        this._self.Body.velocity = [0, velocityY];
+    }
 
 
     private AddTestIcon():void
@@ -273,4 +418,35 @@ class Battle extends egret.DisplayObjectContainer
         icon.y = 33;
     }
 
+    private CreateCollisionTable()
+    {
+        this._collisionTable = new CollisionTable();
+
+        let src = this;
+        this._collisionTable.Add(EnumCollisionTableType.MY_ACTOR, EnumCollisionTableType.TOP_GROUND, function(a,b){src.OnMyActor2TopGround(a,b);});
+        this._collisionTable.Add(EnumCollisionTableType.MY_ACTOR, EnumCollisionTableType.BOTTOM_GROUND, function(a,b){src.OnMyActor2BottomGround(a,b);});
+        this._collisionTable.Add(EnumCollisionTableType.TOP_GROUND, EnumCollisionTableType.MY_ACTOR, function(a,b){src.OnMyActor2TopGround(b,a);});
+        this._collisionTable.Add(EnumCollisionTableType.BOTTOM_GROUND, EnumCollisionTableType.MY_ACTOR, function(a,b){src.OnMyActor2BottomGround(b,a);});
+    }
+
+    private OnMyActor2TopGround(actor:GameObject, ground:GameObject):void
+    {
+        this._forceDown = this._forceUp;
+        this._forceUp = 0;
+        //TODO 位置要修正回来
+    }
+
+    private OnMyActor2BottomGround(actor:GameObject, ground:GameObject):void
+    {
+        this._forceUp = this._forceDown;
+        this._forceDown = 0;
+        //TODO 位置要修正回来
+        //传进来的值是 undefined!!!  actor.SetPosition(actor.Body.position[0], 900);
+    }
+
+    private DestroyCollisionTable()
+    {
+        this._collisionTable.Release();
+        this._collisionTable = null;
+    }
 }

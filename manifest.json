@@ -9,7 +9,7 @@
 		"libs/modules/physics/physics.js"
 	],
 	"game": [
-		"bin-debug/TestPy/p2DebugDraw.js",
+		"bin-debug/TestPy/DragHelper.js",
 		"bin-debug/GameMain.js",
 		"bin-debug/EgretFW/LoadingUI.js",
 		"bin-debug/EgretFW/Main.js",
@@ -17,10 +17,11 @@
 		"bin-debug/EgretFW/ThemeAdapter.js",
 		"bin-debug/Game/Actor.js",
 		"bin-debug/Game/Battle.js",
+		"bin-debug/Game/CollisionTable.js",
 		"bin-debug/Game/Helper.js",
 		"bin-debug/Game/Loading.js",
-		"bin-debug/TestPy/DragHelper.js",
 		"bin-debug/EgretFW/AssetAdapter.js",
+		"bin-debug/TestPy/p2DebugDraw.js",
 		"bin-debug/TestPy/scene/BuoyancyScene.js",
 		"bin-debug/TestPy/scene/HeightfieldScene.js",
 		"bin-debug/TestPy/scene/KinematicScene.js",
