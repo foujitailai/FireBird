@@ -3,11 +3,13 @@ class CollisionAction
 
     private _battle:Battle;
     private _collisionTable:CollisionTable;
+    private _controllerData: ControllerData;
 
-    public constructor(battle:Battle, collisionTable:CollisionTable)
+    public constructor(battle:Battle, collisionTable:CollisionTable, controllerData: ControllerData)
     {
         this._battle = battle;
         this._collisionTable = collisionTable;
+        this._controllerData = controllerData;
 
         this.AddCollisionAction();
     }
@@ -34,16 +36,16 @@ class CollisionAction
 
     private OnMyActor2TopGround(actor: GameObject, ground: GameObject): void
     {
-        this._battle.ForceDown = this._battle.ForceUp;
-        this._battle.ForceUp = 0;
+        this._controllerData.ForceDown = this._controllerData.ForceUp;
+        this._controllerData.ForceUp = 0;
         //TODO 位置要修正回来
         actor.SetPosition(actor.Body.position[0], 200);
     }
 
     private OnMyActor2BottomGround(actor: GameObject, ground: GameObject): void
     {
-        this._battle.ForceUp = this._battle.ForceDown;
-        this._battle.ForceDown = 0;
+        this._controllerData.ForceUp = this._controllerData.ForceDown;
+        this._controllerData.ForceDown = 0;
         //TODO 位置要修正回来
         actor.SetPosition(actor.Body.position[0], 900);
     }
