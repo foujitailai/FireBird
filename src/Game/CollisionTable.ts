@@ -13,10 +13,10 @@ enum EnumCollisionTableType
 
 class CallbackHandle
 {
-    public Listener : Function;
-    public ThisObject : any;
+    public Listener: Function;
+    public ThisObject: any;
 
-    public constructor(listener : Function, thisObject : any)
+    public constructor(listener: Function, thisObject: any)
     {
         this.Listener = listener;
         this.ThisObject = thisObject;
@@ -26,7 +26,7 @@ class CallbackHandle
 class CollisionTable
 {
     //(a:GameObject, b:GameObject) => void
-    private _actionTable : Array<Array< CallbackHandle >>;
+    private _actionTable: Array<Array<CallbackHandle>>;
 
     public constructor()
     {
@@ -41,18 +41,18 @@ class CollisionTable
         }
     }
 
-    public Release() : void
+    public Release(): void
     {
         this._actionTable = null;
     }
 
-    public Add(a : EnumCollisionTableType, b : EnumCollisionTableType, action : (a:GameObject, b:GameObject) => void) : void
+    public Add(a: EnumCollisionTableType, b: EnumCollisionTableType, action: (a: GameObject, b: GameObject) => void): void
     {
         this._actionTable[a][b] = new CallbackHandle(action, undefined);//, obj:any
     }
 
 
-    public FindAction(a : EnumCollisionTableType, b : EnumCollisionTableType) : CallbackHandle
+    public FindAction(a: EnumCollisionTableType, b: EnumCollisionTableType): CallbackHandle
     {
         return this._actionTable[a][b];
     }

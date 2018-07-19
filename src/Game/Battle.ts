@@ -27,7 +27,7 @@ class Battle extends egret.DisplayObjectContainer
         this._lastTime = egret.getTimer();
     }
 
-    public Release():void
+    public Release(): void
     {
         this._lastTime = 0;
 
@@ -49,7 +49,8 @@ class Battle extends egret.DisplayObjectContainer
 
     private _onBeginContactHandle;
     private _onEndContactHandle;
-    private CreateScene():void
+
+    private CreateScene(): void
     {
         //TODO 创建物理引擎
         var wrd: p2.World = new p2.World();
@@ -63,7 +64,8 @@ class Battle extends egret.DisplayObjectContainer
         this._world.on("beginContact", this._onBeginContactHandle);
         this._world.on("endContact", this._onEndContactHandle);
     }
-    private DestroyScene():void
+
+    private DestroyScene(): void
     {
         if (this._onBeginContactHandle) this._world.off("beginContact", this._onBeginContactHandle);
         if (this._onEndContactHandle) this._world.off("endContact", this._onEndContactHandle);
@@ -80,7 +82,7 @@ class Battle extends egret.DisplayObjectContainer
         this._debugDraw.setSprite(sprite);
     }
 
-    private DestroyDebug():void
+    private DestroyDebug(): void
     {
         if (this._debugDraw)
         {
@@ -90,7 +92,7 @@ class Battle extends egret.DisplayObjectContainer
     }
 
 
-    private GetGameObjectByP2Id(p2Id : number) : GameObject
+    private GetGameObjectByP2Id(p2Id: number): GameObject
     {
         for (let k in this._gameObjects)
         {
@@ -103,8 +105,9 @@ class Battle extends egret.DisplayObjectContainer
         return null;
     }
 
-    private _collisionTable : CollisionTable;
-    private GetCollitionTableType(go: GameObject):EnumCollisionTableType
+    private _collisionTable: CollisionTable;
+
+    private GetCollitionTableType(go: GameObject): EnumCollisionTableType
     {
         if (go instanceof Actor)
         {
@@ -149,7 +152,7 @@ class Battle extends egret.DisplayObjectContainer
         return EnumCollisionTableType.NONE;
     }
 
-    private DoCollision(aGO: GameObject, bGO: GameObject) : void
+    private DoCollision(aGO: GameObject, bGO: GameObject): void
     {
         if (!aGO || !bGO)
         {
@@ -165,9 +168,9 @@ class Battle extends egret.DisplayObjectContainer
         }
     }
 
-    private OnBeginContact(event:any):void
+    private OnBeginContact(event: any): void
     {
-        console.log("on target sensor BEG bodyA.id:"+event.bodyA.id+",bodyB.id:"+event.bodyB.id);
+        console.log("on target sensor BEG bodyA.id:" + event.bodyA.id + ",bodyB.id:" + event.bodyB.id);
 
         let aGO = this.GetGameObjectByP2Id(event.bodyA.id);
         let bGO = this.GetGameObjectByP2Id(event.bodyB.id);
@@ -189,14 +192,15 @@ class Battle extends egret.DisplayObjectContainer
         // this._world.removeBody(body);
     }
 
-    private OnEndContact(event:any):void
+    private OnEndContact(event: any): void
     {
-        console.log("on target sensor END bodyA.id:"+event.bodyA.id+",bodyB.id:"+event.bodyB.id);
+        console.log("on target sensor END bodyA.id:" + event.bodyA.id + ",bodyB.id:" + event.bodyB.id);
     }
 
-    private _groundTop : Ground;
-    private _groundBottom : Ground;
-    private CreateWallOnTopBottom():void
+    private _groundTop: Ground;
+    private _groundBottom: Ground;
+
+    private CreateWallOnTopBottom(): void
     {
         //TODO 添加上下反弹墙
         this._groundTop = Helper.CreateGround(this._world, this);
@@ -205,13 +209,14 @@ class Battle extends egret.DisplayObjectContainer
 
         this._groundBottom = Helper.CreateGround(this._world, this);
         let h = this.stage.$stageHeight;
-        this._groundBottom.SetPosition(this._groundTop.Display.width / 2,  h - this._groundBottom.Display.height / 2);
+        this._groundBottom.SetPosition(this._groundTop.Display.width / 2, h - this._groundBottom.Display.height / 2);
         this.AddGameObject(this._groundBottom);
     }
 
     private _hellLeft: Hell;
     private _hellRight: Hell;
-    private CreateWallOnLeftRight():void
+
+    private CreateWallOnLeftRight(): void
     {
         //TODO 添加左右销毁墙
         this._hellLeft = Helper.CreateHell(this._world, this);
@@ -220,16 +225,16 @@ class Battle extends egret.DisplayObjectContainer
 
         this._hellRight = Helper.CreateHell(this._world, this);
         let w = this.stage.$stageWidth;
-        this._hellRight.SetPosition(w + 100,  this._hellRight.Display.height / 2);
+        this._hellRight.SetPosition(w + 100, this._hellRight.Display.height / 2);
         this.AddGameObject(this._hellRight);
     }
 
-    private DestroyWallOnTopBottom():void
+    private DestroyWallOnTopBottom(): void
     {
         //TODO 添加上下反弹墙
     }
 
-    private DestroyWallOnLeftRight():void
+    private DestroyWallOnLeftRight(): void
     {
         //TODO 添加左右销毁墙
     }
@@ -237,8 +242,9 @@ class Battle extends egret.DisplayObjectContainer
     private _onKeyDownHandle;
     private _onKeyUpHandle;
 
-    private _self : Actor;
-    private CreateControllableActor():void
+    private _self: Actor;
+
+    private CreateControllableActor(): void
     {
         //TODO 添加控制的主角
         this._self = Helper.CreateActor(EnumActorType.Player, 1, this._world, this);
@@ -253,7 +259,7 @@ class Battle extends egret.DisplayObjectContainer
         this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
     }
 
-    private DestroyControllableActor():void
+    private DestroyControllableActor(): void
     {
         console.log("DestroyControllableActor");
         if (this._onKeyDownHandle) document.removeEventListener("keydown", this._onKeyDownHandle);
@@ -263,7 +269,7 @@ class Battle extends egret.DisplayObjectContainer
         this.stage.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
     }
 
-    private onTouch(e:egret.TouchEvent):void
+    private onTouch(e: egret.TouchEvent): void
     {
         // console.log("clicked");
 
@@ -271,7 +277,7 @@ class Battle extends egret.DisplayObjectContainer
         this.OnJump();
     }
 
-    private OnFire():void
+    private OnFire(): void
     {
         //TODO 发射子弹
         // console.log("OnFire");
@@ -280,7 +286,7 @@ class Battle extends egret.DisplayObjectContainer
         this.AddGameObject(bullet);
     }
 
-    private OnJump():void
+    private OnJump(): void
     {
         //TODO 向上跳
         // console.log("OnJump");
@@ -289,10 +295,11 @@ class Battle extends egret.DisplayObjectContainer
         this._forceDown = 0;
     }
 
-    private _keyDown : number = 0;
-    private _keyUp : number = 0;
-    private _keyLeft : number = 0;
-    private _keyRight : number = 0;
+    private _keyDown: number = 0;
+    private _keyUp: number = 0;
+    private _keyLeft: number = 0;
+    private _keyRight: number = 0;
+
     private onKeyDown(evt): void
     {
         // console.log("evt.keyCode:" + evt.keyCode);
@@ -300,53 +307,55 @@ class Battle extends egret.DisplayObjectContainer
         // keycode 40 = Down ↓
         // keycode 37 = Left ←
         // keycode 39 = Right →
-        switch(evt.keyCode)
+        switch (evt.keyCode)
         {
-            case 38: this._keyUp = 1; break;
-            case 40: this._keyDown = 1; break;
-            case 37: this._keyLeft = 1; break;
-            case 39: this._keyRight = 1; break;
-            case 32:
-                this.OnFire(); break;
-            case 86:
-                this.OnJump(); break;
+        case 38:
+            this._keyUp = 1;
+            break;
+        case 40:
+            this._keyDown = 1;
+            break;
+        case 37:
+            this._keyLeft = 1;
+            break;
+        case 39:
+            this._keyRight = 1;
+            break;
+        case 32:
+            this.OnFire();
+            break;
+        case 86:
+            this.OnJump();
+            break;
         }
     }
 
     private onKeyUp(evt): void
     {
-        switch(evt.keyCode)
+        switch (evt.keyCode)
         {
-            case 38: this._keyUp = 0; break;
-            case 40: this._keyDown = 0; break;
-            case 37: this._keyLeft = 0; break;
-            case 39: this._keyRight = 0; break;
+        case 38:
+            this._keyUp = 0;
+            break;
+        case 40:
+            this._keyDown = 0;
+            break;
+        case 37:
+            this._keyLeft = 0;
+            break;
+        case 39:
+            this._keyRight = 0;
+            break;
         }
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private _gameObjects: { [key: number]: GameObject; } = {};
 
-    private _lastTime : number = 0;
-    private _delta : number = 0;
-    private OnUpdate():void
+    private _lastTime: number = 0;
+    private _delta: number = 0;
+
+    private OnUpdate(): void
     {
         // 计算当前帧的时间间隔
         let curTime = egret.getTimer();
@@ -354,16 +363,14 @@ class Battle extends egret.DisplayObjectContainer
         this._lastTime = curTime;
         if (this._delta > 1)
         {
-            this._delta = 30/1000;
+            this._delta = 30 / 1000;
         }
-
 
 
         // 直接速度（每秒的速度，如果不去每帧设置，会被衰竭掉，可以通过damping=0来去掉衰竭）
         //this._self.Body.velocity = [(this._keyLeft - this._keyRight) * -200, (this._keyUp - this._keyDown) * -200];
         //this._self.Body.velocity = [0, 200];
         this.UpdateSelf();
-
 
 
         // 更新物理引擎时间
@@ -384,20 +391,21 @@ class Battle extends egret.DisplayObjectContainer
      * 跳起时给的力
      * @type {number}
      */
-    private static readonly JUMP_VELOCITY:number = 2000;
+    private static readonly JUMP_VELOCITY: number = 2000;
     /**
      * 每帧在衰减的力
      * @type {number}
      */
-    private static readonly JUMP_DAMPING:number = 100;
+    private static readonly JUMP_DAMPING: number = 100;
     /**
      * 重力做用的力
      * @type {number}
      */
-    private static readonly GRAVITY_VELOCITY:number = 800;
+    private static readonly GRAVITY_VELOCITY: number = 800;
     private _forceUp: number = 0;
     private _forceDown: number = 0;
-    private UpdateSelf():void
+
+    private UpdateSelf(): void
     {
         let velocityY = Battle.GRAVITY_VELOCITY;
 
@@ -428,7 +436,7 @@ class Battle extends egret.DisplayObjectContainer
     }
 
 
-    private AddTestIcon():void
+    private AddTestIcon(): void
     {
         let icon: egret.Bitmap = Helper.CreateBitmapByName("egret_icon_png");
         this.addChild(icon);
@@ -441,16 +449,34 @@ class Battle extends egret.DisplayObjectContainer
         this._collisionTable = new CollisionTable();
         let src = this;
 
-        this._collisionTable.Add(EnumCollisionTableType.MY_ACTOR, EnumCollisionTableType.TOP_GROUND,function(a,b){src.OnMyActor2TopGround(a,b);});
-        this._collisionTable.Add(EnumCollisionTableType.MY_ACTOR, EnumCollisionTableType.BOTTOM_GROUND, function(a,b){src.OnMyActor2BottomGround(a,b);});
-        this._collisionTable.Add(EnumCollisionTableType.TOP_GROUND, EnumCollisionTableType.MY_ACTOR,function(a,b){src.OnMyActor2TopGround(b,a);});
-        this._collisionTable.Add(EnumCollisionTableType.BOTTOM_GROUND, EnumCollisionTableType.MY_ACTOR,function(a,b){src.OnMyActor2BottomGround(b,a);});
+        this._collisionTable.Add(EnumCollisionTableType.MY_ACTOR, EnumCollisionTableType.TOP_GROUND, function (a, b)
+        {
+            src.OnMyActor2TopGround(a, b);
+        });
+        this._collisionTable.Add(EnumCollisionTableType.MY_ACTOR, EnumCollisionTableType.BOTTOM_GROUND, function (a, b)
+        {
+            src.OnMyActor2BottomGround(a, b);
+        });
+        this._collisionTable.Add(EnumCollisionTableType.TOP_GROUND, EnumCollisionTableType.MY_ACTOR, function (a, b)
+        {
+            src.OnMyActor2TopGround(b, a);
+        });
+        this._collisionTable.Add(EnumCollisionTableType.BOTTOM_GROUND, EnumCollisionTableType.MY_ACTOR, function (a, b)
+        {
+            src.OnMyActor2BottomGround(b, a);
+        });
 
-        this._collisionTable.Add(EnumCollisionTableType.MY_BULLET, EnumCollisionTableType.HELL,function(a,b){src.OnMyBullet2Hell(a,b);});
-        this._collisionTable.Add(EnumCollisionTableType.HELL, EnumCollisionTableType.MY_BULLET, function(a,b){src.OnMyBullet2Hell(b,a);});
+        this._collisionTable.Add(EnumCollisionTableType.MY_BULLET, EnumCollisionTableType.HELL, function (a, b)
+        {
+            src.OnMyBullet2Hell(a, b);
+        });
+        this._collisionTable.Add(EnumCollisionTableType.HELL, EnumCollisionTableType.MY_BULLET, function (a, b)
+        {
+            src.OnMyBullet2Hell(b, a);
+        });
     }
 
-    private OnMyActor2TopGround(actor:GameObject, ground:GameObject):void
+    private OnMyActor2TopGround(actor: GameObject, ground: GameObject): void
     {
         this._forceDown = this._forceUp;
         this._forceUp = 0;
@@ -458,7 +484,7 @@ class Battle extends egret.DisplayObjectContainer
         actor.SetPosition(actor.Body.position[0], 200);
     }
 
-    private OnMyActor2BottomGround(actor:GameObject, ground:GameObject):void
+    private OnMyActor2BottomGround(actor: GameObject, ground: GameObject): void
     {
         this._forceUp = this._forceDown;
         this._forceDown = 0;
@@ -467,7 +493,7 @@ class Battle extends egret.DisplayObjectContainer
     }
 
 
-    private OnMyBullet2Hell(bullet:GameObject, hell:GameObject):void
+    private OnMyBullet2Hell(bullet: GameObject, hell: GameObject): void
     {
         this.RemoveGameObject(bullet);
     }
@@ -486,6 +512,7 @@ class Battle extends egret.DisplayObjectContainer
         this._world.addBody(go.Body);
         this._gameObjects[go.Id] = go;
     }
+
     private RemoveGameObject(go: GameObject)
     {
         if (this._gameObjects[go.Id])

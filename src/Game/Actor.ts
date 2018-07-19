@@ -39,29 +39,30 @@ class GameObject
     public readonly Id: number;
 
     private static IdGenerate: number = 0;
+
     public constructor()
     {
         this.Id = ++GameObject.IdGenerate;
     }
 
-    public Release():void
+    public Release(): void
     {
         this.Body = null;
         this.Display = null;
     }
 
 
-    public Body:p2.Body;
-    public Display:egret.DisplayObject;
+    public Body: p2.Body;
+    public Display: egret.DisplayObject;
 
 
-    public SetPosition(x: number, y: number):void
+    public SetPosition(x: number, y: number): void
     {
         this.Body.position[0] = x;
         this.Body.position[1] = y;
     }
 
-    public SyncPy2View():void
+    public SyncPy2View(): void
     {
         this.Display.x = this.Body.position[0];
         this.Display.y = this.Body.position[1];
@@ -70,28 +71,28 @@ class GameObject
 }
 
 
-
 enum EnumActorType
 {
-	Player,
-	Npc,
+    Player,
+    Npc,
 }
 
 class ActorData
 {
-	public ActorType:EnumActorType;
-	public SpriteName:string;
+    public ActorType: EnumActorType;
+    public SpriteName: string;
 }
 
 class Actor extends GameObject
 {
-    public Data:ActorData;
-	public constructor()
-	{
-		super();
-	}
-    
-    public Release():void
+    public Data: ActorData;
+
+    public constructor()
+    {
+        super();
+    }
+
+    public Release(): void
     {
         super.Release();
         this.Data = null;
@@ -106,20 +107,21 @@ enum EnumBulletType
 
 class BulletData
 {
-    public BulletType:EnumBulletType;
-    public SpriteName:string;
+    public BulletType: EnumBulletType;
+    public SpriteName: string;
     public Actor: Actor;
 }
 
 class Bullet extends GameObject
 {
-    public Data:BulletData;
+    public Data: BulletData;
+
     public constructor()
     {
         super();
     }
 
-    public Release():void
+    public Release(): void
     {
         super.Release();
         this.Data = null;
@@ -128,18 +130,19 @@ class Bullet extends GameObject
 
 class GroundData
 {
-    public SpriteName:string;
+    public SpriteName: string;
 }
 
 class Ground extends GameObject
 {
-    public Data:GroundData;
+    public Data: GroundData;
+
     public constructor()
     {
         super();
     }
 
-    public Release():void
+    public Release(): void
     {
         super.Release();
         this.Data = null;
@@ -148,18 +151,19 @@ class Ground extends GameObject
 
 class HellData
 {
-    public SpriteName:string;
+    public SpriteName: string;
 }
 
 class Hell extends GameObject
 {
-    public Data:HellData;
+    public Data: HellData;
+
     public constructor()
     {
         super();
     }
 
-    public Release():void
+    public Release(): void
     {
         super.Release();
         this.Data = null;

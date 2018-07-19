@@ -43,13 +43,12 @@ class Helper
         }
     }
 
-	public static CreateActor(actorType: EnumActorType, resId: number, world: p2.World, con: egret.DisplayObjectContainer): Actor
-	{
-		//TODO 通过id得到对应的配置数据
-		let data = new ActorData();
-		data.ActorType = actorType;
-		data.SpriteName = "checkbox_select_disabled_png";
-
+    public static CreateActor(actorType: EnumActorType, resId: number, world: p2.World, con: egret.DisplayObjectContainer): Actor
+    {
+        //TODO 通过id得到对应的配置数据
+        let data = new ActorData();
+        data.ActorType = actorType;
+        data.SpriteName = "checkbox_select_disabled_png";
 
 
         let shape = new p2.Box({width: 100, height: 50});
@@ -57,7 +56,7 @@ class Helper
 
         Helper.SetCollision(actorType, shape, true);
 
-        let body: p2.Body = new p2.Body({ mass: 1, position: [0, 0], type:p2.Body.DYNAMIC });
+        let body: p2.Body = new p2.Body({mass: 1, position: [0, 0], type: p2.Body.DYNAMIC});
         body.damping = 0;
         body.addShape(shape);
 
@@ -70,14 +69,14 @@ class Helper
         body.displays = [pic];
 
 
-		let actor = new Actor();
-		actor.Body = body;
-		actor.Data = data;
-		actor.Display = pic;
-		return actor;
-	}
+        let actor = new Actor();
+        actor.Body = body;
+        actor.Data = data;
+        actor.Display = pic;
+        return actor;
+    }
 
-	public static CreateBullet(actor: Actor, world: p2.World, con: egret.DisplayObjectContainer): Bullet
+    public static CreateBullet(actor: Actor, world: p2.World, con: egret.DisplayObjectContainer): Bullet
     {
         //TODO 通过id得到对应的配置数据
         let data = new BulletData();
@@ -90,7 +89,7 @@ class Helper
 
         Helper.SetCollision(actor.Data.ActorType, shape, false);
 
-        let body: p2.Body = new p2.Body({ mass: 1, position: [0, 0], type:p2.Body.DYNAMIC });
+        let body: p2.Body = new p2.Body({mass: 1, position: [0, 0], type: p2.Body.DYNAMIC});
         body.damping = 0;
         body.addShape(shape);
 
@@ -126,7 +125,7 @@ class Helper
         shape.collisionGroup = EnumCollisionType.GROUND;
         shape.collisionMask = 0xffff;
 
-        let body: p2.Body = new p2.Body({ mass: 0, position: [0, 0], type:p2.Body.STATIC });
+        let body: p2.Body = new p2.Body({mass: 0, position: [0, 0], type: p2.Body.STATIC});
         body.damping = 0;
         body.addShape(shape);
 
@@ -156,7 +155,7 @@ class Helper
         shape.collisionGroup = EnumCollisionType.HELL;
         shape.collisionMask = 0xffff;
 
-        let body: p2.Body = new p2.Body({ mass: 0, position: [0, 0], type:p2.Body.STATIC });
+        let body: p2.Body = new p2.Body({mass: 0, position: [0, 0], type: p2.Body.STATIC});
         body.damping = 0;
         body.addShape(shape);
 
