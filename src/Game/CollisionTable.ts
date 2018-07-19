@@ -56,4 +56,18 @@ class CollisionTable
     {
         return this._actionTable[a][b];
     }
+
+    public DoCollision(aGO: GameObject, bGO: GameObject): void
+    {
+        if (!aGO || !bGO)
+        {
+            return;
+        }
+
+        let action = this.FindAction(aGO.CollisionTableType, bGO.CollisionTableType);
+        if (action)
+        {
+            action.Listener.apply(action.ThisObject, [aGO, bGO]);
+        }
+    }
 }

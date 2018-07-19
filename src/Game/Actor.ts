@@ -68,6 +68,11 @@ class GameObject
         this.Display.y = this.Body.position[1];
         this.Display.rotation = (this.Body.angle + this.Body.shapes[0].angle) * 180 / Math.PI;
     }
+
+    public get CollisionTableType(): EnumCollisionTableType
+    {
+        return EnumCollisionTableType.NONE;
+    }
 }
 
 
@@ -96,6 +101,18 @@ class Actor extends GameObject
     {
         super.Release();
         this.Data = null;
+    }
+
+    public get CollisionTableType(): EnumCollisionTableType
+    {
+        if (this.Data.ActorType == EnumActorType.Player)
+        {
+            return EnumCollisionTableType.MY_ACTOR;
+        }
+        else
+        {
+            return EnumCollisionTableType.ENEMY_ACTOR;
+        }
     }
 }
 
@@ -126,6 +143,18 @@ class Bullet extends GameObject
         super.Release();
         this.Data = null;
     }
+
+    public get CollisionTableType(): EnumCollisionTableType
+    {
+        if (this.Data.Actor.Data.ActorType == EnumActorType.Player)
+        {
+            return EnumCollisionTableType.MY_BULLET;
+        }
+        else
+        {
+            return EnumCollisionTableType.ENEMY_BULLET;
+        }
+    }
 }
 
 class GroundData
@@ -136,6 +165,7 @@ class GroundData
 class Ground extends GameObject
 {
     public Data: GroundData;
+    private _collisionTableType: EnumCollisionTableType;
 
     public constructor()
     {
@@ -146,6 +176,15 @@ class Ground extends GameObject
     {
         super.Release();
         this.Data = null;
+    }
+
+    public SetCollisionTableType(type: EnumCollisionTableType):void
+    {
+        this._collisionTableType = type;
+    }
+    public get CollisionTableType(): EnumCollisionTableType
+    {
+        return this._collisionTableType;
     }
 }
 
@@ -167,5 +206,10 @@ class Hell extends GameObject
     {
         super.Release();
         this.Data = null;
+    }
+
+    public get CollisionTableType(): EnumCollisionTableType
+    {
+        return EnumCollisionTableType.HELL;
     }
 }

@@ -1,5 +1,8 @@
 class Battle extends egret.DisplayObjectContainer
 {
+    private _collisionAction: CollisionAction;
+    private _controller:Controller;
+
     public constructor()
     {
         super();
@@ -15,6 +18,10 @@ class Battle extends egret.DisplayObjectContainer
         this.AddTestIcon();
 
         this.CreateScene();
+
+        this._controller = new Controller(this);
+        this.addEventListener(GameEvent.FIRE, this.OnFire, this);
+
 
         this.CreateControllableActor();
         this.CreateWallOnTopBottom();
@@ -39,9 +46,17 @@ class Battle extends egret.DisplayObjectContainer
         this.DestroyWallOnLeftRight();
         this.DestroyControllableActor();
 
+
+
+        this.removeEventListener(GameEvent.FIRE, this.OnFire, this);
+        this._controller = null;
+
+
         this.DestroyScene();
 
         this.DestroyCollisionTable();
+
+
     }
 
     private _world: p2.World;
@@ -107,74 +122,13 @@ class Battle extends egret.DisplayObjectContainer
 
     private _collisionTable: CollisionTable;
 
-    private GetCollitionTableType(go: GameObject): EnumCollisionTableType
-    {
-        if (go instanceof Actor)
-        {
-            let actor = <Actor> go;
-            if (actor.Data.ActorType == EnumActorType.Player)
-            {
-                return EnumCollisionTableType.MY_ACTOR;
-            }
-            else
-            {
-                return EnumCollisionTableType.ENEMY_ACTOR;
-            }
-        }
-        else if (go instanceof Bullet)
-        {
-            let bullet = <Bullet> go;
-            if (bullet.Data.Actor.Data.ActorType == EnumActorType.Player)
-            {
-                return EnumCollisionTableType.MY_BULLET;
-            }
-            else
-            {
-                return EnumCollisionTableType.ENEMY_BULLET;
-            }
-        }
-        else if (go instanceof Ground)
-        {
-            let ground = <Ground> go;
-            if (ground.Id == this._groundTop.Id)
-            {
-                return EnumCollisionTableType.TOP_GROUND;
-            }
-            else
-            {
-                return EnumCollisionTableType.BOTTOM_GROUND;
-            }
-        }
-        else if (go instanceof Hell)
-        {
-            return EnumCollisionTableType.HELL;
-        }
-        return EnumCollisionTableType.NONE;
-    }
-
-    private DoCollision(aGO: GameObject, bGO: GameObject): void
-    {
-        if (!aGO || !bGO)
-        {
-            return;
-        }
-
-        let aType = this.GetCollitionTableType(aGO);
-        let bType = this.GetCollitionTableType(bGO);
-        let action = this._collisionTable.FindAction(aType, bType);
-        if (action)
-        {
-            action.Listener.apply(action.ThisObject, [aGO, bGO]);
-        }
-    }
-
     private OnBeginContact(event: any): void
     {
         console.log("on target sensor BEG bodyA.id:" + event.bodyA.id + ",bodyB.id:" + event.bodyB.id);
 
         let aGO = this.GetGameObjectByP2Id(event.bodyA.id);
         let bGO = this.GetGameObjectByP2Id(event.bodyB.id);
-        this.DoCollision(aGO, bGO)
+        this._collisionTable.DoCollision(aGO, bGO);
 
         // if (!this._self || !this._self.Body)
         //     return;
@@ -205,11 +159,13 @@ class Battle extends egret.DisplayObjectContainer
         //TODO 添加上下反弹墙
         this._groundTop = Helper.CreateGround(this._world, this);
         this._groundTop.SetPosition(this._groundTop.Display.width / 2, this._groundTop.Display.height / 2);
+        this._groundTop.SetCollisionTableType(EnumCollisionTableType.TOP_GROUND);
         this.AddGameObject(this._groundTop);
 
         this._groundBottom = Helper.CreateGround(this._world, this);
         let h = this.stage.$stageHeight;
         this._groundBottom.SetPosition(this._groundTop.Display.width / 2, h - this._groundBottom.Display.height / 2);
+        this._groundBottom.SetCollisionTableType(EnumCollisionTableType.BOTTOM_GROUND);
         this.AddGameObject(this._groundBottom);
     }
 
@@ -239,10 +195,8 @@ class Battle extends egret.DisplayObjectContainer
         //TODO 添加左右销毁墙
     }
 
-    private _onKeyDownHandle;
-    private _onKeyUpHandle;
-
     private _self: Actor;
+
 
     private CreateControllableActor(): void
     {
@@ -251,102 +205,25 @@ class Battle extends egret.DisplayObjectContainer
         this._self.SetPosition(100, 100);
         this.AddGameObject(this._self);
 
-        //TODO 绑定键盘控制
-        this._onKeyDownHandle = this.onKeyDown.bind(this);
-        this._onKeyUpHandle = this.onKeyUp.bind(this);
-        document.addEventListener("keydown", this._onKeyDownHandle);
-        document.addEventListener("keyup", this._onKeyUpHandle);
-        this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
     }
 
     private DestroyControllableActor(): void
     {
         console.log("DestroyControllableActor");
-        if (this._onKeyDownHandle) document.removeEventListener("keydown", this._onKeyDownHandle);
-        if (this._onKeyUpHandle) document.removeEventListener("keyup", this._onKeyUpHandle);
-        this._onKeyDownHandle = null;
-        this._onKeyUpHandle = null;
-        this.stage.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
-    }
-
-    private onTouch(e: egret.TouchEvent): void
-    {
-        // console.log("clicked");
-
-        this.OnFire();
-        this.OnJump();
     }
 
     private OnFire(): void
     {
-        //TODO 发射子弹
-        // console.log("OnFire");
-
         let bullet = Helper.CreateBullet(this._self, this._world, this);
         this.AddGameObject(bullet);
+
+        this.OnJump();
     }
 
     private OnJump(): void
     {
-        //TODO 向上跳
-        // console.log("OnJump");
-        //this._self.Body.applyImpulseLocal([0,-100], undefined);
         this._forceUp = Battle.JUMP_VELOCITY;
         this._forceDown = 0;
-    }
-
-    private _keyDown: number = 0;
-    private _keyUp: number = 0;
-    private _keyLeft: number = 0;
-    private _keyRight: number = 0;
-
-    private onKeyDown(evt): void
-    {
-        // console.log("evt.keyCode:" + evt.keyCode);
-        // keycode 38 = Up ↑
-        // keycode 40 = Down ↓
-        // keycode 37 = Left ←
-        // keycode 39 = Right →
-        switch (evt.keyCode)
-        {
-        case 38:
-            this._keyUp = 1;
-            break;
-        case 40:
-            this._keyDown = 1;
-            break;
-        case 37:
-            this._keyLeft = 1;
-            break;
-        case 39:
-            this._keyRight = 1;
-            break;
-        case 32:
-            this.OnFire();
-            break;
-        case 86:
-            this.OnJump();
-            break;
-        }
-    }
-
-    private onKeyUp(evt): void
-    {
-        switch (evt.keyCode)
-        {
-        case 38:
-            this._keyUp = 0;
-            break;
-        case 40:
-            this._keyDown = 0;
-            break;
-        case 37:
-            this._keyLeft = 0;
-            break;
-        case 39:
-            this._keyRight = 0;
-            break;
-        }
     }
 
 
@@ -404,6 +281,23 @@ class Battle extends egret.DisplayObjectContainer
     private static readonly GRAVITY_VELOCITY: number = 800;
     private _forceUp: number = 0;
     private _forceDown: number = 0;
+    public get ForceUp()
+    {
+        return this._forceUp;
+    }
+    public set ForceUp(v:number)
+    {
+        this._forceUp = v;
+    }
+
+    public get ForceDown()
+    {
+        return this._forceDown;
+    }
+    public set ForceDown(v:number)
+    {
+        this._forceDown = v;
+    }
 
     private UpdateSelf(): void
     {
@@ -447,65 +341,19 @@ class Battle extends egret.DisplayObjectContainer
     private CreateCollisionTable()
     {
         this._collisionTable = new CollisionTable();
-        let src = this;
-
-        this._collisionTable.Add(EnumCollisionTableType.MY_ACTOR, EnumCollisionTableType.TOP_GROUND, function (a, b)
-        {
-            src.OnMyActor2TopGround(a, b);
-        });
-        this._collisionTable.Add(EnumCollisionTableType.MY_ACTOR, EnumCollisionTableType.BOTTOM_GROUND, function (a, b)
-        {
-            src.OnMyActor2BottomGround(a, b);
-        });
-        this._collisionTable.Add(EnumCollisionTableType.TOP_GROUND, EnumCollisionTableType.MY_ACTOR, function (a, b)
-        {
-            src.OnMyActor2TopGround(b, a);
-        });
-        this._collisionTable.Add(EnumCollisionTableType.BOTTOM_GROUND, EnumCollisionTableType.MY_ACTOR, function (a, b)
-        {
-            src.OnMyActor2BottomGround(b, a);
-        });
-
-        this._collisionTable.Add(EnumCollisionTableType.MY_BULLET, EnumCollisionTableType.HELL, function (a, b)
-        {
-            src.OnMyBullet2Hell(a, b);
-        });
-        this._collisionTable.Add(EnumCollisionTableType.HELL, EnumCollisionTableType.MY_BULLET, function (a, b)
-        {
-            src.OnMyBullet2Hell(b, a);
-        });
+        this._collisionAction = new CollisionAction(this, this._collisionTable);
     }
-
-    private OnMyActor2TopGround(actor: GameObject, ground: GameObject): void
-    {
-        this._forceDown = this._forceUp;
-        this._forceUp = 0;
-        //TODO 位置要修正回来
-        actor.SetPosition(actor.Body.position[0], 200);
-    }
-
-    private OnMyActor2BottomGround(actor: GameObject, ground: GameObject): void
-    {
-        this._forceUp = this._forceDown;
-        this._forceDown = 0;
-        //TODO 位置要修正回来
-        actor.SetPosition(actor.Body.position[0], 900);
-    }
-
-
-    private OnMyBullet2Hell(bullet: GameObject, hell: GameObject): void
-    {
-        this.RemoveGameObject(bullet);
-    }
-
 
     private DestroyCollisionTable()
     {
+        this._collisionAction.Release();
+        this._collisionAction = null;
+
         this._collisionTable.Release();
         this._collisionTable = null;
     }
 
-    private AddGameObject(go: GameObject)
+    public AddGameObject(go: GameObject)
     {
         console.log("AddGameObject: " + ClassTool.GetTypeName(go) + "(" + go.Id + ")");
         this.addChild(go.Display);
@@ -513,7 +361,7 @@ class Battle extends egret.DisplayObjectContainer
         this._gameObjects[go.Id] = go;
     }
 
-    private RemoveGameObject(go: GameObject)
+    public RemoveGameObject(go: GameObject)
     {
         if (this._gameObjects[go.Id])
         {
