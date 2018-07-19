@@ -52,7 +52,7 @@ class Helper
 
 
 
-        let shape: p2.Shape = new p2.Box({width: 100, height: 50});
+        let shape = new p2.Box({width: 100, height: 50});
         shape.sensor = true;
 
         Helper.SetCollision(actorType, shape, true);
@@ -62,15 +62,12 @@ class Helper
         body.addShape(shape);
 
         let pic: egret.Bitmap = Helper.CreateBitmapByName(data.SpriteName);
-        pic.width = 100;
-        pic.height = 100;
+        pic.width = shape.width;
+        pic.height = shape.height;
         pic.anchorOffsetX = pic.width / 2;
         pic.anchorOffsetY = pic.height / 2;
-        con.addChild(pic);
 
         body.displays = [pic];
-
-        world.addBody(body);
 
 
 		let actor = new Actor();
@@ -88,7 +85,7 @@ class Helper
         data.SpriteName = "thumb_png";
         data.Actor = actor;
 
-        let shape: p2.Shape = new p2.Circle({radius: 10});
+        let shape = new p2.Circle({radius: 10});
         shape.sensor = true;
 
         Helper.SetCollision(actor.Data.ActorType, shape, false);
@@ -98,15 +95,14 @@ class Helper
         body.addShape(shape);
 
         let pic: egret.Bitmap = Helper.CreateBitmapByName(data.SpriteName);
-        pic.width = 20;
-        pic.height = 20;
+        pic.width = shape.radius * 2;
+        pic.height = pic.width;
         pic.anchorOffsetX = pic.width / 2;
         pic.anchorOffsetY = pic.height / 2;
-        con.addChild(pic);
+        // 先放在屏幕外面，不显示出来
+        pic.x = -2000;
 
         body.displays = [pic];
-
-        world.addBody(body);
 
         body.position = [actor.Body.position[0] + 50, actor.Body.position[1]];
         body.velocity = [1000, 0];
@@ -124,26 +120,23 @@ class Helper
         let data = new GroundData();
         data.SpriteName = "checkbox_select_disabled_png";
 
-        let shape: p2.Shape = new p2.Box({width: 640, height: 100});
+        let shape = new p2.Box({width: con.stage.$stageWidth, height: 100});
         shape.sensor = true;
 
         shape.collisionGroup = EnumCollisionType.GROUND;
+        shape.collisionMask = 0xffff;
 
         let body: p2.Body = new p2.Body({ mass: 0, position: [0, 0], type:p2.Body.STATIC });
         body.damping = 0;
         body.addShape(shape);
 
         let pic: egret.Bitmap = Helper.CreateBitmapByName(data.SpriteName);
-        pic.width = 640;
-        pic.height = 100;
+        pic.width = shape.width;
+        pic.height = shape.height;
         pic.anchorOffsetX = pic.width / 2;
         pic.anchorOffsetY = pic.height / 2;
-        con.addChild(pic);
 
         body.displays = [pic];
-
-        world.addBody(body);
-
 
         let ground = new Ground();
         ground.Body = body;
@@ -152,4 +145,34 @@ class Helper
         return ground;
     }
 
+    public static CreateHell(world: p2.World, con: egret.DisplayObjectContainer): Hell
+    {
+        let data = new HellData();
+        data.SpriteName = "button_down_png";
+
+        let shape = new p2.Box({width: 2, height: con.stage.$stageHeight});
+        shape.sensor = true;
+
+        shape.collisionGroup = EnumCollisionType.HELL;
+        shape.collisionMask = 0xffff;
+
+        let body: p2.Body = new p2.Body({ mass: 0, position: [0, 0], type:p2.Body.STATIC });
+        body.damping = 0;
+        body.addShape(shape);
+
+        let pic: egret.Bitmap = Helper.CreateBitmapByName(data.SpriteName);
+        pic.width = shape.width;
+        pic.height = shape.height;
+        pic.anchorOffsetX = pic.width / 2;
+        pic.anchorOffsetY = pic.height / 2;
+
+        body.displays = [pic];
+
+
+        let hell = new Hell();
+        hell.Body = body;
+        hell.Data = data;
+        hell.Display = pic;
+        return hell;
+    }
 }

@@ -7,16 +7,26 @@ enum EnumCollisionTableType
     ENEMY_BULLET,
     TOP_GROUND,
     BOTTOM_GROUND,
-    LEFT_HELL,
-    RIGHT_HELL,
+    HELL,
     COUNT,
 }
 
+class CallbackHandle
+{
+    public Listener : Function;
+    public ThisObject : any;
+
+    public constructor(listener : Function, thisObject : any)
+    {
+        this.Listener = listener;
+        this.ThisObject = thisObject;
+    }
+}
 
 class CollisionTable
 {
     //(a:GameObject, b:GameObject) => void
-    private _actionTable : Array<Array< Function >>;
+    private _actionTable : Array<Array< CallbackHandle >>;
 
     public constructor()
     {
@@ -38,11 +48,11 @@ class CollisionTable
 
     public Add(a : EnumCollisionTableType, b : EnumCollisionTableType, action : (a:GameObject, b:GameObject) => void) : void
     {
-        this._actionTable[a][b] = action;
+        this._actionTable[a][b] = new CallbackHandle(action, undefined);//, obj:any
     }
 
 
-    public FindAction(a : EnumCollisionTableType, b : EnumCollisionTableType) : Function
+    public FindAction(a : EnumCollisionTableType, b : EnumCollisionTableType) : CallbackHandle
     {
         return this._actionTable[a][b];
     }

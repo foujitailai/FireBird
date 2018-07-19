@@ -142,6 +142,10 @@ class Battle extends egret.DisplayObjectContainer
                 return EnumCollisionTableType.BOTTOM_GROUND;
             }
         }
+        else if (go instanceof Hell)
+        {
+            return EnumCollisionTableType.HELL;
+        }
         return EnumCollisionTableType.NONE;
     }
 
@@ -157,7 +161,7 @@ class Battle extends egret.DisplayObjectContainer
         let action = this._collisionTable.FindAction(aType, bType);
         if (action)
         {
-            action.apply(aGO, bGO);
+            action.Listener.apply(action.ThisObject, [aGO, bGO]);
         }
     }
 
@@ -196,18 +200,28 @@ class Battle extends egret.DisplayObjectContainer
     {
         //TODO 添加上下反弹墙
         this._groundTop = Helper.CreateGround(this._world, this);
-        this._groundTop.SetPosition(this.stage.width / 2, this._groundTop.Display.height / 2);
-        this._gameObjects[this._groundTop.Id] = this._groundTop;
+        this._groundTop.SetPosition(this._groundTop.Display.width / 2, this._groundTop.Display.height / 2);
+        this.AddGameObject(this._groundTop);
 
         this._groundBottom = Helper.CreateGround(this._world, this);
         let h = this.stage.$stageHeight;
-        this._groundBottom.SetPosition(this.stage.width / 2,  h - this._groundBottom.Display.height / 2);
-        this._gameObjects[this._groundBottom.Id] = this._groundBottom;
+        this._groundBottom.SetPosition(this._groundTop.Display.width / 2,  h - this._groundBottom.Display.height / 2);
+        this.AddGameObject(this._groundBottom);
     }
 
+    private _hellLeft: Hell;
+    private _hellRight: Hell;
     private CreateWallOnLeftRight():void
     {
         //TODO 添加左右销毁墙
+        this._hellLeft = Helper.CreateHell(this._world, this);
+        this._hellLeft.SetPosition(-100, this._hellLeft.Display.height / 2);
+        this.AddGameObject(this._hellLeft);
+
+        this._hellRight = Helper.CreateHell(this._world, this);
+        let w = this.stage.$stageWidth;
+        this._hellRight.SetPosition(w + 100,  this._hellRight.Display.height / 2);
+        this.AddGameObject(this._hellRight);
     }
 
     private DestroyWallOnTopBottom():void
@@ -229,7 +243,7 @@ class Battle extends egret.DisplayObjectContainer
         //TODO 添加控制的主角
         this._self = Helper.CreateActor(EnumActorType.Player, 1, this._world, this);
         this._self.SetPosition(100, 100);
-        this._gameObjects[this._self.Id] = this._self;
+        this.AddGameObject(this._self);
 
         //TODO 绑定键盘控制
         this._onKeyDownHandle = this.onKeyDown.bind(this);
@@ -263,7 +277,7 @@ class Battle extends egret.DisplayObjectContainer
         // console.log("OnFire");
 
         let bullet = Helper.CreateBullet(this._self, this._world, this);
-        this._gameObjects[bullet.Id] = bullet;
+        this.AddGameObject(bullet);
     }
 
     private OnJump():void
@@ -338,6 +352,10 @@ class Battle extends egret.DisplayObjectContainer
         let curTime = egret.getTimer();
         this._delta = (curTime - this._lastTime) / 1000;
         this._lastTime = curTime;
+        if (this._delta > 1)
+        {
+            this._delta = 30/1000;
+        }
 
 
 
@@ -352,7 +370,7 @@ class Battle extends egret.DisplayObjectContainer
         this._world.step(this._delta);
 
         // 显示物理引擎里面的数据
-        this._debugDraw.drawDebug();
+        // this._debugDraw.drawDebug();
 
         for (let k in this._gameObjects)
         {
@@ -421,12 +439,15 @@ class Battle extends egret.DisplayObjectContainer
     private CreateCollisionTable()
     {
         this._collisionTable = new CollisionTable();
-
         let src = this;
-        this._collisionTable.Add(EnumCollisionTableType.MY_ACTOR, EnumCollisionTableType.TOP_GROUND, function(a,b){src.OnMyActor2TopGround(a,b);});
+
+        this._collisionTable.Add(EnumCollisionTableType.MY_ACTOR, EnumCollisionTableType.TOP_GROUND,function(a,b){src.OnMyActor2TopGround(a,b);});
         this._collisionTable.Add(EnumCollisionTableType.MY_ACTOR, EnumCollisionTableType.BOTTOM_GROUND, function(a,b){src.OnMyActor2BottomGround(a,b);});
-        this._collisionTable.Add(EnumCollisionTableType.TOP_GROUND, EnumCollisionTableType.MY_ACTOR, function(a,b){src.OnMyActor2TopGround(b,a);});
-        this._collisionTable.Add(EnumCollisionTableType.BOTTOM_GROUND, EnumCollisionTableType.MY_ACTOR, function(a,b){src.OnMyActor2BottomGround(b,a);});
+        this._collisionTable.Add(EnumCollisionTableType.TOP_GROUND, EnumCollisionTableType.MY_ACTOR,function(a,b){src.OnMyActor2TopGround(b,a);});
+        this._collisionTable.Add(EnumCollisionTableType.BOTTOM_GROUND, EnumCollisionTableType.MY_ACTOR,function(a,b){src.OnMyActor2BottomGround(b,a);});
+
+        this._collisionTable.Add(EnumCollisionTableType.MY_BULLET, EnumCollisionTableType.HELL,function(a,b){src.OnMyBullet2Hell(a,b);});
+        this._collisionTable.Add(EnumCollisionTableType.HELL, EnumCollisionTableType.MY_BULLET, function(a,b){src.OnMyBullet2Hell(b,a);});
     }
 
     private OnMyActor2TopGround(actor:GameObject, ground:GameObject):void
@@ -434,6 +455,7 @@ class Battle extends egret.DisplayObjectContainer
         this._forceDown = this._forceUp;
         this._forceUp = 0;
         //TODO 位置要修正回来
+        actor.SetPosition(actor.Body.position[0], 200);
     }
 
     private OnMyActor2BottomGround(actor:GameObject, ground:GameObject):void
@@ -441,12 +463,38 @@ class Battle extends egret.DisplayObjectContainer
         this._forceUp = this._forceDown;
         this._forceDown = 0;
         //TODO 位置要修正回来
-        //传进来的值是 undefined!!!  actor.SetPosition(actor.Body.position[0], 900);
+        actor.SetPosition(actor.Body.position[0], 900);
     }
+
+
+    private OnMyBullet2Hell(bullet:GameObject, hell:GameObject):void
+    {
+        this.RemoveGameObject(bullet);
+    }
+
 
     private DestroyCollisionTable()
     {
         this._collisionTable.Release();
         this._collisionTable = null;
+    }
+
+    private AddGameObject(go: GameObject)
+    {
+        console.log("AddGameObject: " + ClassTool.GetTypeName(go) + "(" + go.Id + ")");
+        this.addChild(go.Display);
+        this._world.addBody(go.Body);
+        this._gameObjects[go.Id] = go;
+    }
+    private RemoveGameObject(go: GameObject)
+    {
+        if (this._gameObjects[go.Id])
+        {
+            console.log("RemoveGameObject: " + ClassTool.GetTypeName(go) + "(" + go.Id + ")");
+            delete this._gameObjects[go.Id];
+            this._world.removeBody(go.Body);
+            this.removeChild(go.Display);
+            go.Release();
+        }
     }
 }

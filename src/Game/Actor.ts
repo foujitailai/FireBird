@@ -44,6 +44,12 @@ class GameObject
         this.Id = ++GameObject.IdGenerate;
     }
 
+    public Release():void
+    {
+        this.Body = null;
+        this.Display = null;
+    }
+
 
     public Body:p2.Body;
     public Display:egret.DisplayObject;
@@ -84,6 +90,12 @@ class Actor extends GameObject
 	{
 		super();
 	}
+    
+    public Release():void
+    {
+        super.Release();
+        this.Data = null;
+    }
 }
 
 
@@ -106,6 +118,12 @@ class Bullet extends GameObject
     {
         super();
     }
+
+    public Release():void
+    {
+        super.Release();
+        this.Data = null;
+    }
 }
 
 class GroundData
@@ -121,4 +139,29 @@ class Ground extends GameObject
         super();
     }
 
+    public Release():void
+    {
+        super.Release();
+        this.Data = null;
+    }
+}
+
+class HellData
+{
+    public SpriteName:string;
+}
+
+class Hell extends GameObject
+{
+    public Data:HellData;
+    public constructor()
+    {
+        super();
+    }
+
+    public Release():void
+    {
+        super.Release();
+        this.Data = null;
+    }
 }
