@@ -5,13 +5,16 @@ class FrameSyncServer
     private _proxy: FrameSyncServerProxy;
     private _simulater: FrameSyncServerSimulater;
 
-    public get DataAsset() {return this._dataAsset;}
-
     public constructor()
     {
         this._dataAsset = new FrameSyncServerDataAsset();
         this._proxy = new FrameSyncServerProxy();
         this._simulater = new FrameSyncServerSimulater();
+    }
+
+    public get DataAsset()
+    {
+        return this._dataAsset;
     }
 
     public Release()
@@ -35,17 +38,19 @@ class FrameSyncServer
         }
     }
 
-    Start(isSingle: boolean)
+    public Start(isSingle: boolean)
     {
         if (this._curServer)
         {
             return;
         }
-        this._curServer = isSingle ? this._simulater : this._proxy;
+        this._curServer = isSingle ?
+            this._simulater :
+            this._proxy;
         this._curServer.Start();
     }
 
-    Stop()
+    public Stop()
     {
         if (!this._curServer)
         {

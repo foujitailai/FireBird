@@ -1,16 +1,23 @@
-
 class FrameSyncModule
 {
-    private _client:FrameSyncClient;
-    private _server:FrameSyncServer;
+    private _client: FrameSyncClient;
+    private _server: FrameSyncServer;
     private _running: boolean;
-    public get Client(){return this._client;}
-    public get Server(){return this._server;}
 
     public constructor()
     {
         this._client = new FrameSyncClient();
         this._server = new FrameSyncServer();
+    }
+
+    public get Client()
+    {
+        return this._client;
+    }
+
+    public get Server()
+    {
+        return this._server;
     }
 
     public Release()
@@ -25,7 +32,7 @@ class FrameSyncModule
         this._server.ClearData();
     }
 
-    public Start(isSingle:boolean)
+    public Start(isSingle: boolean)
     {
         if (this._running)
         {

@@ -4,5 +4,8 @@ class FrameSyncClientRequestData
 
     public Clear() {}
 
-    public SetFire(fire: boolean): void {this._fire = fire;}
+    public SetFire(fire: boolean): void
+    {
+        this._fire = fire;
+    }
 }

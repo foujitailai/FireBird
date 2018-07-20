@@ -2,11 +2,14 @@ class FrameSyncClient
 {
     private _requestData: FrameSyncClientRequestData;
 
-    public get RequestData() {return this._requestData;}
-
     public constructor()
     {
         this._requestData = new FrameSyncClientRequestData();
+    }
+
+    public get RequestData()
+    {
+        return this._requestData;
     }
 
     public Release()
@@ -24,12 +27,12 @@ class FrameSyncClient
 
     }
 
-    Start()
+    public Start()
     {
 
     }
 
-    Stop()
+    public Stop()
     {
 
     }
