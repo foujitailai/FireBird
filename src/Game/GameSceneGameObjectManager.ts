@@ -57,4 +57,31 @@ class GameSceneGameObjectManager
             v.SyncPy2View();
         }
     }
+
+    public SyncData2Py()
+    {
+        for (let k in this._gameObjects)
+        {
+            let v = this._gameObjects[k];
+            v.SyncData2Py();
+        }
+    }
+
+    public SyncPy2Data()
+    {
+        for (let k in this._gameObjects)
+        {
+            let v = this._gameObjects[k];
+            v.SyncPy2Data();
+        }
+    }
+
+    public SyncRender2View(progress: number)
+    {
+        for (let k in this._gameObjects)
+        {
+            let v = this._gameObjects[k];
+            v.SyncRender2View(progress);
+        }
+    }
 }

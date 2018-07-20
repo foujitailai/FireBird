@@ -50,7 +50,7 @@ class GameSceneActorManager
         let actor = Helper.CreateActor(EnumActorType.Npc, 1, this._world, this._battle);
         actor.SetPosition(500, 100);
         this._content.AddGameObject(actor);
-        this._actors[actor.Id] = actor;
+        this._actors.set(actor.Id, actor);
 
         return actor;
     }
@@ -67,9 +67,16 @@ class GameSceneActorManager
         console.log("DestroyControllableActor");
     }
 
-    public SyncData2Py()
+    public OnUpdate(delta:number)
     {
-        let velocityY = this._battle.ControllerData.CalcVelocityY();
-        this._self.Body.velocity = [0, velocityY];
+        this._self.VelocityY = this._battle.ControllerData.CalcVelocityY();
+
+        // 测试功能，先让怪物先动起来
+        this._actors.forEach(actor => {
+            if (actor.Id != this._self.Id )
+            {
+                actor.VelocityY = ControllerData.GRAVITY_VELOCITY;
+            }
+        });
     }
 }

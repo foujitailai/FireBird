@@ -29,7 +29,7 @@ class GameScene
 
     private CreateScene(): void
     {
-        //TODO 创建物理引擎
+        // 创建物理引擎
         var wrd: p2.World = new p2.World();
         wrd.sleepMode = p2.World.BODY_SLEEPING;
         wrd.gravity = [0, 0];

@@ -1,5 +1,14 @@
 class FrameSyncServerProxy implements IFrameSyncServerImpl
 {
+    private _renderHandle:Function;
+    private _frameHandle:Function;
+    private _dataAsset: FrameSyncServerDataAsset;
+
+    public constructor(dataAsset:FrameSyncServerDataAsset)
+    {
+        this._dataAsset = dataAsset;
+    }
+
     Clear(): void
     {
     }
@@ -18,5 +27,10 @@ class FrameSyncServerProxy implements IFrameSyncServerImpl
 
     Stop(): void
     {
+    }
+
+    Release()
+    {
+
     }
 }

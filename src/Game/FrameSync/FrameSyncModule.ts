@@ -32,6 +32,11 @@ class FrameSyncModule
         this._server.ClearData();
     }
 
+    public SetHandle(renderHandle: Function, frameHandle: Function): void
+    {
+        this._server.SetHandle(renderHandle, frameHandle);
+    }
+
     public Start(isSingle: boolean)
     {
         if (this._running)

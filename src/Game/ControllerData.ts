@@ -1,3 +1,5 @@
+
+//TODO 怪物应该也有一个这样的数据，然后就可以像玩家一起跳来跳去了
 class ControllerData
 {
     public constructor()

@@ -104,7 +104,7 @@ class Helper
         body.displays = [pic];
 
         body.position = [actor.Body.position[0] + 50, actor.Body.position[1]];
-        body.velocity = [1000, 0];
+        //body.velocity = [1000, 0];
 
 
         let bullet = new Bullet();

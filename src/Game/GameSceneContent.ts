@@ -70,12 +70,29 @@ class GameSceneContent
 
     public SyncData2Py()
     {
-        this._gameSceneActorMgr.SyncData2Py();
-        this._gameSceneBulletMgr.SyncData2Py();
+        //TODO 有些对象不用更新的，比如：墙、销毁区
+        this._gameSceneGameObjectMgr.SyncData2Py();
     }
 
     public SyncPy2View()
     {
+        //TODO 有些对象不用更新的，比如：墙、销毁区
         this._gameSceneGameObjectMgr.SyncPy2View();
+    }
+
+    public OnUpdate(delta:number)
+    {
+        this._gameSceneActorMgr.OnUpdate(delta);
+    }
+
+    public Render(delta: number, progress: number, isFastPlay: boolean)
+    {
+        //TODO 计算插值并应用
+        this._gameSceneGameObjectMgr.SyncRender2View(progress);
+    }
+
+    public SyncPy2Data()
+    {
+        this._gameSceneGameObjectMgr.SyncPy2Data();
     }
 }

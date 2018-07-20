@@ -12,6 +12,7 @@ class Battle extends egret.DisplayObjectContainer
     private _battleTimer: BattleTimer;
     private _showDebug: boolean;
     private _battleLogic: BattleLogic;
+    private _frameSync: FrameSyncModule;
 
     public get ControllerData():ControllerData
     {
@@ -61,12 +62,16 @@ class Battle extends egret.DisplayObjectContainer
         this._gameSceneContent = new GameSceneContent(this, this._gameScene);
 
         this._battleLogic = new BattleLogic(this);
+        this._battleTimer = new BattleTimer();
 
-
+        this._frameSync = new FrameSyncModule();
+        let src = this;
+        this._frameSync.SetHandle(
+            (a,b,c)=>src.OnRenderFrame(a,b,c),
+            (a,b)=>src.OnSyncFrame(a,b));
+        this._frameSync.Start(true);
 
         this.addEventListener(egret.Event.ENTER_FRAME, this.OnUpdate, this);
-
-        this._battleTimer = new BattleTimer();
     }
 
     public Release(): void
@@ -103,15 +108,42 @@ class Battle extends egret.DisplayObjectContainer
     {
         this._battleTimer.TakeSample();
 
-        this._battleLogic.OnUpdate(this._battleTimer.Delta);
+        this._frameSync.OnUpdate(this._battleTimer.Delta);
 
-        this._gameSceneContent.SyncData2Py();
-        this._gameScene.OnUpdate(this._battleTimer.Delta);
-        this._gameSceneContent.SyncPy2View();
+    }
+
+    /**
+     * 渲染同步
+     * @param {number} delta 距离上一个逻辑帧的时间
+     * @param {number} progress 在两个逻辑帧之间的百分比进度
+     * @param {boolean} isFastPlay 是否快速播放
+     * @constructor
+     */
+    private OnRenderFrame(delta:number, progress:number, isFastPlay:boolean)
+    {
+        // 显示VIEW
+        this._gameSceneContent.Render(delta, progress, isFastPlay);
 
         if (this._showDebug)
         {
             this._gameSceneDebug.Draw();
         }
     }
+
+    /**
+     * 帧同步
+     * @param {number} index 帧同步索引
+     * @param {FrameSyncServerDataAsset} data 帧同步服务器数据集合
+     * @constructor
+     */
+    private OnSyncFrame(index:number, data:FrameSyncServerDataAsset)
+    {
+        this._battleLogic.OnUpdate(EnumFrameSyncDefine.FRAME_TIME);
+
+        this._gameSceneContent.OnUpdate(EnumFrameSyncDefine.FRAME_TIME);
+        this._gameSceneContent.SyncData2Py();
+        this._gameScene.OnUpdate(EnumFrameSyncDefine.FRAME_TIME / EnumFrameSyncDefine.INT_FLOAT_RATE);
+        this._gameSceneContent.SyncPy2Data();
+    }
+
 }
