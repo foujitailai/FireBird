@@ -54,8 +54,8 @@ class GameScene
     {
         console.log("on target sensor BEG bodyA.id:" + event.bodyA.id + ",bodyB.id:" + event.bodyB.id);
 
-        let aGO = this._battle.GetGameObjectByP2Id(event.bodyA.id);
-        let bGO = this._battle.GetGameObjectByP2Id(event.bodyB.id);
+        let aGO = this._battle.GameSceneContent.GetGameObjectByP2Id(event.bodyA.id);
+        let bGO = this._battle.GameSceneContent.GetGameObjectByP2Id(event.bodyB.id);
         this._collisionTable.DoCollision(aGO, bGO);
 
         // if (!this._self || !this._self.Body)

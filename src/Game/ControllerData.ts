@@ -56,6 +56,10 @@ class ControllerData
 
     public CalcVelocityY():number
     {
+        // 直接速度（每秒的速度，如果不去每帧设置，会被衰竭掉，可以通过damping=0来去掉衰竭）
+        //this._self.Body.velocity = [(this._keyLeft - this._keyRight) * -200, (this._keyUp - this._keyDown) * -200];
+        //this._self.Body.velocity = [0, 200];
+
 
         let velocityY = ControllerData.GRAVITY_VELOCITY;
 

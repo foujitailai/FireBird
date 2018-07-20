@@ -52,6 +52,6 @@ class CollisionAction
 
     private OnMyBullet2Hell(bullet: GameObject, hell: GameObject): void
     {
-        this._battle.RemoveGameObject(bullet);
+        this._battle.GameSceneContent.RemoveGameObject(bullet);
     }
 }

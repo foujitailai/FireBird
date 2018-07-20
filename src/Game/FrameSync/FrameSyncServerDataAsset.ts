@@ -4,17 +4,18 @@ class FrameSyncServerDataAsset
 
     public constructor()
     {
-
+        this._datas = new Map<number, Array<FrameSyncServerData>>();
     }
 
     public Release()
     {
-
+        this._datas.clear();
+        this._datas = null;
     }
 
     public Clear()
     {
-
+        this._datas.clear();
     }
 
     public AddFrame(frame: number)
