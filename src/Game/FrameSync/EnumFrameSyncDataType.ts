@@ -1,0 +1,5 @@
+enum EnumFrameSyncDataType
+{
+    NONE,
+    FIRE
+}
