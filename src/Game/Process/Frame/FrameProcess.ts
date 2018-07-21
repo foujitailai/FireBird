@@ -6,9 +6,10 @@ class FrameProcess extends ProcessorCenter<IFrameProcessor> implements IFramePro
      */
     protected Register()
     {
+        let battle = ModuleCenter.Get(BattleModule);
         this.Add(new AIProcessor());
-        this.Add(new GameSceneFrameProcessor(ModuleCenter.Get(Battle)));
-        this.Add(new GameLogicProcessor(ModuleCenter.Get(Battle)));
+        this.Add(new GameSceneFrameProcessor(battle.Battle));
+        this.Add(new GameLogicProcessor(battle.Battle));
     }
 
     /**

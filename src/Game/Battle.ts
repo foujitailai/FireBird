@@ -1,17 +1,5 @@
-class Battle extends egret.DisplayObjectContainer implements IModule
+class Battle extends egret.DisplayObjectContainer implements IDisposable
 {
-    private static _className: string;
-
-    public get Name(): string
-    {
-        if (!Battle._className)
-        {
-            Battle._className = ClassTool.GetTypeName(Battle);
-        }
-        return Battle._className;
-    }
-
-
     private _battleStateMachine: BattleStateMachine;
     private _collisionAction: CollisionAction;
     private _controller: Controller;
@@ -59,14 +47,7 @@ class Battle extends egret.DisplayObjectContainer implements IModule
 
     public Dispose(): void
     {
-    }
-
-    public OnModuleAdded(): void
-    {
-    }
-
-    public OnModuleRemoved(): void
-    {
+        this.Stop();
     }
 
     public Start()

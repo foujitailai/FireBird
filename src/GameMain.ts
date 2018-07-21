@@ -1,7 +1,7 @@
 class GameMain extends egret.DisplayObjectContainer
 {
     private _loading: Loading;
-    private _battle: Battle;
+    private _battle: BattleModule;
 
     public constructor()
     {
@@ -37,7 +37,7 @@ class GameMain extends egret.DisplayObjectContainer
         this._loading = null;
 
         // 创建战斗
-        this._battle = ModuleCenter.Get(Battle);
-        this.addChild(this._battle);
+        this._battle = ModuleCenter.Get(BattleModule);
+        this._battle.Start(this);
     }
 }

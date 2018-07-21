@@ -6,8 +6,9 @@ class RenderProcess extends ProcessorCenter<IRenderProcessor> implements IRender
      */
     protected Register()
     {
-        this.Add(new GameSceneRenderProcessor(ModuleCenter.Get(Battle)));
-        this.Add(new GameSceneDebugRenderProcessor(ModuleCenter.Get(Battle)));
+        let battle = ModuleCenter.Get(BattleModule);
+        this.Add(new GameSceneRenderProcessor(battle.Battle));
+        this.Add(new GameSceneDebugRenderProcessor(battle.Battle));
     }
 
     /**
