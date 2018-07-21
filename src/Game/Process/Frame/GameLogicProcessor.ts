@@ -1,5 +1,5 @@
 
-class BattleLogic implements IDisposable
+class GameLogicProcessor implements IFrameProcessor
 {
     private _monsterCreator: MonsterCreator;
     private _battle: Battle;
@@ -17,7 +17,7 @@ class BattleLogic implements IDisposable
         this._monsterCreator = null;
     }
 
-    public OnUpdate(delta: number)
+    public OnFrameSync(frame: number, data: FrameSyncServerDataAsset): void
     {
     }
 }

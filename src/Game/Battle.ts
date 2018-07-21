@@ -22,15 +22,9 @@ class Battle extends egret.DisplayObjectContainer implements IModule
     private _collisionTable: CollisionTable;
     private _battleTimer: BattleTimer;
     private _showDebug: boolean;
-    private _battleLogic: BattleLogic;
-    private _frameSync: FrameSyncModule;
-    private _processorCenter: ProcessorCenter;
+    private _battleLogic: GameLogicProcessor;
+    private _battleProcess: BattleProcess;
 
-
-    public get ProcessorCenter(): ProcessorCenter
-    {
-        return this._processorCenter;
-    }
 
     public get ControllerData(): ControllerData
     {
@@ -40,6 +34,21 @@ class Battle extends egret.DisplayObjectContainer implements IModule
     public get GameSceneContent(): GameSceneContent
     {
         return this._gameSceneContent;
+    }
+
+    public get GameScene(): GameScene
+    {
+        return this._gameScene;
+    }
+
+    public get GameSceneDebug(): GameSceneDebug
+    {
+        return this._gameSceneDebug;
+    }
+
+    public get IsShowDebug(): boolean
+    {
+        return this._showDebug;
     }
 
     public constructor()
@@ -66,8 +75,6 @@ class Battle extends egret.DisplayObjectContainer implements IModule
 
         this._battleStateMachine = new BattleStateMachine();
 
-        this._processorCenter = new ProcessorCenter();
-
         this._controllerData = new ControllerData();
         this._controller = new Controller(this);
         this.addEventListener(GameEvent.FIRE, this.OnFire, this);
@@ -80,15 +87,12 @@ class Battle extends egret.DisplayObjectContainer implements IModule
 
         this._gameSceneContent = new GameSceneContent(this, this._gameScene);
 
-        this._battleLogic = new BattleLogic(this);
+        this._battleLogic = new GameLogicProcessor(this);
         this._battleTimer = new BattleTimer();
 
-        this._frameSync = ModuleCenter.Get(FrameSyncModule);
-        let src = this;
-        this._frameSync.SetHandle(
-            (a, b, c) => src.OnRenderFrame(a, b, c),
-            (a, b) => src.OnSyncFrame(a, b));
-        this._frameSync.Start(true);
+        this._battleProcess = new BattleProcess();
+
+        this._battleStateMachine.BattleBegin();
 
         // 注册帧更新函数，每次引擎渲染时都会调用
         this.addEventListener(egret.Event.ENTER_FRAME, this.OnUpdate, this);
@@ -98,8 +102,7 @@ class Battle extends egret.DisplayObjectContainer implements IModule
     {
         this.removeEventListener(egret.Event.ENTER_FRAME, this.OnUpdate, this);
 
-        this._frameSync.Stop();
-        this._frameSync.ClearData();
+        this._battleStateMachine.BattleEnd();
 
         this.removeEventListener(GameEvent.FIRE, this.OnFire, this);
         this._controller = null;
@@ -114,8 +117,8 @@ class Battle extends egret.DisplayObjectContainer implements IModule
         this._collisionTable.Dispose();
         this._collisionTable = null;
 
-        this._processorCenter.Dispose();
-        this._processorCenter = null;
+        this._battleProcess.Dispose();
+        this._battleProcess = null;
     }
 
     private AddTestIcon(): void
@@ -152,46 +155,7 @@ class Battle extends egret.DisplayObjectContainer implements IModule
     {
         this._battleTimer.TakeSample();
 
-        this._frameSync.OnUpdate(this._battleTimer.Delta);
-
-    }
-
-    /**
-     * 渲染同步
-     * @param {number} delta 距离上一个逻辑帧的时间
-     * @param {number} progress 在两个逻辑帧之间的百分比进度
-     * @param {boolean} isFastPlay 是否快速播放
-     * @constructor
-     */
-    private OnRenderFrame(delta: number, progress: number, isFastPlay: boolean)
-    {
-        // 显示VIEW
-        this._gameSceneContent.Render(delta, progress, isFastPlay);
-
-        if (this._showDebug)
-        {
-            this._gameSceneDebug.Draw();
-        }
-    }
-
-    /**
-     * 帧同步
-     * @param {number} index 帧同步索引
-     * @param {FrameSyncServerDataAsset} data 帧同步服务器数据集合
-     * @constructor
-     */
-    private OnSyncFrame(index: number, data: FrameSyncServerDataAsset)
-    {
-        this._processorCenter.OnFrameSync(index);
-
-        //TODO 下面的代码，理论上应该都转成各种 Processor，加油吧
-
-        this._battleLogic.OnUpdate(EnumFrameSyncDefine.FRAME_TIME);
-
-        this._gameSceneContent.OnUpdate(EnumFrameSyncDefine.FRAME_TIME);
-        this._gameSceneContent.SyncData2Py();
-        this._gameScene.OnUpdate(EnumFrameSyncDefine.FRAME_TIME / EnumFrameSyncDefine.INT_FLOAT_RATE);
-        this._gameSceneContent.SyncPy2Data();
+        this._battleProcess.OnUpdate(this._battleTimer.Delta);
     }
 
 }

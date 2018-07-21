@@ -1,0 +1,5 @@
+enum EnumActorType
+{
+    Player,
+    Npc,
+}

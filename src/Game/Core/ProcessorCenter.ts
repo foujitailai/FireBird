@@ -1,6 +1,6 @@
-class ProcessorCenter implements IDisposable
+abstract class ProcessorCenter<TProcessor extends IDisposable> implements IDisposable
 {
-    private _processors: Array<IBattleProcessor>;
+    protected _processors: Array<TProcessor>;
 
     public constructor()
     {
@@ -12,16 +12,20 @@ class ProcessorCenter implements IDisposable
 
     public Dispose()
     {
+        for (let i: number = 0; i < this._processors.length; ++i)
+        {
+            this._processors[i].Dispose();
+        }
         this._processors.slice(0, this._processors.length);
         this._processors = null;
     }
 
-    public Add(processor: IBattleProcessor)
+    public Add(processor: TProcessor)
     {
         this._processors.push(processor);
     }
 
-    public Remove(processor: IBattleProcessor)
+    public Remove(processor: TProcessor)
     {
         let index = this._processors.indexOf(processor);
         if (index >= 0)
@@ -30,19 +34,16 @@ class ProcessorCenter implements IDisposable
         }
     }
 
-    public OnFrameSync(frame: number)
-    {
-        for (let i: number = 0; i < this._processors.length; ++i)
-        {
-            this._processors[i].OnFrameSync(frame);
-        }
-    }
-
+    // public OnFrameSync(frame: number)
+    // {
+    //     for (let i: number = 0; i < this._processors.length; ++i)
+    //     {
+    //         this._processors[i].OnFrameSync(frame);
+    //     }
+    // }
+    //
     /**
      * 注册各种处理流程
      */
-    private Register()
-    {
-        this.Add(ModuleCenter.Get(AIModule).Processor);
-    }
+    protected abstract Register():void;
 }

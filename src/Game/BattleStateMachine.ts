@@ -18,7 +18,8 @@ class BattleStateMachine implements IDisposable
 
     public BattleBegin()
     {
-
+        let frameSync = ModuleCenter.Get(FrameSyncModule);
+        frameSync.Start(true);
     }
 
     public Battling()
@@ -28,6 +29,8 @@ class BattleStateMachine implements IDisposable
 
     public BattleEnd()
     {
-
+        let frameSync = ModuleCenter.Get(FrameSyncModule);
+        frameSync.Stop();
+        frameSync.ClearData();
     }
 }

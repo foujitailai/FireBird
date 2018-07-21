@@ -1,4 +1,4 @@
-class AIProcessor implements IBattleProcessor
+class AIProcessor implements IFrameProcessor
 {
     private _ais: Map<number, AIStateMachine>;
     private _data: AIDataAsset;
@@ -17,7 +17,7 @@ class AIProcessor implements IBattleProcessor
         this._ais = null;
     }
 
-    public OnFrameSync(frame: number): void
+    public OnFrameSync(frame: number, data: FrameSyncServerDataAsset): void
     {
     }
 
