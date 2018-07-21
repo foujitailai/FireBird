@@ -4,6 +4,10 @@ just a small game
 网络同步？？？？？？
 
 TODO LIST
+AI控制角色移动并发射子弹
+  应用AI 模块
+  应用BattleData
+  应用FrameSync模块
 
 主角
 1.脑门可以飘出状态字出来
