@@ -1,14 +1,19 @@
-class FrameSyncModule
+class FrameSyncModule implements IModule
 {
+    private static _className: string;
+
+    public get Name(): string
+    {
+        if (!FrameSyncModule._className)
+        {
+            FrameSyncModule._className = ClassTool.GetTypeName(FrameSyncModule);
+        }
+        return FrameSyncModule._className;
+    }
+
     private _client: FrameSyncClient;
     private _server: FrameSyncServer;
     private _running: boolean;
-
-    public constructor()
-    {
-        this._client = new FrameSyncClient();
-        this._server = new FrameSyncServer();
-    }
 
     public get Client()
     {
@@ -18,6 +23,20 @@ class FrameSyncModule
     public get Server()
     {
         return this._server;
+    }
+
+    public constructor()
+    {
+        this._client = new FrameSyncClient();
+        this._server = new FrameSyncServer();
+    }
+
+    public OnModuleAdded(): void
+    {
+    }
+
+    public OnModuleRemoved(): void
+    {
     }
 
     public Release()

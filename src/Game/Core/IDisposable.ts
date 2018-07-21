@@ -1,0 +1,4 @@
+interface IDisposable
+{
+    Release(): void;
+}

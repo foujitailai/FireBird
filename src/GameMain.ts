@@ -28,13 +28,16 @@ class GameMain extends egret.DisplayObjectContainer
 
     private async Run()
     {
+        // 初始化整个模块系统
+        new ModuleCenter();
+
         // 加载
         this._loading = new Loading();
         await this._loading.Run(this.stage);
         this._loading = null;
 
         // 创建战斗
-        this._battle = new Battle();
+        this._battle = ModuleCenter.Get(Battle);
         this.addChild(this._battle);
     }
 }
