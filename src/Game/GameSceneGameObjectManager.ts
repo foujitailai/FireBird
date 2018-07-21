@@ -1,4 +1,4 @@
-class GameSceneGameObjectManager
+class GameSceneGameObjectManager implements IDisposable
 {
     private _battle: Battle;
     private _world: p2.World;
@@ -11,7 +11,7 @@ class GameSceneGameObjectManager
         this._world = world;
     }
 
-    public Release()
+    public Dispose()
     {
 
     }
@@ -45,7 +45,7 @@ class GameSceneGameObjectManager
             delete this._gameObjects[go.Id];
             this._world.removeBody(go.Body);
             this._battle.removeChild(go.Display);
-            go.Release();
+            go.Dispose();
         }
     }
 

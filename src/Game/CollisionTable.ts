@@ -23,7 +23,7 @@ class CallbackHandle
     }
 }
 
-class CollisionTable
+class CollisionTable implements IDisposable
 {
     //(a:GameObject, b:GameObject) => void
     private _actionTable: Array<Array<CallbackHandle>>;
@@ -41,7 +41,7 @@ class CollisionTable
         }
     }
 
-    public Release(): void
+    public Dispose(): void
     {
         this._actionTable = null;
     }

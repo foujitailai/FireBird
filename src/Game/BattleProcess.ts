@@ -1,10 +1,10 @@
-class BattleProcess
+class BattleProcess implements IDisposable
 {
     public constructor()
     {
 
     }
-    public Release()
+    public Dispose()
     {
 
     }

@@ -1,4 +1,4 @@
-class FrameSyncClient
+class FrameSyncClient implements IDisposable
 {
     private _requestData: FrameSyncClientRequestData;
 
@@ -12,7 +12,7 @@ class FrameSyncClient
         return this._requestData;
     }
 
-    public Release()
+    public Dispose()
     {
 
     }

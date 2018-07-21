@@ -48,7 +48,7 @@ class Battle extends egret.DisplayObjectContainer implements IModule
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
 
-    public Release(): void
+    public Dispose(): void
     {
     }
 
@@ -104,17 +104,17 @@ class Battle extends egret.DisplayObjectContainer implements IModule
         this.removeEventListener(GameEvent.FIRE, this.OnFire, this);
         this._controller = null;
 
-        this._gameScene.Release();
+        this._gameScene.Dispose();
         this._gameScene = null;
 
 
-        this._collisionAction.Release();
+        this._collisionAction.Dispose();
         this._collisionAction = null;
 
-        this._collisionTable.Release();
+        this._collisionTable.Dispose();
         this._collisionTable = null;
 
-        this._processorCenter.Release();
+        this._processorCenter.Dispose();
         this._processorCenter = null;
     }
 

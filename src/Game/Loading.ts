@@ -1,6 +1,11 @@
-class Loading
+class Loading implements IDisposable
 {
     private _stage: egret.Stage = null;
+
+    public Dispose(): void
+    {
+        this._stage = null;
+    }
 
     public async Run(stage: egret.Stage)
     {

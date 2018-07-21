@@ -1,4 +1,4 @@
-class GameSceneBulletManager
+class GameSceneBulletManager implements IDisposable
 {
     private _world: p2.World;
     private _content: GameSceneContent;
@@ -11,7 +11,7 @@ class GameSceneBulletManager
         this._world = world;
     }
 
-    public Release()
+    public Dispose()
     {
 
     }

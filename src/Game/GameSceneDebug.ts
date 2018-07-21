@@ -1,4 +1,4 @@
-class GameSceneDebug
+class GameSceneDebug implements IDisposable
 {
     private _debugDraw: p2DebugDraw;
     private _battle: Battle;
@@ -14,7 +14,7 @@ class GameSceneDebug
         this._debugDraw.setSprite(sprite);
     }
 
-    public Release()
+    public Dispose()
     {
         if (this._debugDraw)
         {

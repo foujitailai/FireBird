@@ -9,7 +9,7 @@ class FrameSyncServerSimulater implements IFrameSyncServerImpl
         this._dataAsset = dataAsset;
     }
 
-    Release()
+    Dispose()
     {
 
     }

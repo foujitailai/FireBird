@@ -1,4 +1,4 @@
-class GameSceneContent
+class GameSceneContent implements IDisposable
 {
     private _battle: Battle;
     private _gameScene: GameScene;
@@ -26,16 +26,16 @@ class GameSceneContent
 
     }
 
-    public Release()
+    public Dispose()
     {
-        this._gameSceneBorder.Release();
-        this._gameSceneActorMgr.Release();
-        this._gameSceneBulletMgr.Release();
+        this._gameSceneBorder.Dispose();
+        this._gameSceneActorMgr.Dispose();
+        this._gameSceneBulletMgr.Dispose();
         this._gameSceneBorder = null;
         this._gameSceneActorMgr = null;
         this._gameSceneBulletMgr = null;
 
-        this._gameSceneGameObjectMgr.Release();
+        this._gameSceneGameObjectMgr.Dispose();
         this._gameSceneGameObjectMgr = null;
 
         this._battle = null;

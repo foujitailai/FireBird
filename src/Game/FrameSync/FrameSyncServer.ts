@@ -1,4 +1,4 @@
-class FrameSyncServer
+class FrameSyncServer implements IDisposable
 {
     private _dataAsset: FrameSyncServerDataAsset;
     private _curServer: IFrameSyncServerImpl;
@@ -17,11 +17,11 @@ class FrameSyncServer
         return this._dataAsset;
     }
 
-    public Release()
+    public Dispose()
     {
-        this._dataAsset.Release();
-        this._proxy.Release();
-        this._simulater.Release();
+        this._dataAsset.Dispose();
+        this._proxy.Dispose();
+        this._simulater.Dispose();
     }
 
     public ClearData()

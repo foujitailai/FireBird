@@ -29,7 +29,7 @@ class FrameSyncServerProxy implements IFrameSyncServerImpl
     {
     }
 
-    Release()
+    Dispose()
     {
 
     }

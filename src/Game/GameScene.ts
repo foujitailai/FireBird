@@ -1,4 +1,4 @@
-class GameScene
+class GameScene implements IDisposable
 {
     private _world: p2.World;
 
@@ -22,7 +22,7 @@ class GameScene
         this.CreateScene();
     }
 
-    public Release()
+    public Dispose()
     {
         this.DestroyScene();
     }

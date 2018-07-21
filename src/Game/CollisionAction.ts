@@ -1,4 +1,4 @@
-class CollisionAction
+class CollisionAction implements IDisposable
 {
 
     private _battle:Battle;
@@ -15,7 +15,7 @@ class CollisionAction
     }
 
 
-    public Release()
+    public Dispose()
     {
         this._battle = null;
         this._collisionTable = null;

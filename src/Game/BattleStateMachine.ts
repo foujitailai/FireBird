@@ -1,11 +1,11 @@
-class BattleStateMachine
+class BattleStateMachine implements IDisposable
 {
     public constructor()
     {
 
     }
 
-    public Release()
+    public Dispose()
     {
 
     }

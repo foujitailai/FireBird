@@ -1,4 +1,4 @@
-class GameSceneBorder
+class GameSceneBorder implements IDisposable
 {
     private _battle: Battle;
     private _content: GameSceneContent;
@@ -20,7 +20,7 @@ class GameSceneBorder
         this.CreateWallOnLeftRight();
     }
 
-    public Release()
+    public Dispose()
     {
         this.DestroyWallOnLeftRight();
         this.DestroyWallOnTopBottom();

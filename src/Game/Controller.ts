@@ -1,4 +1,4 @@
-class Controller
+class Controller implements IDisposable
 {
     private _onKeyDownHandle;
     private _onKeyUpHandle;
@@ -22,7 +22,7 @@ class Controller
         this._battle.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
     }
 
-    public Release()
+    public Dispose()
     {
         if (this._onKeyDownHandle) document.removeEventListener("keydown", this._onKeyDownHandle);
         if (this._onKeyUpHandle) document.removeEventListener("keyup", this._onKeyUpHandle);

@@ -1,4 +1,4 @@
-class GameSceneActorManager
+class GameSceneActorManager implements IDisposable
 {
     private _battle: Battle;
     private _content: GameSceneContent;
@@ -29,7 +29,7 @@ class GameSceneActorManager
         this.CreateControllableActor();
     }
 
-    public Release()
+    public Dispose()
     {
         this.DestroyControllableActor();
 

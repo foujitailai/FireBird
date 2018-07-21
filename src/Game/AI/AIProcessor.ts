@@ -9,9 +9,9 @@ class AIProcessor implements IBattleProcessor
         this._ais = new Map<number, AIStateMachine>();
     }
 
-    public Release()
+    public Dispose()
     {
-        this._data.Release();
+        this._data.Dispose();
         this._data = null;
         this._ais.clear();
         this._ais = null;

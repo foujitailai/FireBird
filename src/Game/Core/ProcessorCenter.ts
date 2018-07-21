@@ -1,4 +1,4 @@
-class ProcessorCenter
+class ProcessorCenter implements IDisposable
 {
     private _processors: Array<IBattleProcessor>;
 
@@ -10,7 +10,7 @@ class ProcessorCenter
         this.Register();
     }
 
-    public Release()
+    public Dispose()
     {
         this._processors.slice(0, this._processors.length);
         this._processors = null;

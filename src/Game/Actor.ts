@@ -34,7 +34,7 @@ enum EnumCollisionType
 }
 
 
-class GameObject
+class GameObject implements IDisposable
 {
     public readonly Id: number;
 
@@ -45,7 +45,7 @@ class GameObject
         this.Id = ++GameObject.IdGenerate;
     }
 
-    public Release(): void
+    public Dispose(): void
     {
         this.Body = null;
         this.Display = null;
@@ -136,9 +136,9 @@ class Actor extends GameObject
         super();
     }
 
-    public Release(): void
+    public Dispose(): void
     {
-        super.Release();
+        super.Dispose();
         this.Data = null;
     }
 
@@ -177,9 +177,9 @@ class Bullet extends GameObject
         super();
     }
 
-    public Release(): void
+    public Dispose(): void
     {
-        super.Release();
+        super.Dispose();
         this.Data = null;
     }
 
@@ -211,9 +211,9 @@ class Ground extends GameObject
         super();
     }
 
-    public Release(): void
+    public Dispose(): void
     {
-        super.Release();
+        super.Dispose();
         this.Data = null;
     }
 
@@ -242,9 +242,9 @@ class Hell extends GameObject
         super();
     }
 
-    public Release(): void
+    public Dispose(): void
     {
-        super.Release();
+        super.Dispose();
         this.Data = null;
     }
 

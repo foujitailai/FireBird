@@ -1,4 +1,4 @@
-class BattleTimer
+class BattleTimer implements IDisposable
 {
     private _lastTime: number = 0;
     private _delta: number = 0;
@@ -17,7 +17,7 @@ class BattleTimer
     {
         this._lastTime = egret.getTimer();
     }
-    public Release()
+    public Dispose()
     {
 
         this._lastTime = 0;

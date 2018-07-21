@@ -39,10 +39,10 @@ class FrameSyncModule implements IModule
     {
     }
 
-    public Release()
+    public Dispose()
     {
-        this._client.Release();
-        this._server.Release();
+        this._client.Dispose();
+        this._server.Dispose();
     }
 
     public ClearData()

@@ -1,4 +1,4 @@
-class FrameSyncServerDataAsset
+class FrameSyncServerDataAsset implements IDisposable
 {
     private _datas: Map<number, Array<FrameSyncServerData>>;
 
@@ -7,7 +7,7 @@ class FrameSyncServerDataAsset
         this._datas = new Map<number, Array<FrameSyncServerData>>();
     }
 
-    public Release()
+    public Dispose()
     {
         this._datas.clear();
         this._datas = null;

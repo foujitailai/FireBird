@@ -20,7 +20,7 @@ class AIModule implements IModule
         return this._processor;
     }
 
-    public Release(): void
+    public Dispose(): void
     {
 
     }
@@ -32,7 +32,7 @@ class AIModule implements IModule
 
     public OnModuleRemoved(): void
     {
-        this._processor.Release();
+        this._processor.Dispose();
         this._processor = null;
     }
 
@@ -47,7 +47,7 @@ class AIModule implements IModule
     // {
     //     let battle = ModuleCenter.Get(Battle);
     //     battle.ProcessorCenter.Remove(this._processor);
-    //     this._processor.Release();
+    //     this._processor.Dispose();
     //     this._processor = null;
     // }
 }

@@ -18,14 +18,14 @@ class AIStateDead extends AIStateBase
 
 }
 
-class AIStateMachine
+class AIStateMachine implements IDisposable
 {
     public constructor(id: number, param: AIParam, dataAsset: AIDataAsset)
     {
 
     }
 
-    public Release()
+    public Dispose()
     {
 
     }

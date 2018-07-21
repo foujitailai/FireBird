@@ -22,7 +22,7 @@ class GameMain extends egret.DisplayObjectContainer
     private onRemoveToStage(): void
     {
         if (this._battle)
-            this._battle.Release();
+            this._battle.Dispose();
         this._battle = null;
     }
 

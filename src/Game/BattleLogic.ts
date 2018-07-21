@@ -1,5 +1,5 @@
 
-class BattleLogic
+class BattleLogic implements IDisposable
 {
     private _monsterCreator: MonsterCreator;
     private _battle: Battle;
@@ -11,9 +11,9 @@ class BattleLogic
         this._monsterCreator.Start();
     }
 
-    public Release()
+    public Dispose()
     {
-        this._monsterCreator.Release();
+        this._monsterCreator.Dispose();
         this._monsterCreator = null;
     }
 

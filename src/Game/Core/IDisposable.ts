@@ -1,4 +1,4 @@
 interface IDisposable
 {
-    Release(): void;
+    Dispose(): void;
 }

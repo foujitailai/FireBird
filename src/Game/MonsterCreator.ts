@@ -1,4 +1,4 @@
-class MonsterCreator
+class MonsterCreator implements IDisposable
 {
     private _createMonsterTimer: egret.Timer;
     private _battle: Battle;
@@ -12,7 +12,7 @@ class MonsterCreator
         this._createMonsterTimer.addEventListener(egret.TimerEvent.TIMER, this.OnCreateMonster, this);
     }
 
-    public Release()
+    public Dispose()
     {
         this._createMonsterTimer.stop();
         this._createMonsterTimer = null;

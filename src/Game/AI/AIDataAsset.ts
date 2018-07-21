@@ -1,4 +1,4 @@
-class AIDataAsset
+class AIDataAsset implements IDisposable
 {
     private _dataAsset: FrameSyncServerDataAsset;
 
@@ -12,7 +12,7 @@ class AIDataAsset
         this._dataAsset = new FrameSyncServerDataAsset();
     }
 
-    public Release()
+    public Dispose()
     {
         this._dataAsset.Clear();
         this._dataAsset = null;

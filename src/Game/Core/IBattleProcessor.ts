@@ -1,6 +1,6 @@
-interface IBattleProcessor
+interface IBattleProcessor extends IDisposable
 {
-    // Release(): void;
+    // Dispose(): void;
     //
     // Initialize(): void;
     //

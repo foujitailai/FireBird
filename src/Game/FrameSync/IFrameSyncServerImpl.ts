@@ -1,4 +1,4 @@
-interface IFrameSyncServerImpl
+interface IFrameSyncServerImpl extends IDisposable
 {
     Clear(): void;
 

@@ -1,6 +1,6 @@
 
 //TODO 各种功能用组件的方式注入到游戏系统里面去，然后游戏里面就会出现新的功能
-class ModuleCenter
+class ModuleCenter implements IDisposable
 {
     private static _instance: ModuleCenter;
     private _modules: Map<string, IModule>;
@@ -13,12 +13,12 @@ class ModuleCenter
         this.Register();
     }
 
-    public Release()
+    public Dispose()
     {
         this._modules.forEach(module =>
         {
             module.OnModuleRemoved();
-            module.Release()
+            module.Dispose()
         });
         this._modules.clear();
         this._modules = null;
