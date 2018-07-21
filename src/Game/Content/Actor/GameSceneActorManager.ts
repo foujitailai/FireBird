@@ -6,7 +6,7 @@ class GameSceneActorManager implements IDisposable
 
     private _self: Actor;
 
-    private _actors : Map<number, Actor>;//{ [key: number]: Actor; } = {};
+    private _actors : Map<number, Actor>;
 
 
     public get MonsterCount():number
