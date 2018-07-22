@@ -1,0 +1,4 @@
+interface IPoolObject
+{
+    OnPoolFree(): void;
+}

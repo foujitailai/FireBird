@@ -1,16 +1,20 @@
 class AIDataAsset implements IDisposable, IClearable
 {
-    //private _dataAsset: FrameSyncServerDataAsset;
     private _dataAsset: Array<FrameSyncServerData>;
 
-    public get DataAsset()
+    // public get DataAsset()
+    // {
+    //     return this._dataAsset;
+    // }
+
+    public get Size():number
     {
-        return this._dataAsset;
+        return this._dataAsset.length;
     }
 
     public constructor()
     {
-        this._dataAsset = [];//new FrameSyncServerDataAsset();
+        this._dataAsset = [];
     }
 
     public Dispose()
@@ -27,6 +31,15 @@ class AIDataAsset implements IDisposable, IClearable
     public Add(data:FrameSyncServerData):void
     {
         this._dataAsset.push(data);
+    }
+
+    public Get(index:number):FrameSyncServerData
+    {
+        if (index >= 0 && index < this._dataAsset.length)
+        {
+            return this._dataAsset[index];
+        }
+        return null;
     }
 
 }

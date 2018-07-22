@@ -26,6 +26,7 @@
 		"bin-debug/Game/_Core/IClassName.js",
 		"bin-debug/Game/_Core/IClearable.js",
 		"bin-debug/Game/_Core/IDisposable.js",
+		"bin-debug/Game/_Core/IPoolObject.js",
 		"bin-debug/Game/_Core/Pool.js",
 		"bin-debug/Game/_Core/Module/IModule.js",
 		"bin-debug/GameMain.js",
