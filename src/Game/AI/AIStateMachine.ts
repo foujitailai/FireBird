@@ -1,35 +1,68 @@
-class AIStateBase
+class AIStateMachine extends egret.EventDispatcher implements IDisposable
 {
+    private _id: number;
+    private _param: AIParam;
+    private _dataAsset: AIDataAsset;
+    private _sm: StateMachine<AIStateBase>;
 
-}
-
-class AIStateNormal extends AIStateBase
-{
-
-}
-
-class AIStatePatrol extends AIStateBase
-{
-
-}
-
-class AIStateDead extends AIStateBase
-{
-
-}
-
-class AIStateMachine implements IDisposable
-{
     public constructor(id: number, param: AIParam, dataAsset: AIDataAsset)
     {
+        super();
 
+        this._id = id;
+        this._param = param;
+        this._dataAsset = dataAsset;
+
+        this._sm = new StateMachine<AIStateBase>();
+
+        this.Add(AIStateNormal);
+        this.Add(AIStateDead);
+        this.Add(AIStatePatrol);
+
+
+        this.addEventListener(GameEvent.FIRE, this.OnAIProcessFire, this);
+
+
+        this.Change(AIStateNormal);
     }
 
     public Dispose()
     {
+        this._sm.Dispose();
+        this._sm = null;
+    }
 
+    private Add<T extends AIStateBase>(t: { new(): T }): void
+    {
+        let state = this._sm.Add(t);
+        state.Initialize(this);
+    }
+
+    public Change<T extends AIStateBase>(t: { new(): T }): void
+    {
+        this._sm.Change(t);
+    }
+
+    public OnFrameAIProcess()
+    {
+        let state = this._sm.State;
+        if (state)
+        {
+            state.DoAIProcess();
+        }
+    }
+
+    private OnAIProcessFire()
+    {
+        // FrameSyncServerData data = FrameSyncObjectPool.Takeout<FrameSyncServerData>();
+        // data.SetDirect(msg.Data.ID, msg.Data.Angle);
+        // _aiDataAsset.AddData(data);
+        console.log("OnAIProcessFire()");
+
+        // this._dataAsset.Add();
     }
 
 }
+
 
 

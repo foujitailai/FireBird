@@ -2,6 +2,7 @@ class MonsterCreator implements IDisposable
 {
     private _createMonsterTimer: egret.Timer;
     private _battle: Battle;
+    private _monsterMax:number=3;
 
     public constructor(battle: Battle)
     {
@@ -30,7 +31,7 @@ class MonsterCreator implements IDisposable
 
     private OnCreateMonster()
     {
-        if (this._battle.GameSceneContent.ActorMgr.MonsterCount < 10)
+        if (this._battle.GameSceneContent.ActorMgr.MonsterCount < this._monsterMax)
         {
             this._battle.GameSceneContent.CreateMonster();
         }

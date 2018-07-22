@@ -20,6 +20,7 @@ class BattleContext implements IDisposable, IClearable
     {
         this._selfId = 1;
         this._actors = new Map<number, ActorData>();
+        this._ai = new BattleContextAI();
     }
 
     public Dispose(): void

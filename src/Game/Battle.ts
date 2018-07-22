@@ -42,6 +42,7 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
     public constructor()
     {
         super();
+
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
 
@@ -75,6 +76,8 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
 
         this._battleStateMachine.BattleBegin();
 
+        //TODO 这里事件只会在渲染时派发出来，如果窗口被切到后台看不到了，egret就不会派发这个事件，固定时钟的功能，可能还需要换定时器来
+        //     参看 egret.startTick   http://edn.egret.com/cn/article/index/id/875
         // 注册帧更新函数，每次引擎渲染时都会调用
         this.addEventListener(egret.Event.ENTER_FRAME, this.OnUpdate, this);
     }

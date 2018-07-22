@@ -52,7 +52,7 @@ class GameScene implements IDisposable
 
     private OnBeginContact(event: any): void
     {
-        console.log("on target sensor BEG bodyA.id:" + event.bodyA.id + ",bodyB.id:" + event.bodyB.id);
+        // console.log("on target sensor BEG bodyA.id:" + event.bodyA.id + ",bodyB.id:" + event.bodyB.id);
 
         let aGO = this._battle.GameSceneContent.GetGameObjectByP2Id(event.bodyA.id);
         let bGO = this._battle.GameSceneContent.GetGameObjectByP2Id(event.bodyB.id);
@@ -76,7 +76,7 @@ class GameScene implements IDisposable
 
     private OnEndContact(event: any): void
     {
-        console.log("on target sensor END bodyA.id:" + event.bodyA.id + ",bodyB.id:" + event.bodyB.id);
+        // console.log("on target sensor END bodyA.id:" + event.bodyA.id + ",bodyB.id:" + event.bodyB.id);
     }
 
     public OnUpdate(delta): void

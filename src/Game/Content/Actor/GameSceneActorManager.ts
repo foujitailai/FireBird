@@ -7,6 +7,7 @@ class GameSceneActorManager implements IDisposable
     private _self: Actor;
 
     private _actors : Map<number, Actor>;
+    private _data: BattleData;
 
 
     public get MonsterCount():number
@@ -25,6 +26,7 @@ class GameSceneActorManager implements IDisposable
         this._battle = battle;
         this._content = gameSceneContent;
         this._world = world;
+        this._data = ModuleCenter.Get(BattleModule).Data;
 
         this.CreateControllableActor();
     }
@@ -32,6 +34,8 @@ class GameSceneActorManager implements IDisposable
     public Dispose()
     {
         this.DestroyControllableActor();
+
+        this._data = null;
 
     }
 
@@ -52,11 +56,17 @@ class GameSceneActorManager implements IDisposable
         this._content.AddGameObject(actor);
         this._actors.set(actor.Id, actor);
 
+        // 开启 AI
+        this._data.Context.AI.SetAI(actor.Id);
+
         return actor;
     }
 
     public DestroyMonster(id:number)
     {
+        // 关闭 AI
+        this._data.Context.AI.CancelAI(id);
+
         let actor = this._actors.get(id);
         this._actors.delete(id);
         this._content.RemoveGameObject(actor);

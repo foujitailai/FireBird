@@ -24,10 +24,11 @@ class FrameSyncServerSimulater implements IFrameSyncServerImpl
         this._frameHandle = frameHandle;
     }
 
+    private _testFrame:number=0;
     OnUpdate(delta: number): void
     {
         //TODO 还没有真正的去实现帧同步的代码，只是简单的让流程先跑起来
-        this._frameHandle.apply(null, [1, this._dataAsset]);
+        this._frameHandle.apply(null, [++this._testFrame, this._dataAsset]);
         this._renderHandle.apply(null, [delta, 1, false]);
     }
 

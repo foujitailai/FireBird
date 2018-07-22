@@ -1,19 +1,21 @@
-
 //TODO 各种功能用组件的方式注入到游戏系统里面去，然后游戏里面就会出现新的功能
-class ModuleCenter implements IDisposable
+abstract class ModuleCenterBase implements IDisposable
 {
-    private static _instance: ModuleCenter;
     private _modules: Map<string, IModule>;
+
+    protected abstract Register(): void;
 
     public constructor()
     {
-        ModuleCenter._instance = this;
         this._modules = new Map<string, IModule>();
+    }
 
+    public Initialize():void
+    {
         this.Register();
     }
 
-    public Dispose()
+    public Uninitialize():void
     {
         this._modules.forEach(module =>
         {
@@ -21,6 +23,11 @@ class ModuleCenter implements IDisposable
             module.Dispose()
         });
         this._modules.clear();
+    }
+
+    public Dispose()
+    {
+        this.Uninitialize();
         this._modules = null;
     }
 
@@ -36,22 +43,10 @@ class ModuleCenter implements IDisposable
         this._modules.delete(module.Name);
     }
 
-    public static Get<T extends IModule>(t: { new(): T; }): T
+    public Get<T extends IModule>(t: { new(): T; }): T
     {
-        if (ModuleCenter._instance)
-        {
-            let className = ClassTool.GetTypeName(t);
-            let module = ModuleCenter._instance._modules.get(className);
-            return <T> module;
-        }
-        return null;
+        let className = ClassTool.GetTypeName(t);
+        let module = this._modules.get(className);
+        return <T> module;
     }
-
-    private Register():void
-    {
-        this.Add(new BattleModule());
-        this.Add(new AIModule());
-        this.Add(new FrameSyncModule());
-    }
-
 }

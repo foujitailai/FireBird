@@ -72,7 +72,7 @@ class CollisionAction implements IDisposable
     private OnEnemyActor2BottomGround(actor: GameObject, ground: GameObject): void
     {
         actor.SetPosition(actor.Body.position[0], 900);
-        this._battle.GameSceneContent.CreateBullet(actor as Actor);
+        //this._battle.GameSceneContent.CreateBullet(actor as Actor);
     }
 
 }

@@ -1,4 +1,4 @@
-class FrameSyncServerDataAsset implements IDisposable
+class FrameSyncServerDataAsset implements IDisposable, IClearable
 {
     private _datas: Map<number, Array<FrameSyncServerData>>;
 
