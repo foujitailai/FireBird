@@ -3,6 +3,9 @@ just a small game
 
 网络同步？？？？？？
 
+如果 AIDataAsset是3帧清除一次，那么，每次同步帧更新的时候，都会重复执行3帧吗？？？
+其它的 processor 不用去处理 AIDataAsset 吗？
+
 TODO LIST
 AI控制角色移动并发射子弹
   应用AI 模块

@@ -2,10 +2,10 @@ class AIDataAsset implements IDisposable, IClearable
 {
     private _dataAsset: Array<FrameSyncServerData>;
 
-    // public get DataAsset()
-    // {
-    //     return this._dataAsset;
-    // }
+    public get DataAsset()
+    {
+        return this._dataAsset;
+    }
 
     public get Size():number
     {

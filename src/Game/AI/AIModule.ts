@@ -13,13 +13,6 @@ class AIModule implements IModule
         return AIModule._className;
     }
 
-    private _processor: AIProcessor;
-
-    public get Processor(): AIProcessor
-    {
-        return this._processor;
-    }
-
     public Dispose(): void
     {
 
@@ -27,13 +20,10 @@ class AIModule implements IModule
 
     public OnModuleAdded(): void
     {
-        this._processor = new AIProcessor();
     }
 
     public OnModuleRemoved(): void
     {
-        this._processor.Dispose();
-        this._processor = null;
     }
 
     // public Initialize(): void

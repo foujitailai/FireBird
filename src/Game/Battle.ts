@@ -12,7 +12,13 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
     private _showDebug: boolean;
     private _battleLogic: GameLogicProcessor;
     private _battleProcess: BattleProcess;
+    private _aiFrameSyncDataAsset: AIDataAsset;
 
+
+    public get AIFrameSyncDataAsset(): AIDataAsset
+    {
+        return this._aiFrameSyncDataAsset;
+    }
 
     public get ControllerData(): ControllerData
     {
@@ -56,6 +62,8 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
         this._showDebug = false;
 
         this._battleStateMachine = new BattleStateMachine();
+
+        this._aiFrameSyncDataAsset = new AIDataAsset();
 
         this._controllerData = new ControllerData();
         this._controller = new Controller(this);

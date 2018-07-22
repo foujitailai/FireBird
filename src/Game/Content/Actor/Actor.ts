@@ -25,4 +25,11 @@ class Actor extends GameObject
             return EnumCollisionTableType.ENEMY_ACTOR;
         }
     }
+
+    public SetFire()
+    {
+        //TODO 真的可以fire!!!!!!!!!!!!!了
+        
+        console.log("真的可以fire!!!!!!!!!!!!!了");
+    }
 }

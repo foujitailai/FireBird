@@ -9,16 +9,20 @@ class AIProcessor implements IFrameProcessor
     private _data: AIDataAsset;
     private _battleData: BattleData;
 
-    public constructor()
+    public get DataAsset():AIDataAsset
     {
-        this._data = new AIDataAsset();
+        return this._data;
+    }
+
+    public constructor(battle:Battle)
+    {
+        this._data = battle.AIFrameSyncDataAsset;
         this._ais = new Map<number, AIStateMachine>();
         this._battleData = ModuleCenter.Get(BattleModule).Data;
     }
 
     public Dispose()
     {
-        this._data.Dispose();
         this._data = null;
         this._ais.clear();
         this._ais = null;

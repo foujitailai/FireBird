@@ -6,11 +6,11 @@ class GameSceneActorManager implements IDisposable
 
     private _self: Actor;
 
-    private _actors : Map<number, Actor>;
+    private _actors: Map<number, Actor>;
     private _data: BattleData;
 
 
-    public get MonsterCount():number
+    public get MonsterCount(): number
     {
         return this._actors.size;
     }
@@ -62,7 +62,7 @@ class GameSceneActorManager implements IDisposable
         return actor;
     }
 
-    public DestroyMonster(id:number)
+    public DestroyMonster(id: number)
     {
         // 关闭 AI
         this._data.Context.AI.CancelAI(id);
@@ -77,16 +77,22 @@ class GameSceneActorManager implements IDisposable
         console.log("DestroyControllableActor");
     }
 
-    public OnUpdate(delta:number)
+    public OnUpdate(delta: number)
     {
         this._self.VelocityY = this._battle.ControllerData.CalcVelocityY();
 
         // 测试功能，先让怪物先动起来
-        this._actors.forEach(actor => {
-            if (actor.Id != this._self.Id )
+        this._actors.forEach(actor =>
+        {
+            if (actor.Id != this._self.Id)
             {
                 actor.VelocityY = ControllerData.GRAVITY_VELOCITY;
             }
         });
+    }
+
+    public FindActor(actorId: number): Actor
+    {
+        return this._actors.get(actorId);
     }
 }
