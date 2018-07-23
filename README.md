@@ -4,13 +4,21 @@ just a small game
 网络同步？？？？？？
 
 如果 AIDataAsset是3帧清除一次，那么，每次同步帧更新的时候，都会重复执行3帧吗？？？
-其它的 processor 不用去处理 AIDataAsset 吗？
+其它的 processor 不用去处理 AIDataAsset 吗？是的，不处理！！！
 
 TODO LIST
-AI控制角色移动并发射子弹
-  应用AI 模块
-  应用BattleData
-  应用FrameSync模块
+玩家操作角色应用帧同步系统
+  输入转为客户端请求
+  定时发送帧数据数据包到服务器（模拟器）
+  真正实现服务器接收与发送到客户端帧数据集合
+  逻辑帧与渲染帧分离调用逻辑
+
+Actor 下面的图形、数据 代码考虑分离？？？
+
+-AI控制角色移动并发射子弹
+-  应用AI 模块
+   应用BattleData
+-  应用FrameSync模块
 
 主角
 1.脑门可以飘出状态字出来
