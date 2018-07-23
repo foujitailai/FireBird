@@ -25,8 +25,8 @@ class GameObject implements IDisposable
     private _lastPosition: number[] = [0, 0];
     private _lastRotation: number = 0;
 
-    private _curPosition: number[] = [0, 0];
-    private _curRotation: number = 0;
+    private _targetPosition: number[] = [0, 0];
+    private _targetRotation: number = 0;
 
     public SetPosition(x: number, y: number): void
     {
@@ -53,10 +53,10 @@ class GameObject implements IDisposable
 
     public SyncPy2Data(): void
     {
-        this._lastPosition = this._curPosition;
-        this._curPosition = this.Body.position;
-        this._lastRotation = this._curRotation;
-        this._curRotation = this.GetRotationFromPy();
+        this._lastPosition = this._targetPosition;
+        this._targetPosition = this.Body.position;
+        this._lastRotation = this._targetRotation;
+        this._targetRotation = this.GetRotationFromPy();
     }
 
     public get CollisionTableType(): EnumCollisionTableType
@@ -67,9 +67,9 @@ class GameObject implements IDisposable
     public SyncRender2View(progress: number)
     {
 
-        this.Display.x = this.GetValueByProgress(progress, this._lastPosition[0], this._curPosition[0]);
-        this.Display.y = this.GetValueByProgress(progress, this._lastPosition[1], this._curPosition[1]);
-        this.Display.rotation = this.GetValueByProgress(progress, this._lastRotation, this._curRotation);
+        this.Display.x = this.GetValueByProgress(progress, this._lastPosition[0], this._targetPosition[0]);
+        this.Display.y = this.GetValueByProgress(progress, this._lastPosition[1], this._targetPosition[1]);
+        this.Display.rotation = this.GetValueByProgress(progress, this._lastRotation, this._targetRotation);
     }
 
     private GetValueByProgress(progress: number, src: number, dest: number)

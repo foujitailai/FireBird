@@ -3,6 +3,9 @@ class Actor extends GameObject
 {
     public Data: ActorData;
 
+    // 发射子弹最小间隔时间
+    private static _FIRE_CD: number = 1000;
+
     public constructor()
     {
         super();
@@ -26,10 +29,15 @@ class Actor extends GameObject
         }
     }
 
+    private _lastFireTime:number = 0;
     public SetFire()
     {
-        //TODO 真的可以fire!!!!!!!!!!!!!了
-        
-        console.log("真的可以fire!!!!!!!!!!!!!了");
+        // 这里是逻辑帧调用的，可以直接添加子弹了！
+        let t = egret.getTimer();
+        if (t - this._lastFireTime >= Actor._FIRE_CD)
+        {
+            ModuleCenter.Get(BattleModule).Battle.GameSceneContent.CreateBullet(this);
+            this._lastFireTime = t;
+        }
     }
 }

@@ -25,7 +25,11 @@ class OperationProcessor implements IFrameProcessor
 
     public RunAI()
     {
+        // 执行帧操作
         this.RunFrame(this._battle.AIFrameSyncDataAsset.DataAsset);
+
+        // 清除帧操作数据
+        this._battle.AIFrameSyncDataAsset.Clear();
     }
 
     public RunPlayer(frame: number, data: FrameSyncServerDataAsset)

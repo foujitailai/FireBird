@@ -19,13 +19,13 @@ class AIDataAsset implements IDisposable, IClearable
 
     public Dispose()
     {
-        this._dataAsset.slice(0, this._dataAsset.length);
+        this._dataAsset.splice(0, this._dataAsset.length);
         this._dataAsset = null;
     }
 
     public Clear(): void
     {
-        this._dataAsset.slice(0, this._dataAsset.length);
+        this._dataAsset.splice(0, this._dataAsset.length);
     }
 
     public Add(data:FrameSyncServerData):void

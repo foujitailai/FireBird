@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a7264da5-41e1-4c9a-82e3-73ba82ac6731" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Game/AI/AIDataAsset.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/AI/AIDataAsset.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Content/Actor/Actor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Content/Actor/Actor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Content/Base/GameObject.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Content/Base/GameObject.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Content/GameSceneContent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Content/GameSceneContent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Process/Frame/FrameProcess.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Process/Frame/FrameProcess.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Process/Frame/MonsterCreator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Process/Frame/MonsterCreator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Process/Frame/Operation/OperationProcessor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Process/Frame/Operation/OperationProcessor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/_Core/Processor/ProcessorCenter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/_Core/Processor/ProcessorCenter.ts" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="ActorOperation.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/Process/Frame/Operation/ActorOperation.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AIModule.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/AI/AIModule.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BattleContextAI.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/Data/Context/BattleContextAI.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BattleContext.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/Data/Context/BattleContext.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="314">
+              <caret line="50" column="20" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BattleModule.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/BattleModule.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1155">
+              <caret line="77" selection-start-line="77" selection-end-line="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OperationProcessor.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/Process/Frame/Operation/OperationProcessor.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="261">
+              <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProcessorCenter.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/_Core/Processor/ProcessorCenter.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="469">
+              <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DragHelper.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/TestPy/DragHelper.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="381">
+              <caret line="59" selection-start-line="59" selection-end-line="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AIDataAsset.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/AI/AIDataAsset.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="411">
+              <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Actor.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Game/Content/Actor/Actor.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CollisionAction.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/Process/Frame/CollisionAction.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="591">
+              <caret line="73" column="55" selection-start-line="73" selection-start-column="55" selection-end-line="73" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameObject.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/Content/Base/GameObject.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="651">
+              <caret line="78" column="1" selection-start-line="78" selection-start-column="1" selection-end-line="78" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActorData.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/Content/Actor/ActorData.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="6" selection-start-column="6" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RenderProcess.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/Process/Render/RenderProcess.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameSceneRenderProcessor.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/Process/Render/GameSceneRenderProcessor.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameSceneContent.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/Content/GameSceneContent.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>onkey</find>
+      <find>ontou</find>
+      <find>this._collisionTable</find>
+      <find>_forceup</find>
+      <find>_controller</find>
+      <find>_collisionTable</find>
+      <find>_world</find>
+      <find>_debugDraw</find>
+      <find>debug</find>
+      <find>Debug</find>
+      <find>content</find>
+      <find>UpdateSelf</find>
+      <find>timer</find>
+      <find>_gameObjects</find>
+      <find>_battleLogic</find>
+      <find>_gameSceneContent</find>
+      <find>_processorCenter</find>
+      <find>Release()</find>
+      <find>OnRenderFrame</find>
+      <find>_frameSync</find>
+      <find>.create</find>
+      <find>GameEvent.FIRE</find>
+      <find>_data</find>
+      <find>new AIProcessor</find>
+      <find>OnFire</find>
+      <find>.slice</find>
+      <find>AddActor</find>
+      <find>SyncPy2View()</find>
+      <find>BattleRenderSnakeItemProcessor</find>
+      <find>_curRotation</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>collisionTable</replace>
+      <replace>Dispose()</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GotoFileConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="ActionScript" />
+      <filtered-out-file-type name="ASP" />
+      <filtered-out-file-type name="AspectJ" />
+      <filtered-out-file-type name="C#" />
+      <filtered-out-file-type name="C++" />
+      <filtered-out-file-type name="CoffeeScript" />
+      <filtered-out-file-type name="CSS" />
+      <filtered-out-file-type name="Cucumber" />
+      <filtered-out-file-type name="Dart" />
+      <filtered-out-file-type name="Dictionary" />
+      <filtered-out-file-type name="Dockerfile" />
+      <filtered-out-file-type name="DTD" />
+      <filtered-out-file-type name="ECMAScript 6" />
+      <filtered-out-file-type name="EJS" />
+      <filtered-out-file-type name="Enforced Plain Text" />
+      <filtered-out-file-type name="Erlang" />
+      <filtered-out-file-type name="Flow" />
+      <filtered-out-file-type name="Haml" />
+      <filtered-out-file-type name="Handlebars/Mustache" />
+      <filtered-out-file-type name="Haskell" />
+      <filtered-out-file-type name="HTML" />
+      <filtered-out-file-type name="HTTP Request" />
+      <filtered-out-file-type name="IDEA_MODULE" />
+      <filtered-out-file-type name="IDEA_PROJECT" />
+      <filtered-out-file-type name="IDEA_WORKSPACE" />
+      <filtered-out-file-type name="IDL" />
+      <filtered-out-file-type name="Jade" />
+      <filtered-out-file-type name="JavaFX" />
+      <filtered-out-file-type name="JavaScript" />
+      <filtered-out-file-type name="JQL" />
+      <filtered-out-file-type name="JSCS" />
+      <filtered-out-file-type name="JSHint" />
+      <filtered-out-file-type name="JSON" />
+      <filtered-out-file-type name="JSP" />
+      <filtered-out-file-type name="JSPX" />
+      <filtered-out-file-type name="JSX Harmony" />
+      <filtered-out-file-type name="Less" />
+      <filtered-out-file-type name="Literate CoffeeScript" />
+      <filtered-out-file-type name="PATCH" />
+      <filtered-out-file-type name="Perl" />
+      <filtered-out-file-type name="PHP" />
+      <filtered-out-file-type name="PLAIN_TEXT" />
+      <filtered-out-file-type name="RegExp" />
+      <filtered-out-file-type name="RNG Compact" />
+      <filtered-out-file-type name="Sass" />
+      <filtered-out-file-type name="Scratch" />
+      <filtered-out-file-type name="SCSS" />
+      <filtered-out-file-type name="SourceMap" />
+      <filtered-out-file-type name="Spacebars" />
+      <filtered-out-file-type name="SQL" />
+      <filtered-out-file-type name="Stylus" />
+      <filtered-out-file-type name="SVG" />
+      <filtered-out-file-type name="textmate" />
+      <filtered-out-file-type name="tsconfig" />
+      <filtered-out-file-type name="TSLint" />
+      <filtered-out-file-type name="TypeScript JSX" />
+      <filtered-out-file-type name="Vue.js" />
+      <filtered-out-file-type name="XHTML" />
+      <filtered-out-file-type name="XML" />
+      <filtered-out-file-type name="YAML" />
+      <filtered-out-file-type name="yarn.lock" />
+      <filtered-out-file-type name="YouTrack" />
+      <filtered-out-file-type name="ARCHIVE" />
+      <filtered-out-file-type name="dependency diagram" />
+      <filtered-out-file-type name="Image" />
+      <filtered-out-file-type name="Native" />
+      <filtered-out-file-type name="UML" />
+      <filtered-out-file-type name="UNKNOWN" />
+    </file-type-list>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/Game/Process/Render/GameSceneDebugRenderProcessor.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Process/Frame/GameSceneFrameProcessor.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Process/Frame/GameLogicProcessor.ts" />
+        <option value="$PROJECT_DIR$/src/Game/BattleUI.ts" />
+        <option value="$PROJECT_DIR$/src/Game/BattleData.ts" />
+        <option value="$PROJECT_DIR$/src/Game/_Core/ModuleCenter.ts" />
+        <option value="$PROJECT_DIR$/src/GameMain.ts" />
+        <option value="$PROJECT_DIR$/src/Game/BattleModule.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Process/Render/RenderProcess.ts" />
+        <option value="$PROJECT_DIR$/src/Game/_Core/IClearable.ts" />
+        <option value="$PROJECT_DIR$/src/Game/_Core/IDisposable.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Data/BattleData.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Data/Context/BattleContextAI.ts" />
+        <option value="$PROJECT_DIR$/src/Game/FrameSync/FrameSyncServerDataAsset.ts" />
+        <option value="$PROJECT_DIR$/src/Game/AI/AIParam.ts" />
+        <option value="$PROJECT_DIR$/src/Game/AI/Pool.ts" />
+        <option value="$PROJECT_DIR$/src/Game/AI/StateMachine.ts" />
+        <option value="$PROJECT_DIR$/src/Game/AI/TState.ts" />
+        <option value="$PROJECT_DIR$/src/Game/AI/IState.ts" />
+        <option value="$PROJECT_DIR$/src/Game/_Core/Module/ModuleCenter.ts" />
+        <option value="$PROJECT_DIR$/src/ModuleCenter.ts" />
+        <option value="$PROJECT_DIR$/src/Game/_Core/Module/ModuleCenterBase.ts" />
+        <option value="$PROJECT_DIR$/src/Game/_Core/StateMachine/StateMachine.ts" />
+        <option value="$PROJECT_DIR$/src/Game/AI/AIStateBase.ts" />
+        <option value="$PROJECT_DIR$/src/Game/AI/AIStateDead.ts" />
+        <option value="$PROJECT_DIR$/src/Game/AI/AIStatePatrol.ts" />
+        <option value="$PROJECT_DIR$/src/Game/AI/AIStateNormal.ts" />
+        <option value="$PROJECT_DIR$/src/Game/FrameSync/FrameSyncServerSimulater.ts" />
+        <option value="$PROJECT_DIR$/src/Game/FrameSync/IPoolObject.ts" />
+        <option value="$PROJECT_DIR$/src/Game/_Core/Pool.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Process/Frame/OperationProcessor.ts" />
+        <option value="$PROJECT_DIR$/src/Game/AI/AIOperation.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Process/Frame/PlayerOperation.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Content/Actor/GameSceneActorManager.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Process/Frame/Operation/PlayerOperation.ts" />
+        <option value="$PROJECT_DIR$/src/Game/AI/AIStateMachine.ts" />
+        <option value="$PROJECT_DIR$/src/Game/FrameSync/FrameSyncServerData.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Process/Frame/Operation/AIOperation.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Battle.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Process/Frame/FrameProcess.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Process/Frame/AIProcessor.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Process/Frame/Operation/ActorOperation.ts" />
+        <option value="$PROJECT_DIR$/src/Game/AI/AIModule.ts" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/Game/Process/Frame/Operation/OperationProcessor.ts" />
+        <option value="$PROJECT_DIR$/src/Game/AI/AIDataAsset.ts" />
+        <option value="$PROJECT_DIR$/src/Game/_Core/Processor/ProcessorCenter.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Data/Context/BattleContext.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Content/GameSceneContent.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Content/Base/GameObject.ts" />
+        <option value="$PROJECT_DIR$/src/Game/Content/Actor/Actor.ts" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="877" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="FireBird" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FireBird" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FireBird" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FireBird" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FireBird" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FireBird" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Game" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FireBird" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FireBird" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Game" type="462c0819:PsiDirectoryNode" />
+              <item name="Process" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FireBird" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FireBird" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Game" type="462c0819:PsiDirectoryNode" />
+              <item name="Process" type="462c0819:PsiDirectoryNode" />
+              <item name="Frame" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FireBird" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FireBird" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Game" type="462c0819:PsiDirectoryNode" />
+              <item name="Process" type="462c0819:PsiDirectoryNode" />
+              <item name="Render" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="NewWatcherDialog.advanced.open" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="typescript-compiler-editor-notification" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Game/Process/Frame/Operation" />
+      <recent name="$PROJECT_DIR$/src/Game/Process/Frame" />
+      <recent name="$PROJECT_DIR$/src/Game/_Core" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/Game/_Core/Module" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="egret-run" type="JavascriptDebugType" factoryName="JavaScript Debug" uri="http://localhost:5177/index.html">
+      <method>
+        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_build-engine" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a7264da5-41e1-4c9a-82e3-73ba82ac6731" name="Default" comment="" />
+      <created>1531868321203</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1531868321203</updated>
+      <workItem from="1531868323109" duration="23399000" />
+      <workItem from="1531966005986" duration="14170000" />
+      <workItem from="1532046212491" duration="17627000" />
+      <workItem from="1532132970864" duration="16846000" />
+      <workItem from="1532182461140" duration="11334000" />
+      <workItem from="1532217761119" duration="15061000" />
+      <workItem from="1532238121982" duration="1258000" />
+      <workItem from="1532272068346" duration="580000" />
+      <workItem from="1532356287168" duration="2000" />
+      <workItem from="1532357267384" duration="3663000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="103940000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1440" height="877" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="bottom" id="TypeScript" order="7" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.32152778" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32931727" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50069445" side_tool="true" weight="0.32876712" />
+      <window_info anchor="bottom" id="Find" order="1" type="SLIDING" weight="0.32876712" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49930555" weight="0.32931727" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32931727" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Game/_Core/IDisposable.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="11" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Data/BattleData.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/AI/AIParam.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Process/Frame/MonsterCreator.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="51" selection-start-line="34" selection-start-column="51" selection-end-line="34" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/modules/egret/egret.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1815">
+          <caret line="121" column="10" selection-start-line="121" selection-start-column="10" selection-end-line="121" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/_Core/StateMachine/TState.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/_Core/StateMachine/IState.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="70" selection-start-line="1" selection-start-column="70" selection-end-line="1" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameMain.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" selection-start-column="23" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ModuleCenter.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/_Core/StateMachine/StateMachine.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/AI/AIStatePatrol.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="27" selection-start-column="27" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/AI/AIStateDead.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="25" selection-start-column="25" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/AI/AIStateBase.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Process/Frame/Controller.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="45" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/_Core/Module/ModuleCenterBase.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="20" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/FrameSync/FrameSyncServer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/_Common/ClassTool.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/FrameSync/FrameSyncServerSimulater.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/AI/AIStateNormal.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/_Core/IPoolObject.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/_Core/Pool.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Process/Frame/GameSceneFrameProcessor.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Process/Frame/GameLogicProcessor.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="30" lean-forward="true" selection-start-line="3" selection-start-column="44" selection-end-line="8" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/FrameSync/EnumFrameSyncDataType.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Content/Actor/GameSceneActorManager.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="606">
+          <caret line="94" column="5" lean-forward="true" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/FrameSync/FrameSyncServerData.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/AI/AIStateMachine.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Process/Frame/Operation/AIOperation.ts" />
+    <entry file="file://$PROJECT_DIR$/src/Game/FrameSync/FrameSyncServerDataAsset.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="66" selection-start-line="35" selection-start-column="66" selection-end-line="35" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Process/Frame/AIProcessor.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Battle.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Process/BattleProcess.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Process/Frame/FrameProcess.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/modules/physics/physics.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="1916" column="11" lean-forward="true" selection-start-line="1916" selection-start-column="11" selection-end-line="1916" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestPy/DragHelper.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Process/Frame/Operation/ActorOperation.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/AI/AIDataAsset.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Process/Frame/Operation/OperationProcessor.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/_Core/Processor/ProcessorCenter.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/AI/AIModule.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Data/Context/BattleContextAI.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/BattleModule.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1155">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Data/Context/BattleContext.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="50" column="20" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Content/Actor/ActorData.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" selection-start-column="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Process/Render/GameSceneRenderProcessor.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Process/Render/RenderProcess.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Content/GameSceneContent.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Content/Base/GameObject.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="78" column="1" selection-start-line="78" selection-start-column="1" selection-end-line="78" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Process/Frame/CollisionAction.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="73" column="55" selection-start-line="73" selection-start-column="55" selection-end-line="73" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Content/Actor/Actor.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

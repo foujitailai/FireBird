@@ -16,7 +16,7 @@ abstract class ProcessorCenter<TProcessor extends IDisposable> implements IDispo
         {
             this._processors[i].Dispose();
         }
-        this._processors.slice(0, this._processors.length);
+        this._processors.splice(0, this._processors.length);
         this._processors = null;
     }
 
@@ -30,7 +30,7 @@ abstract class ProcessorCenter<TProcessor extends IDisposable> implements IDispo
         let index = this._processors.indexOf(processor);
         if (index >= 0)
         {
-            this._processors.slice(index, 1);
+            this._processors.splice(index, 1);
         }
     }
 

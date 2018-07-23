@@ -74,11 +74,11 @@ class GameSceneContent implements IDisposable
         this._gameSceneGameObjectMgr.SyncData2Py();
     }
 
-    public SyncPy2View()
-    {
-        //TODO 有些对象不用更新的，比如：墙、销毁区
-        this._gameSceneGameObjectMgr.SyncPy2View();
-    }
+    // public SyncPy2View()
+    // {
+    //     //TODO 有些对象不用更新的，比如：墙、销毁区
+    //     this._gameSceneGameObjectMgr.SyncPy2View();
+    // }
 
     public OnUpdate(delta:number)
     {
