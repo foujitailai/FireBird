@@ -63,9 +63,9 @@ class GameSceneContent implements IDisposable
         this._gameSceneBulletMgr.CreateBullet(sourceActor);
     }
 
-    public CreateMonster(): Actor
+    public CreateActor(data:ActorData): Actor
     {
-        return this._gameSceneActorMgr.CreateMonster();
+        return this._gameSceneActorMgr.CreateActor(data);
     }
 
     public SyncData2Py()

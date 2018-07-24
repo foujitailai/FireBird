@@ -3,10 +3,12 @@ class MonsterCreator implements IDisposable
     private _createMonsterTimer: egret.Timer;
     private _battle: Battle;
     private _monsterMax:number=1;
+    private _data:BattleData;
 
     public constructor(battle: Battle)
     {
         this._battle = battle;
+        this._data = ModuleCenter.Get(BattleModule).Data;
 
         //TODO 如何可以将这个定时器与 Battle 关联在一起，目标是：当puase 的时候，就会将定时器也定住！
         this._createMonsterTimer = new egret.Timer(2000);
@@ -31,9 +33,17 @@ class MonsterCreator implements IDisposable
 
     private OnCreateMonster()
     {
-        if (this._battle.GameSceneContent.ActorMgr.MonsterCount < this._monsterMax)
+        if (this._data.Context.MonsterCount < this._monsterMax)
         {
-            this._battle.GameSceneContent.CreateMonster();
+            let actorId = this._data.Context.GenerateActorId();
+            let actorData = new ActorData(actorId, EnumActorType.Npc, 1);
+            this._data.Context.AddActor(actorId, actorData);
+
+            let actor = this._battle.GameSceneContent.CreateActor(actorData);
+            actor.SetPosition(500, 100);
+
+            // 开启 AI
+            this._data.Context.AI.SetAI(actor.Data.ActorId);
         }
     }
 }

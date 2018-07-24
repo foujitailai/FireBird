@@ -34,11 +34,13 @@ class BattleModule implements IModule
 
     public constructor()
     {
-
+        this._data = new BattleData();
     }
 
     public Dispose(): void
     {
+        this._data.Dispose();
+        this._data = null;
     }
 
     public OnModuleAdded(): void
@@ -52,7 +54,6 @@ class BattleModule implements IModule
 
     public Start(view:egret.DisplayObjectContainer): void
     {
-        this._data = new BattleData();
         this._ui = new BattleUI();
         this._battle = new Battle();
 
@@ -65,8 +66,7 @@ class BattleModule implements IModule
         this._ui = null;
         this._battle.Dispose();
         this._battle = null;
-        this._data.Dispose();
-        this._data = null;
+        this.Clear();
     }
 
     public Clear(): void

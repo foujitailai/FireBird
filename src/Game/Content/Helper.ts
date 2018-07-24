@@ -43,18 +43,16 @@ class Helper
         }
     }
 
-    public static CreateActor(actorType: EnumActorType, resId: number, world: p2.World, con: egret.DisplayObjectContainer): Actor
+    public static CreateActor(data:ActorData, world: p2.World, con: egret.DisplayObjectContainer): Actor
     {
         //TODO 通过id得到对应的配置数据
-        let data = new ActorData();
-        data.ActorType = actorType;
         data.SpriteName = "checkbox_select_disabled_png";
 
 
         let shape = new p2.Box({width: 100, height: 50});
         shape.sensor = true;
 
-        Helper.SetCollision(actorType, shape, true);
+        Helper.SetCollision(data.ActorType, shape, true);
 
         let body: p2.Body = new p2.Body({mass: 1, position: [0, 0], type: p2.Body.DYNAMIC});
         body.damping = 0;

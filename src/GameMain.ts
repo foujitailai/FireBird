@@ -38,6 +38,17 @@ class GameMain extends egret.DisplayObjectContainer
 
         // 创建战斗
         this._battle = ModuleCenter.Get(BattleModule);
+        this.CreateTestData(this._battle.Data);
         this._battle.Start(this);
+    }
+
+    private CreateTestData(data:BattleData):void
+    {
+        // 自己的角色
+        data.Context.SetSelfId(data.Context.GenerateActorId());
+        data.Context.AddActor(data.Context.SelfId, new ActorData(data.Context.SelfId, EnumActorType.Player, 1));
+
+        // 其它怪物的角色
+        // data.Context.AddActor(2, new ActorData())
     }
 }
