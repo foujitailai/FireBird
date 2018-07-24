@@ -3,7 +3,7 @@
 
 just a small game
 
-TODO LIST
+## TODO LIST
 
 - [ ] 玩家操作角色应用帧同步系统
   - [ ] 输入转为客户端请求
@@ -22,6 +22,8 @@ TODO LIST
   - [ ] 应用BattleData
   - [x] 应用AI 模块
   - [x] 应用FrameSync模块
+
+## REQUEST
 
 主角
 
@@ -67,7 +69,7 @@ TODO LIST
 
 1. 全屏扫荡技能
 
-DONE
+## DONE
 
 - [X] 每个 BODY 要能够绑定信息，用于分辨出它是什么对象
 - [X] 场景里面可以生成不同的对象
