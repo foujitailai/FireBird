@@ -20,6 +20,7 @@ class FrameProcess extends ProcessorCenter<IFrameProcessor> implements IFramePro
      */
     public OnFrameSync(frame: number, data: FrameSyncServerDataAsset): void
     {
+        // console.log("     frame = " + frame);
         for (let i: number = 0; i < this._processors.length; ++i)
         {
             this._processors[i].OnFrameSync(frame, data);

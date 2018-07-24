@@ -9,5 +9,5 @@ enum EnumFrameSyncDefine
     /**
      * 帧时间
      */
-    FRAME_TIME = 50,
+    FRAME_TIME = 100,
 }

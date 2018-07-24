@@ -53,10 +53,25 @@ class GameObject implements IDisposable
 
     public SyncPy2Data(): void
     {
-        this._lastPosition = this._targetPosition;
-        this._targetPosition = this.Body.position;
+        // if(this instanceof Actor)
+        // {
+        //     console.log("b lp["+this._lastPosition[0]+", "+this._lastPosition[1]+
+        //     ", tp["+this._targetPosition[0]+", "+this._targetPosition[1]+
+        //     ", bp["+this.Body.position[0]+", "+this.Body.position[1]
+        //     );
+        // }
+        this.SetPos(this._lastPosition, this._targetPosition);
+        this.SetPos(this._targetPosition, this.Body.position);
         this._lastRotation = this._targetRotation;
         this._targetRotation = this.GetRotationFromPy();
+
+        // if(this instanceof Actor)
+        // {
+        //     console.log("e lp["+this._lastPosition[0]+", "+this._lastPosition[1]+
+        //     ", tp["+this._targetPosition[0]+", "+this._targetPosition[1]+
+        //     ", bp["+this.Body.position[0]+", "+this.Body.position[1]
+        //     );
+        // }
     }
 
     public get CollisionTableType(): EnumCollisionTableType
@@ -75,5 +90,11 @@ class GameObject implements IDisposable
     private GetValueByProgress(progress: number, src: number, dest: number)
     {
         return (dest - src) * progress + src;
+    }
+
+    private SetPos(dest: number[], src: number[])
+    {
+        dest[0] = src[0];
+        dest[1] = src[1];
     }
 }

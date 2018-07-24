@@ -19,6 +19,7 @@ class RenderProcess extends ProcessorCenter<IRenderProcessor> implements IRender
      */
     public OnRenderFrame(delta: number, progress: number, isFastPlay: boolean)
     {
+        // console.log("render:  delta = "+delta + ", progress = "+progress);
         for (let i: number = 0; i < this._processors.length; ++i)
         {
             this._processors[i].OnRenderFrame(delta, progress, isFastPlay);
