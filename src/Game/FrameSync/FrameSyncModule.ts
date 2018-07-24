@@ -15,12 +15,12 @@ class FrameSyncModule implements IModule
     private _server: FrameSyncServer;
     private _running: boolean;
 
-    public get Client()
+    public get Client() : FrameSyncClient
     {
         return this._client;
     }
 
-    public get Server()
+    public get Server() : FrameSyncServer
     {
         return this._server;
     }
@@ -64,7 +64,7 @@ class FrameSyncModule implements IModule
         }
 
         this._running = true;
-        this._client.Start();
+        this._client.Start(isSingle);
         this._server.Start(isSingle);
     }
 

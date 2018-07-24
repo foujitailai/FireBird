@@ -54,7 +54,7 @@ class AIStateMachine extends egret.EventDispatcher implements IDisposable
 
     private OnAIProcessFire()
     {
-        let data = Pool.Get(FrameSyncServerData);
+        let data = this._dataAsset.Take();
         data.SetFire(this._id);
         this._dataAsset.Add(data);
     }

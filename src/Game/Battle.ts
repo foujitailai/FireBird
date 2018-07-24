@@ -13,6 +13,7 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
     private _battleLogic: GameLogicProcessor;
     private _battleProcess: BattleProcess;
     private _aiFrameSyncDataAsset: AIDataAsset;
+    private _battleData: BattleData;
 
 
     public get AIFrameSyncDataAsset(): AIDataAsset
@@ -60,6 +61,8 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
     public Start()
     {
         this._showDebug = false;
+
+        this._battleData = ModuleCenter.Get(BattleModule).Data;
 
         this._battleStateMachine = new BattleStateMachine();
 
@@ -111,6 +114,8 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
 
         this._battleProcess.Dispose();
         this._battleProcess = null;
+
+        this._battleData = null;
     }
 
     private AddTestIcon(): void
@@ -134,8 +139,9 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
 
     private OnFire(): void
     {
-        this._gameSceneContent.CreateBullet(this._gameSceneContent.ActorMgr.SelfActor);
-        this.OnJump();
+        ModuleCenter.Get(FrameSyncModule).Client.RequestData.SetFire(this._battleData.Context.SelfId,true);
+        // this._gameSceneContent.CreateBullet(this._gameSceneContent.ActorMgr.SelfActor);
+        // this.OnJump();
     }
 
     private OnJump(): void

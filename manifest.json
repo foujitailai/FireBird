@@ -10,10 +10,10 @@
 	],
 	"game": [
 		"bin-debug/Game/_Core/Module/ModuleCenterBase.js",
+		"bin-debug/Game/FrameSync/EnumFrameSyncDataType.js",
 		"bin-debug/Game/_Core/Processor/ProcessorCenter.js",
 		"bin-debug/Game/AI/AIStateBase.js",
 		"bin-debug/Game/Content/Base/GameObject.js",
-		"bin-debug/Game/FrameSync/EnumFrameSyncDataType.js",
 		"bin-debug/Game/Content/Border/HellData.js",
 		"bin-debug/EgretFW/Platform.js",
 		"bin-debug/EgretFW/ThemeAdapter.js",
@@ -23,6 +23,7 @@
 		"bin-debug/Game/BattleTimer.js",
 		"bin-debug/Game/GameEvent.js",
 		"bin-debug/Game/_Common/ClassTool.js",
+		"bin-debug/Game/_Common/EventTool.js",
 		"bin-debug/Game/_Core/IClassName.js",
 		"bin-debug/Game/_Core/IClearable.js",
 		"bin-debug/Game/_Core/IDisposable.js",
@@ -57,7 +58,7 @@
 		"bin-debug/Game/Content/Border/Ground.js",
 		"bin-debug/Game/Content/Border/GroundData.js",
 		"bin-debug/Game/Content/Border/Hell.js",
-		"bin-debug/Loading.js",
+		"bin-debug/TestPy/scene/TearableScene.js",
 		"bin-debug/Game/Content/Bullet/Bullet.js",
 		"bin-debug/Game/Content/Bullet/BulletData.js",
 		"bin-debug/Game/Content/Bullet/EnumBulletType.js",
@@ -71,6 +72,7 @@
 		"bin-debug/Game/FrameSync/FrameSyncClient.js",
 		"bin-debug/Game/FrameSync/FrameSyncClientRequestData.js",
 		"bin-debug/Game/FrameSync/FrameSyncDefine.js",
+		"bin-debug/Game/FrameSync/FrameSyncEvent.js",
 		"bin-debug/Game/FrameSync/FrameSyncModule.js",
 		"bin-debug/Game/FrameSync/FrameSyncServer.js",
 		"bin-debug/Game/FrameSync/FrameSyncServerData.js",
@@ -105,6 +107,6 @@
 		"bin-debug/TestPy/scene/RestitutionScene.js",
 		"bin-debug/TestPy/scene/SleepScene.js",
 		"bin-debug/TestPy/scene/SpringsScene.js",
-		"bin-debug/TestPy/scene/TearableScene.js"
+		"bin-debug/Loading.js"
 	]
 }

@@ -6,9 +6,7 @@ class AIStateNormal extends AIStateBase
 
     public DoAIProcess(): void
     {
-        let event = egret.Event.create(egret.Event, GameEvent.FIRE);
-        this.SMachine.dispatchEvent(event);
-        egret.Event.release(event);
+        EventTool.Disp(this.SMachine, GameEvent.FIRE);
     }
 
     public OnEnter(oldState: AIStateBase): void

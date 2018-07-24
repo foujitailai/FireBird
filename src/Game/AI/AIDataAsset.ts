@@ -25,6 +25,11 @@ class AIDataAsset implements IDisposable, IClearable
 
     public Clear(): void
     {
+        for (let i:number=0; i < this._dataAsset.length; ++i)
+        {
+            this.Give(this._dataAsset[i]);
+        }
+
         this._dataAsset.splice(0, this._dataAsset.length);
     }
 
@@ -40,6 +45,24 @@ class AIDataAsset implements IDisposable, IClearable
             return this._dataAsset[index];
         }
         return null;
+    }
+
+    /**
+     * 取一个新数据出来进行操作
+     * @returns {FrameSyncServerData}
+     */
+    public Take():FrameSyncServerData
+    {
+        return Pool.Get(FrameSyncServerData);
+    }
+
+    /**
+     * 翻译一个数据
+     * @param {FrameSyncServerData} data
+     */
+    public Give(data:FrameSyncServerData)
+    {
+        return Pool.Free(data);
     }
 
 }
