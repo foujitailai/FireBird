@@ -14,6 +14,7 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
     private _battleProcess: BattleProcess;
     private _aiFrameSyncDataAsset: AIDataAsset;
     private _battleData: BattleData;
+    private _battleBehavior: BattleBehavior;
 
 
     public get AIFrameSyncDataAsset(): AIDataAsset
@@ -53,6 +54,14 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
 
+    private onAddToStage(): void
+    {
+        this.AddTestIcon();
+
+        // 进入战斗模块开启状态
+        this.Start();
+    }
+
     public Dispose(): void
     {
         this.Stop();
@@ -70,7 +79,6 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
 
         this._controllerData = new ControllerData();
         this._controller = new Controller(this);
-        this.addEventListener(GameEvent.FIRE, this.OnFire, this);
 
         this._collisionTable = new CollisionTable();
         this._collisionAction = new CollisionAction(this, this._collisionTable, this._controllerData);
@@ -84,6 +92,8 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
         this._battleTimer = new BattleTimer();
 
         this._battleProcess = new BattleProcess();
+
+        this._battleBehavior = new BattleBehavior(this);
 
         this._battleStateMachine.BattleBegin();
 
@@ -99,7 +109,6 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
 
         this._battleStateMachine.BattleEnd();
 
-        this.removeEventListener(GameEvent.FIRE, this.OnFire, this);
         this._controller = null;
 
         this._gameScene.Dispose();
@@ -118,6 +127,14 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
         this._battleData = null;
     }
 
+    private OnUpdate(): void
+    {
+        this._battleTimer.TakeSample();
+
+        this._battleProcess.OnUpdate(this._battleTimer.Delta);
+    }
+
+
     private AddTestIcon(): void
     {
         let icon: egret.Bitmap = Helper.CreateBitmapByName("egret_icon_png");
@@ -127,33 +144,6 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
         icon.anchorOffsetY = icon.height / 2;
 
         this.addChild(icon);
-    }
-
-    private onAddToStage(): void
-    {
-        this.AddTestIcon();
-
-        // 进入战斗模块开启状态
-        this.Start();
-    }
-
-    private OnFire(): void
-    {
-        ModuleCenter.Get(FrameSyncModule).Client.RequestData.SetFire(this._battleData.Context.SelfId,true);
-        // this._gameSceneContent.CreateBullet(this._gameSceneContent.ActorMgr.SelfActor);
-        // this.OnJump();
-    }
-
-    private OnJump(): void
-    {
-        this._controllerData.Jump();
-    }
-
-    private OnUpdate(): void
-    {
-        this._battleTimer.TakeSample();
-
-        this._battleProcess.OnUpdate(this._battleTimer.Delta);
     }
 
 }

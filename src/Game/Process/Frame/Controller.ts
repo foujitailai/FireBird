@@ -41,9 +41,7 @@ class Controller implements IDisposable
 
     private SendFireEvent(): void
     {
-        let event = egret.Event.create(egret.Event, GameEvent.FIRE);
-        this._battle.dispatchEvent(event);
-        egret.Event.release(event);
+        EventTool.Disp(this._battle, GameEvent.FIRE);
     }
 
     private onKeyDown(evt): void

@@ -3,8 +3,15 @@ class Actor extends GameObject
 {
     public Data: ActorData;
 
-    // 发射子弹最小间隔时间
+    /**
+     * 发射子弹最小间隔时间
+     */
     private static _FIRE_CD: number = 1000;
+
+    /**
+     * 最后一次发射子弹的时间
+     */
+    private _lastFireTime:number = 0;
 
     public constructor()
     {
@@ -29,7 +36,6 @@ class Actor extends GameObject
         }
     }
 
-    private _lastFireTime:number = 0;
     public SetFire()
     {
         // 这里是逻辑帧调用的，可以直接添加子弹了！
@@ -39,5 +45,10 @@ class Actor extends GameObject
             ModuleCenter.Get(BattleModule).Battle.GameSceneContent.CreateBullet(this);
             this._lastFireTime = t;
         }
+    }
+
+    public SetJump()
+    {
+
     }
 }

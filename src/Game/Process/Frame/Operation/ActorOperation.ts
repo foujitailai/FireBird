@@ -42,6 +42,10 @@ class ActorOperation implements IDisposable
         if (actor)
         {
             actor.SetFire();
+            if (actor.Data.ActorType == EnumActorType.Player)
+            {
+                ModuleCenter.Get(BattleModule).Battle.ControllerData.Jump();
+            }
         }
     }
 }
