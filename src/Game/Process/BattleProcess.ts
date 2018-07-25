@@ -12,10 +12,9 @@ class BattleProcess implements IDisposable
 
         // 注册帧回调
         this._frameSync = ModuleCenter.Get(FrameSyncModule);
-        let src = this;
         this._frameSync.SetHandle(
-            (a, b, c) => src._renderProcess.OnRenderFrame(a, b, c),
-            (a, b) => src._frameProcess.OnFrameSync(a, b));
+            this._renderProcess.OnRenderFrame.bind(this._renderProcess),
+            this._frameProcess.OnFrameSync.bind(this._frameProcess));
     }
 
     public Dispose(): void

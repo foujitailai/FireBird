@@ -87,7 +87,7 @@ class FrameSyncServerSimulater implements IFrameSyncServerImpl
                 // 帧计数加1
                 let lastFrame = this._frame++;
                 // 执行逻辑帧
-                this._frameHandle.apply(null, [lastFrame, this._dataAsset]);
+                this._frameHandle(lastFrame, this._dataAsset);
                 // 删除已经执行过了的逻辑帧数据
                 this._dataAsset.DeleteFrame(lastFrame);
                 // 本帧渲染时间清零，重新开始
@@ -105,7 +105,7 @@ class FrameSyncServerSimulater implements IFrameSyncServerImpl
         // 两个渲染帧之间的时间间隔
         let renderDelta = this._curRenderTime - this._lastRenderTime;
         // 执行渲染帧
-        this._renderHandle.apply(null, [renderDelta, progress, false]);
+        this._renderHandle(renderDelta, progress, false);
         // 记录渲染帧时间
         this._lastRenderTime = this._curRenderTime;
     }

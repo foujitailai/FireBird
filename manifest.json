@@ -10,11 +10,11 @@
 	],
 	"game": [
 		"bin-debug/Game/_Core/Module/ModuleCenterBase.js",
-		"bin-debug/Game/_Core/Processor/ProcessorCenter.js",
 		"bin-debug/Game/AI/AIStateBase.js",
 		"bin-debug/Game/Content/Base/GameObject.js",
 		"bin-debug/Game/FrameSync/EnumFrameSyncDataType.js",
-		"bin-debug/Game/Content/Border/HellData.js",
+		"bin-debug/Game/_Core/Processor/ProcessorCenter.js",
+		"bin-debug/Game/Process/Frame/CollisionTable.js",
 		"bin-debug/EgretFW/Platform.js",
 		"bin-debug/EgretFW/ThemeAdapter.js",
 		"bin-debug/Game/Battle.js",
@@ -58,7 +58,7 @@
 		"bin-debug/Game/Content/Border/Ground.js",
 		"bin-debug/Game/Content/Border/GroundData.js",
 		"bin-debug/Game/Content/Border/Hell.js",
-		"bin-debug/Loading.js",
+		"bin-debug/TestPy/scene/TearableScene.js",
 		"bin-debug/Game/Content/Bullet/Bullet.js",
 		"bin-debug/Game/Content/Bullet/BulletData.js",
 		"bin-debug/Game/Content/Bullet/EnumBulletType.js",
@@ -83,7 +83,7 @@
 		"bin-debug/Game/Process/BattleProcess.js",
 		"bin-debug/Game/Process/Frame/AIProcessor.js",
 		"bin-debug/Game/Process/Frame/CollisionAction.js",
-		"bin-debug/Game/Process/Frame/CollisionTable.js",
+		"bin-debug/Game/Content/Border/HellData.js",
 		"bin-debug/Game/Process/Frame/Controller.js",
 		"bin-debug/Game/Process/Frame/ControllerData.js",
 		"bin-debug/Game/Process/Frame/FrameProcess.js",
@@ -107,6 +107,6 @@
 		"bin-debug/TestPy/scene/RestitutionScene.js",
 		"bin-debug/TestPy/scene/SleepScene.js",
 		"bin-debug/TestPy/scene/SpringsScene.js",
-		"bin-debug/TestPy/scene/TearableScene.js"
+		"bin-debug/Loading.js"
 	]
 }

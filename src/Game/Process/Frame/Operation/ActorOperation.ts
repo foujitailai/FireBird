@@ -11,8 +11,7 @@ class ActorOperation implements IDisposable
 
         this._operations = new Map<FSDT, Function>();
 
-        let src = this;
-        this._operations.set(FSDT.FIRE, data => src.OnFire(data));
+        this._operations.set(FSDT.FIRE, this.OnFire.bind(this));
     }
 
     public Dispose(): void
@@ -28,7 +27,7 @@ class ActorOperation implements IDisposable
         let oper = this._operations.get(operData.Type);
         if (oper)
         {
-            oper.apply(null, [operData]);
+            oper(operData);
         }
     }
 

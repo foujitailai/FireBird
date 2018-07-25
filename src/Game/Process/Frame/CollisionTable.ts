@@ -11,22 +11,10 @@ enum EnumCollisionTableType
     COUNT,
 }
 
-class CallbackHandle
-{
-    public Listener: Function;
-    public ThisObject: any;
-
-    public constructor(listener: Function, thisObject: any)
-    {
-        this.Listener = listener;
-        this.ThisObject = thisObject;
-    }
-}
-
 class CollisionTable implements IDisposable
 {
     //(a:GameObject, b:GameObject) => void
-    private _actionTable: Array<Array<CallbackHandle>>;
+    private _actionTable: Array<Array<(a: GameObject, b: GameObject) => void>>;
 
     public constructor()
     {
@@ -48,11 +36,11 @@ class CollisionTable implements IDisposable
 
     public Add(a: EnumCollisionTableType, b: EnumCollisionTableType, action: (a: GameObject, b: GameObject) => void): void
     {
-        this._actionTable[a][b] = new CallbackHandle(action, undefined);//, obj:any
+        this._actionTable[a][b] = action;//, obj:any
     }
 
 
-    public FindAction(a: EnumCollisionTableType, b: EnumCollisionTableType): CallbackHandle
+    public FindAction(a: EnumCollisionTableType, b: EnumCollisionTableType): (a: GameObject, b: GameObject) => void
     {
         return this._actionTable[a][b];
     }
@@ -67,7 +55,7 @@ class CollisionTable implements IDisposable
         let action = this.FindAction(aGO.CollisionTableType, bGO.CollisionTableType);
         if (action)
         {
-            action.Listener.apply(action.ThisObject, [aGO, bGO]);
+            action(aGO, bGO);
         }
     }
 }
