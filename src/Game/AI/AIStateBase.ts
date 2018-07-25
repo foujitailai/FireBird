@@ -23,5 +23,5 @@ abstract class AIStateBase implements TState<AIStateBase>
 
     public abstract OnEnter(oldState: AIStateBase): void;
 
-    public abstract OnLevel(newState: AIStateBase): void;
+    public abstract OnLeave(newState: AIStateBase): void;
 }

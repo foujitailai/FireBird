@@ -41,11 +41,14 @@ class ActorOperation implements IDisposable
         let actor = this.GetActor(data);
         if (actor)
         {
-            actor.SetFire();
-            if (actor.Data.ActorType == EnumActorType.Player)
-            {
-                ModuleCenter.Get(BattleModule).Battle.ControllerData.Jump();
-            }
+            // 自身变更动画、特效、声音
+            // 真正的发射子弹
+            actor.ChangeState(ActorStateFire);
+            // actor.SetFire();
+            // if (actor.Data.ActorType == EnumActorType.Player)
+            // {
+            //     ModuleCenter.Get(BattleModule).Battle.ControllerData.Jump();
+            // }
         }
     }
 }

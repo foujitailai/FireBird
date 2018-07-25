@@ -33,7 +33,7 @@ class StateMachine<T extends TState<T>> implements IDisposable
         let oldState = this._curState;
         if (this._curState)
         {
-            this._curState.OnLevel(state);
+            this._curState.OnLeave(state);
         }
         this._curState = state;
         this._curState.OnEnter(oldState);

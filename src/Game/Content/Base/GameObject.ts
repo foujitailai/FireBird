@@ -1,3 +1,4 @@
+
 class GameObject implements IDisposable
 {
     public readonly Id: number;
@@ -17,7 +18,7 @@ class GameObject implements IDisposable
 
 
     public Body: p2.Body;
-    public Display: egret.DisplayObject;
+    public Display: GameObjectDisplay;
 
     public VelocityX: number = 0;
     public VelocityY: number = 0;

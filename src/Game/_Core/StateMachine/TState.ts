@@ -1,6 +1,6 @@
 interface TState<T extends IState> extends IDisposable, IState
 {
-    OnLevel(newState: T): void
+    OnLeave(newState: T): void
 
     OnEnter(oldState: T): void
 }

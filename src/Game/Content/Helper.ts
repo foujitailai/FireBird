@@ -58,19 +58,16 @@ class Helper
         body.damping = 0;
         body.addShape(shape);
 
-        let pic: egret.Bitmap = Helper.CreateBitmapByName(data.SpriteName);
-        pic.width = shape.width;
-        pic.height = shape.height;
-        pic.anchorOffsetX = pic.width / 2;
-        pic.anchorOffsetY = pic.height / 2;
+        // let pic: egret.Bitmap = Helper.CreateBitmapByName(data.SpriteName);
+        // pic.width = shape.width;
+        // pic.height = shape.height;
+        // pic.anchorOffsetX = pic.width / 2;
+        // pic.anchorOffsetY = pic.height / 2;
+        //
+        // body.displays = [pic];
 
-        body.displays = [pic];
 
-
-        let actor = new Actor();
-        actor.Body = body;
-        actor.Data = data;
-        actor.Display = pic;
+        let actor = new Actor(data, body);
         return actor;
     }
 
@@ -99,7 +96,7 @@ class Helper
         // 先放在屏幕外面，不显示出来
         pic.x = -2000;
 
-        body.displays = [pic];
+        // body.displays = [pic];
 
         let offsetX = 0;
         if (actor.Data.Direct == EnumDirect.LEFT)
@@ -120,7 +117,8 @@ class Helper
         let bullet = new Bullet();
         bullet.Body = body;
         bullet.Data = data;
-        bullet.Display = pic;
+        bullet.Display = new GameObjectDisplay();
+        bullet.Display.addChild(pic);
         return bullet;
     }
 
@@ -145,12 +143,13 @@ class Helper
         pic.anchorOffsetX = pic.width / 2;
         pic.anchorOffsetY = pic.height / 2;
 
-        body.displays = [pic];
+        // body.displays = [pic];
 
         let ground = new Ground();
         ground.Body = body;
         ground.Data = data;
-        ground.Display = pic;
+        ground.Display = new GameObjectDisplay();
+        ground.Display.addChild(pic);
         return ground;
     }
 
@@ -175,13 +174,14 @@ class Helper
         pic.anchorOffsetX = pic.width / 2;
         pic.anchorOffsetY = pic.height / 2;
 
-        body.displays = [pic];
+        // body.displays = [pic];
 
 
         let hell = new Hell();
         hell.Body = body;
         hell.Data = data;
-        hell.Display = pic;
+        hell.Display = new GameObjectDisplay();
+        hell.Display.addChild(pic);
         return hell;
     }
 }

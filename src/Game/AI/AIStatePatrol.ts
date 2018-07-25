@@ -12,7 +12,7 @@ class AIStatePatrol extends AIStateBase
     {
     }
 
-    public OnLevel(newState: AIStateBase): void
+    public OnLeave(newState: AIStateBase): void
     {
     }
 

@@ -10,7 +10,6 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
     private _collisionTable: CollisionTable;
     private _battleTimer: BattleTimer;
     private _showDebug: boolean;
-    private _battleLogic: GameLogicProcessor;
     private _battleProcess: BattleProcess;
     private _aiFrameSyncDataAsset: AIDataAsset;
     private _battleData: BattleData;
@@ -88,7 +87,6 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
 
         this._gameSceneContent = new GameSceneContent(this, this._gameScene);
 
-        this._battleLogic = new GameLogicProcessor(this);
         this._battleTimer = new BattleTimer();
 
         this._battleProcess = new BattleProcess();

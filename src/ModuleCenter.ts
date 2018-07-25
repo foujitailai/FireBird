@@ -10,6 +10,7 @@ class ModuleCenter extends ModuleCenterBase
 
     protected Register():void
     {
+        this.Add(new SoundModule);
         this.Add(new BattleModule());
         this.Add(new AIModule());
         this.Add(new FrameSyncModule());

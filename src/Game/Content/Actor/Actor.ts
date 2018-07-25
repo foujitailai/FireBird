@@ -1,7 +1,9 @@
 
 class Actor extends GameObject
 {
+    public Display: ActorDisplay;
     public Data: ActorData;
+    private _sm: ActorStateMachine;
 
     /**
      * 发射子弹最小间隔时间
@@ -11,16 +13,25 @@ class Actor extends GameObject
     /**
      * 最后一次发射子弹的时间
      */
-    private _lastFireTime:number = 0;
+    private _lastFireTime: number = 0;
 
-    public constructor()
+    public constructor(data:ActorData, body:p2.Body)
     {
         super();
+
+        this.Body = body;
+        this.Data = data;
+        this.Display = new ActorDisplay(this);
+        this._sm = new ActorStateMachine(this);
     }
 
     public Dispose(): void
     {
         super.Dispose();
+
+        this._sm.Dispose();
+        this._sm = null;
+
         this.Data = null;
     }
 
@@ -50,5 +61,10 @@ class Actor extends GameObject
     public SetJump()
     {
 
+    }
+
+    public ChangeState<T extends ActorStateBase>(t: { new(): T }): void
+    {
+        this._sm.Change(t);
     }
 }
