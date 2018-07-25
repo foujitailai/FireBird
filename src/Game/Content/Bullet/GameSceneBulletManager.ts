@@ -21,10 +21,6 @@ class GameSceneBulletManager implements IDisposable
         let bullet = Helper.CreateBullet(sourceActor, this._world, this._battle);
         bullet.VelocityX = sourceActor.Data.ActorType == EnumActorType.Player ? 1000 : -1000;
         this._content.AddGameObject(bullet);
-    }
-
-    SyncData2Py()
-    {
-
+        bullet.SyncInitialize();
     }
 }

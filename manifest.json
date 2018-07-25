@@ -54,6 +54,7 @@
 		"bin-debug/Game/Content/Actor/ActorData.js",
 		"bin-debug/Game/Content/Actor/EnumActorType.js",
 		"bin-debug/Game/Content/Actor/GameSceneActorManager.js",
+		"bin-debug/Game/Content/Base/EnumDirect.js",
 		"bin-debug/EgretFW/LoadingUI.js",
 		"bin-debug/Game/Content/Base/GameSceneGameObjectManager.js",
 		"bin-debug/Game/Content/Border/GameSceneBorder.js",

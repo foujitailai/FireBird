@@ -101,7 +101,19 @@ class Helper
 
         body.displays = [pic];
 
-        body.position = [actor.Body.position[0] + 50, actor.Body.position[1]];
+        let offsetX = 0;
+        if (actor.Data.Direct == EnumDirect.LEFT)
+        {
+            offsetX += -50;
+        }
+        else if (actor.Data.Direct == EnumDirect.RIGHT)
+        {
+            offsetX += 50;
+        }
+        body.position = [actor.Body.position[0] + offsetX, actor.Body.position[1]];
+
+
+
         //body.velocity = [1000, 0];
 
 

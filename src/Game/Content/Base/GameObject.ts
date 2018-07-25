@@ -34,6 +34,14 @@ class GameObject implements IDisposable
         this.Body.position[1] = y;
     }
 
+    public SyncInitialize()
+    {
+        this.SetPos(this._lastPosition, this.Body.position);
+        this.SetPos(this._targetPosition, this.Body.position);
+        this._lastRotation = this.GetRotationFromPy();
+        this._targetRotation = this._lastRotation;
+    }
+
     public SyncPy2View(): void
     {
         this.Display.x = this.Body.position[0];
