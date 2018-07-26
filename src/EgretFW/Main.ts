@@ -353,6 +353,15 @@ class Main extends eui.UILayer {
         var boxBody: p2.Body = new p2.Body({ mass: 0, position: [200, 480], angularVelocity: 1 });
         boxBody.addShape(boxShape);
         this.world.addBody(boxBody);
+
+
+        var boxShape: p2.Shape = new p2.Box({width: 640, height: 1000});
+        boxShape.sensor = true;
+        var boxBody: p2.Body = new p2.Body({ mass: 0, position: [640/2, 1136+500-50], angularVelocity: 0 });
+        boxBody.addShape(boxShape);
+        this.world.addBody(boxBody);
+
+
     }
     private createSprite(): egret.Sprite {
         var result: egret.Sprite = new egret.Sprite();

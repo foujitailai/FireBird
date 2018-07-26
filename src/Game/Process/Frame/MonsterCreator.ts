@@ -2,8 +2,8 @@ class MonsterCreator implements IDisposable
 {
     private _createMonsterTimer: egret.Timer;
     private _battle: Battle;
-    private _monsterMax:number=1;
-    private _data:BattleData;
+    private _monsterMax: number = 0;
+    private _data: BattleData;
 
     public constructor(battle: Battle)
     {

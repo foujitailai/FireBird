@@ -98,17 +98,6 @@ class Helper
 
         // body.displays = [pic];
 
-        let offsetX = 0;
-        if (actor.Data.Direct == EnumDirect.LEFT)
-        {
-            offsetX += -50;
-        }
-        else if (actor.Data.Direct == EnumDirect.RIGHT)
-        {
-            offsetX += 50;
-        }
-        body.position = [actor.Body.position[0] + offsetX, actor.Body.position[1]];
-
 
 
         //body.velocity = [1000, 0];
@@ -119,6 +108,20 @@ class Helper
         bullet.Data = data;
         bullet.Display = new GameObjectDisplay();
         bullet.Display.addChild(pic);
+
+
+        let offsetX = 0;
+        if (actor.Data.Direct == EnumDirect.LEFT)
+        {
+            offsetX += -50;
+        }
+        else if (actor.Data.Direct == EnumDirect.RIGHT)
+        {
+            offsetX += 50;
+        }
+        
+        bullet.SetPosition(actor.Body.position[0] + offsetX, actor.Body.position[1]);
+        
         return bullet;
     }
 

@@ -71,6 +71,9 @@ class Controller implements IDisposable
             // case 86:
             //     this._battle.OnJump();
             //     break;
+        case 18:
+            this._battle.SetShowDebug(true);
+            break;
         }
     }
 
@@ -89,6 +92,9 @@ class Controller implements IDisposable
             break;
         case 39:
             this._keyRight = 0;
+            break;
+        case 18:
+            this._battle.SetShowDebug(false);
             break;
         }
     }

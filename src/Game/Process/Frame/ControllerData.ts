@@ -17,7 +17,7 @@ class ControllerData implements IDisposable
      * 跳起时给的力
      * @type {number}
      */
-    public static readonly JUMP_VELOCITY: number = 14/10*1136;
+    public static readonly JUMP_VELOCITY: number = 20/10*1136;
     /**
      * 每帧在衰减的力
      * @type {number}
@@ -27,7 +27,7 @@ class ControllerData implements IDisposable
      * 重力做用的力
      * @type {number}
      */
-    public static readonly GRAVITY_VELOCITY: number = 26/10*1136;
+    public static readonly GRAVITY_VELOCITY: number = 60/10*1136;
 
 
     private forceVertical: number = 0;
@@ -48,17 +48,7 @@ class ControllerData implements IDisposable
 
     public Jump(): void
     {
-        this.forceVertical -= ControllerData.JUMP_VELOCITY;
-    }
-
-    private _screenSize = 5;
-    private get _pixelCountOfScreenSize():number
-    {
-        return ModuleCenter.Get(BattleModule).Data.Context.Scene.Border.height / 2;
-    }
-    public ScreenSizeToPixel(screenSize: number)
-    {
-        return (screenSize / this._screenSize) * this._pixelCountOfScreenSize;
+        this.forceVertical = -ControllerData.JUMP_VELOCITY;
     }
 
 

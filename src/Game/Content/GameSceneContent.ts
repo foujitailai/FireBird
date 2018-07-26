@@ -87,12 +87,14 @@ class GameSceneContent implements IDisposable
 
     public Render(delta: number, progress: number, isFastPlay: boolean)
     {
+        console.log("render: " + progress);
         //TODO 计算插值并应用
         this._gameSceneGameObjectMgr.SyncRender2View(progress);
     }
 
     public SyncPy2Data()
     {
+        console.log("py 2 data");
         this._gameSceneGameObjectMgr.SyncPy2Data();
     }
 }

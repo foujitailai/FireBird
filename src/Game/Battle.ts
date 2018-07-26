@@ -144,4 +144,8 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
         this.addChild(icon);
     }
 
+    public SetShowDebug(show: boolean)
+    {
+        this._showDebug = show;
+    }
 }
