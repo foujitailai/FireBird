@@ -41,6 +41,7 @@ class MonsterCreator implements IDisposable
 
             let actor = this._battle.GameSceneContent.CreateActor(actorData);
             actor.SetPosition(500, 100);
+            actor.SyncInitialize();
 
             // 开启 AI
             this._data.Context.AI.SetAI(actor.Data.ActorId);

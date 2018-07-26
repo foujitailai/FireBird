@@ -31,7 +31,7 @@ class GameSceneGameObjectManager implements IDisposable
 
     public AddGameObject(go: GameObject)
     {
-        console.log("AddGameObject: " + ClassTool.GetTypeName(go) + "(" + go.Id + ")");
+        console.log("AddGameObject: " + ClassTool.GetTypeName(go) + "(gameObj=" + go.Id + ", body=" + go.Body.id + ")");
         this._battle.addChild(go.Display);
         this._world.addBody(go.Body);
         this._gameObjects[go.Id] = go;
@@ -41,7 +41,7 @@ class GameSceneGameObjectManager implements IDisposable
     {
         if (this._gameObjects[go.Id])
         {
-            console.log("RemoveGameObject: " + ClassTool.GetTypeName(go) + "(" + go.Id + ")");
+            console.log("RemoveGameObject: " + ClassTool.GetTypeName(go) + "(" + go.Id + ", body=" + go.Body.id + ")");
             delete this._gameObjects[go.Id];
             this._world.removeBody(go.Body);
             this._battle.removeChild(go.Display);

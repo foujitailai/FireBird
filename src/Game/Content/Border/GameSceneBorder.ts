@@ -32,12 +32,14 @@ class GameSceneBorder implements IDisposable
         this._groundTop = Helper.CreateGround(this._world, this._battle);
         this._groundTop.SetPosition(this._groundTop.Display.width / 2, this._groundTop.Display.height / 2);
         this._groundTop.SetCollisionTableType(EnumCollisionTableType.TOP_GROUND);
+        this._groundTop.SyncInitialize();
         this._content.AddGameObject(this._groundTop);
 
         this._groundBottom = Helper.CreateGround(this._world, this._battle);
         let h = this._battle.stage.$stageHeight;
         this._groundBottom.SetPosition(this._groundTop.Display.width / 2, h - this._groundBottom.Display.height / 2);
         this._groundBottom.SetCollisionTableType(EnumCollisionTableType.BOTTOM_GROUND);
+        this._groundBottom.SyncInitialize();
         this._content.AddGameObject(this._groundBottom);
     }
 
@@ -45,12 +47,14 @@ class GameSceneBorder implements IDisposable
     {
         //TODO 添加左右销毁墙
         this._hellLeft = Helper.CreateHell(this._world, this._battle);
-        this._hellLeft.SetPosition(-100, this._hellLeft.Display.height / 2);
+        this._hellLeft.SetPosition((-this._hellLeft.Display.width/2) - 100, this._hellLeft.Display.height / 2);
+        this._hellLeft.SyncInitialize();
         this._content.AddGameObject(this._hellLeft);
 
         this._hellRight = Helper.CreateHell(this._world, this._battle);
         let w = this._battle.stage.$stageWidth;
-        this._hellRight.SetPosition(w + 100, this._hellRight.Display.height / 2);
+        this._hellRight.SetPosition(w + (this._hellLeft.Display.width/2) + 100, this._hellRight.Display.height / 2);
+        this._hellRight.SyncInitialize();
         this._content.AddGameObject(this._hellRight);
     }
 

@@ -10,12 +10,12 @@
 	],
 	"game": [
 		"bin-debug/Game/_Core/Module/ModuleCenterBase.js",
-		"bin-debug/Game/_Core/Processor/ProcessorCenter.js",
 		"bin-debug/Game/AI/AIStateBase.js",
 		"bin-debug/Game/Content/Base/GameObject.js",
 		"bin-debug/Game/Content/Base/GameObjectDisplay.js",
 		"bin-debug/Game/FrameSync/EnumFrameSyncDataType.js",
 		"bin-debug/Game/Process/Frame/CollisionTable.js",
+		"bin-debug/Game/_Core/Processor/ProcessorCenter.js",
 		"bin-debug/Game/Content/Border/GroundData.js",
 		"bin-debug/Game/Battle.js",
 		"bin-debug/Game/BattleModule.js",
@@ -31,6 +31,7 @@
 		"bin-debug/Game/_Core/Pool.js",
 		"bin-debug/Game/_Core/Module/IModule.js",
 		"bin-debug/GameMain.js",
+		"bin-debug/Game/_Core/Module/TModule.js",
 		"bin-debug/Game/_Core/Processor/IFrameProcessor.js",
 		"bin-debug/Game/_Core/Processor/IRenderProcessor.js",
 		"bin-debug/ModuleCenter.js",
@@ -56,14 +57,13 @@
 		"bin-debug/Game/Content/Actor/ActorStateMachine.js",
 		"bin-debug/Game/Content/Actor/EnumActorType.js",
 		"bin-debug/Game/Content/Actor/GameSceneActorManager.js",
-		"bin-debug/Game/Content/Actor/TModule.js",
 		"bin-debug/Game/Content/Base/EnumDirect.js",
 		"bin-debug/EgretFW/LoadingUI.js",
 		"bin-debug/EgretFW/Main.js",
 		"bin-debug/Game/Content/Base/GameSceneGameObjectManager.js",
 		"bin-debug/Game/Content/Border/GameSceneBorder.js",
 		"bin-debug/Game/Content/Border/Ground.js",
-		"bin-debug/Loading.js",
+		"bin-debug/TestPy/scene/TearableScene.js",
 		"bin-debug/Game/Content/Border/Hell.js",
 		"bin-debug/Game/Content/Border/HellData.js",
 		"bin-debug/Game/Content/Bullet/Bullet.js",
@@ -116,6 +116,6 @@
 		"bin-debug/TestPy/scene/RestitutionScene.js",
 		"bin-debug/TestPy/scene/SleepScene.js",
 		"bin-debug/TestPy/scene/SpringsScene.js",
-		"bin-debug/TestPy/scene/TearableScene.js"
+		"bin-debug/Loading.js"
 	]
 }

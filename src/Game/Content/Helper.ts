@@ -94,7 +94,7 @@ class Helper
         pic.anchorOffsetX = pic.width / 2;
         pic.anchorOffsetY = pic.height / 2;
         // 先放在屏幕外面，不显示出来
-        pic.x = -2000;
+        //pic.x = -2000;
 
         // body.displays = [pic];
 
@@ -158,7 +158,7 @@ class Helper
         let data = new HellData();
         data.SpriteName = "button_down_png";
 
-        let shape = new p2.Box({width: 2, height: con.stage.$stageHeight});
+        let shape = new p2.Box({width: 200, height: con.stage.$stageHeight});
         shape.sensor = true;
 
         shape.collisionGroup = EnumCollisionType.HELL;
@@ -168,11 +168,11 @@ class Helper
         body.damping = 0;
         body.addShape(shape);
 
-        let pic: egret.Bitmap = Helper.CreateBitmapByName(data.SpriteName);
-        pic.width = shape.width;
-        pic.height = shape.height;
-        pic.anchorOffsetX = pic.width / 2;
-        pic.anchorOffsetY = pic.height / 2;
+        // let pic: egret.Bitmap = Helper.CreateBitmapByName(data.SpriteName);
+        // pic.width = shape.width;
+        // pic.height = shape.height;
+        // pic.anchorOffsetX = pic.width / 2;
+        // pic.anchorOffsetY = pic.height / 2;
 
         // body.displays = [pic];
 
@@ -181,7 +181,9 @@ class Helper
         hell.Body = body;
         hell.Data = data;
         hell.Display = new GameObjectDisplay();
-        hell.Display.addChild(pic);
+        hell.Display.width = shape.width;
+        hell.Display.height = shape.height;
+        // hell.Display.addChild(pic);
         return hell;
     }
 }
