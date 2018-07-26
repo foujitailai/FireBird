@@ -49,7 +49,7 @@ class Helper
         data.SpriteName = "checkbox_select_disabled_png";
 
 
-        let shape = new p2.Box({width: 100, height: 50});
+        let shape = new p2.Box({width: data.Width, height: data.Height});
         shape.sensor = true;
 
         Helper.SetCollision(data.ActorType, shape, true);
@@ -127,7 +127,7 @@ class Helper
         let data = new GroundData();
         data.SpriteName = "checkbox_select_disabled_png";
 
-        let shape = new p2.Box({width: con.stage.$stageWidth, height: 100});
+        let shape = new p2.Box({width: con.stage.$stageWidth, height: 1000});
         shape.sensor = true;
 
         shape.collisionGroup = EnumCollisionType.GROUND;
@@ -158,7 +158,7 @@ class Helper
         let data = new HellData();
         data.SpriteName = "button_down_png";
 
-        let shape = new p2.Box({width: 200, height: con.stage.$stageHeight});
+        let shape = new p2.Box({width: 1000, height: con.stage.$stageHeight});
         shape.sensor = true;
 
         shape.collisionGroup = EnumCollisionType.HELL;

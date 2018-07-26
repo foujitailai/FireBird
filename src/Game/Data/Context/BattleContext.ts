@@ -6,6 +6,7 @@ class BattleContext implements IDisposable, IClearable
     private _actors: Map<number, ActorData>;
     private _ai: BattleContextAI;
     private _actorIdGenerator:number=0;
+    private _scene: BattleSceneData;
 
     public get SelfId(): number
     {
@@ -28,11 +29,17 @@ class BattleContext implements IDisposable, IClearable
         return Math.max(size, 0);
     }
 
+    public get Scene():BattleSceneData
+    {
+        return this._scene;
+    }
+
     public constructor()
     {
         this._selfId = 0;
         this._actors = new Map<number, ActorData>();
         this._ai = new BattleContextAI();
+        this._scene = new BattleSceneData();
     }
 
     public Dispose(): void
@@ -42,12 +49,15 @@ class BattleContext implements IDisposable, IClearable
         this._actors = null;
         this._ai.Dispose();
         this._ai = null;
+        this._scene.Dispose();
+        this._scene = null;
     }
 
     public Clear(): void
     {
         this._actors.clear();
         this._ai.Clear();
+        this._scene.Clear();
     }
 
     public GenerateActorId():number

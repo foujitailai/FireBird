@@ -30,7 +30,7 @@ class GameLogicProcessor implements IFrameProcessor
     {
         let actorData = this._data.Context.GetActor(this._data.Context.SelfId);
         let self = this._battle.GameSceneContent.CreateActor(actorData);
-        self.SetPosition(100, 100);
+        self.SetPosition(100, 500);
 
     }
 }

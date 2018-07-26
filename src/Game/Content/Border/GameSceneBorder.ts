@@ -30,14 +30,14 @@ class GameSceneBorder implements IDisposable
     {
         //TODO 添加上下反弹墙
         this._groundTop = Helper.CreateGround(this._world, this._battle);
-        this._groundTop.SetPosition(this._groundTop.Display.width / 2, this._groundTop.Display.height / 2);
+        this._groundTop.SetPosition(this._groundTop.Display.width / 2, -(this._groundTop.Display.height / 2) + 50);
         this._groundTop.SetCollisionTableType(EnumCollisionTableType.TOP_GROUND);
         this._groundTop.SyncInitialize();
         this._content.AddGameObject(this._groundTop);
 
         this._groundBottom = Helper.CreateGround(this._world, this._battle);
         let h = this._battle.stage.$stageHeight;
-        this._groundBottom.SetPosition(this._groundTop.Display.width / 2, h - this._groundBottom.Display.height / 2);
+        this._groundBottom.SetPosition(this._groundTop.Display.width / 2, h + (this._groundBottom.Display.height / 2) - 50);
         this._groundBottom.SetCollisionTableType(EnumCollisionTableType.BOTTOM_GROUND);
         this._groundBottom.SyncInitialize();
         this._content.AddGameObject(this._groundBottom);

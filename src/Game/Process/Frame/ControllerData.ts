@@ -17,7 +17,7 @@ class ControllerData implements IDisposable
      * 跳起时给的力
      * @type {number}
      */
-    public static readonly JUMP_VELOCITY: number = 2000;
+    public static readonly JUMP_VELOCITY: number = 14/10*1136;
     /**
      * 每帧在衰减的力
      * @type {number}
@@ -27,67 +27,77 @@ class ControllerData implements IDisposable
      * 重力做用的力
      * @type {number}
      */
-    public static readonly GRAVITY_VELOCITY: number = 800;
+    public static readonly GRAVITY_VELOCITY: number = 26/10*1136;
 
-    private _forceUp: number = 0;
-    private _forceDown: number = 0;
-    public get ForceUp()
-    {
-        return this._forceUp;
-    }
-    public set ForceUp(v:number)
-    {
-        this._forceUp = v;
-    }
 
-    public get ForceDown()
+    private forceVertical: number = 0;
+    public get ForceVertical(): number
     {
-        return this._forceDown;
+        return this.forceVertical;
     }
-    public set ForceDown(v:number)
+    public set ForceVertical(v:number)
     {
-        this._forceDown = v;
+        this.forceVertical = v;
     }
 
+    public CalcVelocityY(delta: number):number
+    {
+        this.forceVertical += (delta/EnumFrameSyncDefine.INT_FLOAT_RATE) * ControllerData.GRAVITY_VELOCITY;
+        return this.forceVertical;
+    }
 
     public Jump(): void
     {
-        this._forceUp = ControllerData.JUMP_VELOCITY;
-        this._forceDown = 0;
+        this.forceVertical -= ControllerData.JUMP_VELOCITY;
     }
 
-    public CalcVelocityY():number
+    private _screenSize = 5;
+    private get _pixelCountOfScreenSize():number
     {
-        // 直接速度（每秒的速度，如果不去每帧设置，会被衰竭掉，可以通过damping=0来去掉衰竭）
-        //this._self.Body.velocity = [(this._keyLeft - this._keyRight) * -200, (this._keyUp - this._keyDown) * -200];
-        //this._self.Body.velocity = [0, 200];
-
-
-        let velocityY = ControllerData.GRAVITY_VELOCITY;
-
-        // 检测是否有在上升？
-        if (this._forceUp > 0)
-        {
-            // 如果有，就加上升的值，同时还要将上升的值衰减下来
-            velocityY -= this._forceUp;
-            this._forceUp -= ControllerData.JUMP_DAMPING;
-            if (this._forceUp < 0)
-            {
-                this._forceUp = 0;
-            }
-        }
-        // 检测是否有在下降？
-        if (this._forceDown > 0)
-        {
-            // 如果有，就加上升的值，同时还要将上升的值衰减下来
-            velocityY += this._forceDown;
-            this._forceDown -= ControllerData.JUMP_DAMPING;
-            if (this._forceDown < 0)
-            {
-                this._forceDown = 0;
-            }
-        }
-
-        return velocityY;
+        return ModuleCenter.Get(BattleModule).Data.Context.Scene.Border.height / 2;
     }
+    public ScreenSizeToPixel(screenSize: number)
+    {
+        return (screenSize / this._screenSize) * this._pixelCountOfScreenSize;
+    }
+
+
+
+
+
+    // public CalcVelocityY():number
+    // {
+    //     // 直接速度（每秒的速度，如果不去每帧设置，会被衰竭掉，可以通过damping=0来去掉衰竭）
+    //     //this._self.Body.velocity = [(this._keyLeft - this._keyRight) * -200, (this._keyUp - this._keyDown) * -200];
+    //     //this._self.Body.velocity = [0, 200];
+    //
+    //
+    //     let velocityY = ControllerData.GRAVITY_VELOCITY;
+    //
+    //     // 检测是否有在上升？
+    //     if (this._forceUp > 0)
+    //     {
+    //         // 如果有，就加上升的值，同时还要将上升的值衰减下来
+    //         velocityY -= this._forceUp;
+    //         this._forceUp -= ControllerData.JUMP_DAMPING;
+    //         if (this._forceUp < 0)
+    //         {
+    //             this._forceUp = 0;
+    //         }
+    //     }
+    //     // 检测是否有在下降？
+    //     if (this._forceDown > 0)
+    //     {
+    //         // 如果有，就加上升的值，同时还要将上升的值衰减下来
+    //         velocityY += this._forceDown;
+    //         this._forceDown -= ControllerData.JUMP_DAMPING;
+    //         if (this._forceDown < 0)
+    //         {
+    //             this._forceDown = 0;
+    //         }
+    //     }
+    //
+    //     return velocityY;
+    // }
+
 }

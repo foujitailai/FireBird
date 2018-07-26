@@ -15,6 +15,11 @@ class Actor extends GameObject
      */
     private _lastFireTime: number = 0;
 
+    public get Height(): number
+    {
+        return this.Data.Height;
+    }
+
     public constructor(data:ActorData, body:p2.Body)
     {
         super();
