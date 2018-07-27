@@ -142,6 +142,24 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
         icon.anchorOffsetY = icon.height / 2;
 
         this.addChild(icon);
+
+        // var tttt:egret.Texture = RES.getRes( "com-spr_json.ZBLoseCN1" );
+        // var img:egret.Bitmap = new egret.Bitmap( tttt );
+        // img.x=200;
+        // img.y=300;
+        // this.addChild(img);
+
+        // let data = RES.getRes("com-mc_json");
+        // let txtr = RES.getRes("com-comp_png");
+        // let factory = new egret.MovieClipDataFactory(data, txtr);
+        // factory.enableCache = true;
+        // let birdData = factory.generateMovieClipData("Bird");
+        // let b1Data = factory.generateMovieClipData("Boss1");
+        // let fegData = factory.generateMovieClipData("fire_e_green");
+        // let hrbData = factory.generateMovieClipData("HeroRedBall");
+        // let bird = new egret.MovieClip(fegData);
+        // this.addChild(bird);
+        // bird.gotoAndPlay("normal", -1);
     }
 
     public SetShowDebug(show: boolean)

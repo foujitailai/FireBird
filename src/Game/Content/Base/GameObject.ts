@@ -90,13 +90,13 @@ class GameObject implements IDisposable
 
     public SyncPy2Data(): void
     {
-        if(this instanceof Actor)
-        {
-            console.log("b lp["+this._lastPosition[0]+", "+this._lastPosition[1]+
-            "], tp["+this._targetPosition[0]+", "+this._targetPosition[1]+
-            "], bp["+this.Body.position[0]+", "+this.Body.position[1]
-            );
-        }
+        // if(this instanceof Actor)
+        // {
+        //     console.log("b lp["+this._lastPosition[0]+", "+this._lastPosition[1]+
+        //     "], tp["+this._targetPosition[0]+", "+this._targetPosition[1]+
+        //     "], bp["+this.Body.position[0]+", "+this.Body.position[1]
+        //     );
+        // }
         if (this._cachePos)
         {
             this.SetPos(this.Body.position, this._cachePos);
@@ -107,13 +107,13 @@ class GameObject implements IDisposable
         this._lastRotation = this._targetRotation;
         this._targetRotation = this.GetRotationFromPy();
 
-        if(this instanceof Actor)
-        {
-            console.log("e lp["+this._lastPosition[0]+", "+this._lastPosition[1]+
-            "], tp["+this._targetPosition[0]+", "+this._targetPosition[1]+
-            "], bp["+this.Body.position[0]+", "+this.Body.position[1]
-            );
-        }
+        // if(this instanceof Actor)
+        // {
+        //     console.log("e lp["+this._lastPosition[0]+", "+this._lastPosition[1]+
+        //     "], tp["+this._targetPosition[0]+", "+this._targetPosition[1]+
+        //     "], bp["+this.Body.position[0]+", "+this.Body.position[1]
+        //     );
+        // }
     }
 
     public get CollisionTableType(): EnumCollisionTableType

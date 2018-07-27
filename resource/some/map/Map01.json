@@ -1,0 +1,7 @@
+{"file":"Map01.png","frames":{
+"Map01_Ground":{"x":0,"y":538,"w":768,"h":463,"offX":0,"offY":49,"sourceW":768,"sourceH":512},
+"Map01_Mid":{"x":0,"y":1001,"w":768,"h":415,"offX":0,"offY":1,"sourceW":768,"sourceH":416},
+"Map01_Near":{"x":0,"y":0,"w":768,"h":538,"offX":0,"offY":2,"sourceW":768,"sourceH":540},
+"Map01_cloud_1":{"x":0,"y":1416,"w":768,"h":72,"offX":0,"offY":0,"sourceW":768,"sourceH":72},
+"Map01_cloud_2":{"x":0,"y":1488,"w":768,"h":43,"offX":0,"offY":0,"sourceW":768,"sourceH":44},
+"Map01_Far":{"x":768,"y":0,"w":32,"h":1024,"offX":0,"offY":0,"sourceW":32,"sourceH":1024}}}

@@ -81,7 +81,7 @@ class GameScene implements IDisposable
 
     public OnUpdate(delta): void
     {
-        console.log("2D World Update");
+        // console.log("2D World Update");
         // 更新物理引擎时间
         this._world.step(delta);
     }

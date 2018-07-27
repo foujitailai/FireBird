@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,gameEui_json",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,gameEui_json,Map01_json,Map02_json,Map03_json,com-spr_json,com-comp_png,com-mc_json",
 			"name": "preload"
 		}
 	],
@@ -132,14 +132,48 @@
 			"name": "egret_icon_png"
 		},
 		{
-			"name": "description_json",
+			"url": "config/description.json",
 			"type": "json",
-			"url": "config/description.json"
+			"name": "description_json"
 		},
 		{
-			"name": "gameEui_json",
+			"url": "gameEui.json",
 			"type": "json",
-			"url": "gameEui.json"
+			"name": "gameEui_json"
+		},
+		{
+			"name": "Map01_json",
+			"type": "sheet",
+			"url": "some/map/Map01.json",
+			"subkeys": "Map01_Ground,Map01_Mid,Map01_Near,Map01_cloud_1,Map01_cloud_2,Map01_Far"
+		},
+		{
+			"name": "Map02_json",
+			"type": "sheet",
+			"url": "some/map/Map02.json",
+			"subkeys": "Map02_Win2,Map02_Win3,Map02_cloud_1,Map02_cloud_2,Map02_Far,Map02_Ground,Map02_Mid,Map02_Near,Map02_Win1"
+		},
+		{
+			"name": "Map03_json",
+			"type": "sheet",
+			"url": "some/map/Map03.json",
+			"subkeys": "Map03_Near,Map03_cloud_1,Map03_Far,Map03_Ground,Map03_Mid"
+		},
+		{
+			"name": "com-spr_json",
+			"type": "sheet",
+			"url": "some/com/com-spr.json",
+			"subkeys": "Red05,Red06,Red01,Red02,Red03,Red04,fire_e_purple1,fire_e_purple2,fire_e_purple3,fire_e_purple4,fire_e_red1,fire_e_red2,fire_e_red3,fire_e_red4,HeroRedBall,fire_e_big1,fire_e_big2,fire_e_big3,fire_e_green1,fire_e_green2,fire_e_green3,fire_e_green4,boss3_3,boss3_4,boss4_1,boss4_2,boss4_3,boss4_4,boss5_1,boss5_2,boss5_3,boss6_1,boss6_2,boss6_3,boss1_1,boss1_2,boss1_3,boss2_1,boss2_2,boss2_3,boss3_1,boss3_2,ZBCoolCN1,ZBCoolCN2,ZBCoolCN3,ZBCoolPad,ZBLoseCN1,ZBLoseCN2,ZBLoseCN3,ZBLosePad,ATLevel,Bar,BarPad,Btn_Green,Btn_Red,IconBottom1,IconRedPoint2,IconSound,title_cn"
+		},
+		{
+			"name": "com-comp_png",
+			"type": "image",
+			"url": "some/com/com-comp.png"
+		},
+		{
+			"name": "com-mc_json",
+			"type": "json",
+			"url": "some/com/com-mc.json"
 		}
 	]
 }

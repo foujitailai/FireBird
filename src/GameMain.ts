@@ -1,3 +1,4 @@
+
 class GameMain extends egret.DisplayObjectContainer
 {
     private _loading: Loading;
