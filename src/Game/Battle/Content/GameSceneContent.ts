@@ -7,16 +7,24 @@ class GameSceneContent implements IDisposable
     private _gameSceneActorMgr: GameSceneActorManager;
     private _gameSceneBulletMgr: GameSceneBulletManager;
     private _gameSceneGameObjectMgr: GameSceneGameObjectManager;
+    private _data: BattleData;
 
     public get ActorMgr(): GameSceneActorManager
     {
         return this._gameSceneActorMgr;
     }
 
+    public get SelfActor():Actor
+    {
+        return this.ActorMgr.FindActor(this._data.Context.SelfId);
+    }
+
+
     public constructor(battle: Battle, gameScene: GameScene)
     {
         this._battle = battle;
         this._gameScene = gameScene;
+        this._data = ModuleCenter.Get(BattleModule).Data;
 
         this._gameSceneGameObjectMgr = new GameSceneGameObjectManager(this._battle, this._gameScene.World);
 

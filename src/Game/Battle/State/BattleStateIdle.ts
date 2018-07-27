@@ -1,7 +1,7 @@
 /**
  * 战斗准备状态
  */
-class BattleStateReadying extends BattleStateBase
+class BattleStateIdle extends BattleStateBase
 {
     public Dispose(): void
     {

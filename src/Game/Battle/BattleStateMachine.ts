@@ -11,13 +11,13 @@ class BattleStateMachine extends egret.EventDispatcher implements IDisposable
 
         this._sm = new StateMachine<BattleStateBase>();
 
-        this.Add(BattleStateReadying);
+        this.Add(BattleStateIdle);
         this.Add(BattleStateStart);
         this.Add(BattleStateEnd);
         this.Add(BattleStatePlaying);
 
 
-        this.Change(BattleStateReadying);
+        this.Change(BattleStateIdle);
     }
 
     public Dispose(): void

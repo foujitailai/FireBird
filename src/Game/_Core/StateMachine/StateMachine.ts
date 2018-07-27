@@ -35,6 +35,7 @@ class StateMachine<T extends TState<T>> implements IDisposable
         {
             this._curState.OnLeave(state);
         }
+        console.log(ClassTool.GetTypeName(oldState) + " => " + ClassTool.GetTypeName(state) );
         this._curState = state;
         this._curState.OnEnter(oldState);
     }

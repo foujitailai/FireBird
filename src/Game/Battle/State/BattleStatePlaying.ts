@@ -9,9 +9,9 @@ class BattleStatePlaying extends BattleStateBase
 
     public OnEnter(oldState: BattleStateBase): void
     {
-        let frameSync = ModuleCenter.Get(FrameSyncModule);
-        frameSync.Stop();
-        frameSync.ClearData();
+        ModuleCenter.Get(BattleModule).Battle.GameSceneContent.SelfActor.ChangeState(ActorStateNormal);
+
+        // 这里才开启输入功能？？？
     }
 
     public OnLeave(newState: BattleStateBase): void
