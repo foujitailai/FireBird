@@ -68,6 +68,7 @@ class Helper
 
 
         let actor = new Actor(data, body);
+
         return actor;
     }
 
