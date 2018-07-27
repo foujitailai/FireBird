@@ -20,7 +20,7 @@ class AIStateMachine extends egret.EventDispatcher implements IDisposable
         this.Add(AIStatePatrol);
 
 
-        this.addEventListener(GameEvent.FIRE, this.OnAIProcessFire, this);
+        this.addEventListener(BattleEvent.FIRE, this.OnAIProcessFire, this);
 
 
         this.Change(AIStateNormal);

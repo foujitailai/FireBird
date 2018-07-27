@@ -6,7 +6,7 @@ class AIStateNormal extends AIStateBase
 
     public DoAIProcess(): void
     {
-        EventTool.Disp(this.SMachine, GameEvent.FIRE);
+        EventTool.Disp(this.SMachine, BattleEvent.FIRE);
     }
 
     public OnEnter(oldState: AIStateBase): void

@@ -10,12 +10,12 @@ class BattleOperation implements IDisposable
         this._data = ModuleCenter.Get(BattleModule).Data;
         this._fsClient = ModuleCenter.Get(FrameSyncModule).Client;
 
-        this._battle.addEventListener(GameEvent.FIRE, this.OnFire, this);
+        this._battle.addEventListener(BattleEvent.FIRE, this.OnFire, this);
     }
 
     public Dispose(): void
     {
-        this._battle.removeEventListener(GameEvent.FIRE, this.OnFire, this);
+        this._battle.removeEventListener(BattleEvent.FIRE, this.OnFire, this);
 
         this._data = null;
         this._fsClient = null;

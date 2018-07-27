@@ -41,7 +41,7 @@ class Controller implements IDisposable
 
     private SendFireEvent(): void
     {
-        EventTool.Disp(this._battle, GameEvent.FIRE);
+        EventTool.Disp(this._battle, BattleEvent.FIRE);
     }
 
     private onKeyDown(evt): void
