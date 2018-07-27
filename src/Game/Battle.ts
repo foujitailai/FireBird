@@ -15,6 +15,10 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
     private _battleData: BattleData;
     private _battleBehavior: BattleBehavior;
 
+    public get StateMachine(): BattleStateMachine
+    {
+        return this._battleStateMachine;
+    }
 
     public get AIFrameSyncDataAsset(): AIDataAsset
     {
@@ -93,19 +97,22 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
 
         this._battleBehavior = new BattleBehavior(this);
 
-        this._battleStateMachine.BattleBegin();
 
         //TODO 这里事件只会在渲染时派发出来，如果窗口被切到后台看不到了，egret就不会派发这个事件，固定时钟的功能，可能还需要换定时器来
         //     参看 egret.startTick   http://edn.egret.com/cn/article/index/id/875
         // 注册帧更新函数，每次引擎渲染时都会调用
         this.addEventListener(egret.Event.ENTER_FRAME, this.OnUpdate, this);
+
+        this._battleStateMachine.Change(BattleStateStart);
     }
 
     public Stop()
     {
         this.removeEventListener(egret.Event.ENTER_FRAME, this.OnUpdate, this);
 
-        this._battleStateMachine.BattleEnd();
+        this._battleStateMachine.Change(BattleStateEnd);
+        this._battleStateMachine.Dispose();
+        this._battleStateMachine = null;
 
         this._controller = null;
 
@@ -165,5 +172,9 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
     public SetShowDebug(show: boolean)
     {
         this._showDebug = show;
+        if (!this._showDebug)
+        {
+            this._gameSceneDebug.Clear();
+        }
     }
 }

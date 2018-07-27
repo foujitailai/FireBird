@@ -46,6 +46,10 @@ class p2DebugDraw {
     public setLineWidth(value:number):void{
         this.lineWidth = value;
     }
+    public clearDraw():void
+    {
+        this.sprite.graphics.clear();
+    }
     public drawDebug(): void {
         this.sprite.graphics.clear();
 

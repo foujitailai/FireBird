@@ -29,4 +29,9 @@ class GameSceneDebug implements IDisposable
         // 显示物理引擎里面的数据
         this._debugDraw.drawDebug();
     }
+
+    public Clear()
+    {
+        this._debugDraw.clearDraw();
+    }
 }
