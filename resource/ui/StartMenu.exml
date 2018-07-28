@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="StartMenu" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="GameIcon" source="com-spr_json.title_cn" verticalCenter="-300" horizontalCenter="0"/>
+	<e:Group id="SoundBtnRoot" width="128" height="88" anchorOffsetX="128" anchorOffsetY="0" right="0" top="0">
+		<e:Image id="SoundBtnBG" source="com-spr_json.Btn_Green" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0"/>
+		<e:Image id="SoundBtnIcon" source="com-spr_json.IconSound" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0"/>
+	</e:Group>
+	<e:Group height="200" y="512.21" anchorOffsetY="0" left="0" right="0">
+		<e:Button label="开始游戏" anchorOffsetX="0" width="324.24" anchorOffsetY="0" height="98.48" verticalCenter="0" horizontalCenter="-5" skinName="skins.GreenButtonSkin">
+		</e:Button>
+	</e:Group>
+	<e:Group height="200" left="0" right="0" bottom="0"/>
+	
+</e:Skin>
