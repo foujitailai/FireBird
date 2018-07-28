@@ -1,5 +1,16 @@
 class ButtonAniTool
 {
+    // 贝赛尔曲线计算
+    // https://blog.csdn.net/korekara88730/article/details/45743339
+    // public get factor():number {
+    //     return 0;
+    // }
+    //                                               P1                              P2                    P3
+    // public set factor(value:number) {
+    //     this.ball.x = (1 - value) * (1 - value) * 100 + 2 * value * (1 - value) * 300 + value * value * 100;
+    //     this.ball.y = (1 - value) * (1 - value) * 100 + 2 * value * (1 - value) * 300 + value * value * 500;
+    // }
+
     public static AddScaleAni(btn: egret.DisplayObject)
     {
         let anchorX = btn.width >> 1;
