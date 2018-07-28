@@ -97,7 +97,6 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
 
         this._battleBehavior = new BattleBehavior(this);
 
-
         //TODO 这里事件只会在渲染时派发出来，如果窗口被切到后台看不到了，egret就不会派发这个事件，固定时钟的功能，可能还需要换定时器来
         //     参看 egret.startTick   http://edn.egret.com/cn/article/index/id/875
         // 注册帧更新函数，每次引擎渲染时都会调用
@@ -149,6 +148,13 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
         icon.anchorOffsetY = icon.height / 2;
 
         this.addChild(icon);
+
+        // let ui = ModuleCenter.Get(UIModule).FindUI(StartMenuUI);
+        // ui.Open();
+        // let xx = new eui.Component();
+        // xx.skinName = "StartMenu.exml";
+        // this.addChild(xx);
+
 
         // var tttt:egret.Texture = RES.getRes( "com-spr_json.ZBLoseCN1" );
         // var img:egret.Bitmap = new egret.Bitmap( tttt );

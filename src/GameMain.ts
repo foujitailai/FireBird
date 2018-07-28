@@ -46,6 +46,6 @@ class GameMain extends egret.DisplayObjectContainer
         this._startpper = new Startupper();
 
         // 初始化整个模块系统
-        new ModuleCenter();
+        new ModuleCenter(this.stage);
     }
 }

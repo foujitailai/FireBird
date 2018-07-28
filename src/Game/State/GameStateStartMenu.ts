@@ -11,6 +11,13 @@ class GameStateStartMenu extends GameStateBase
     public OnEnter(oldState: GameStateBase): void
     {
         // show ui
+        let ui = ModuleCenter.Get(UIModule).FindUI(StartMenuUI);
+        ui.Open();
+
+        // let tui = new mytestui();
+        // tui.Show();
+        // this.SMachine.GameMain.addChild(tui);
+
         // show actor
         // play music
 

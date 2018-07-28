@@ -7,6 +7,10 @@ declare module skins{
 	}
 }
 declare module skins{
+	class GreenButtonSkin extends eui.Skin{
+	}
+}
+declare module skins{
 	class HScrollBarSkin extends eui.Skin{
 	}
 }
@@ -49,4 +53,12 @@ declare module skins{
 declare module skins{
 	class VSliderSkin extends eui.Skin{
 	}
+}
+declare module skins{
+	class YellowButtonSkin extends eui.Skin{
+	}
+}
+declare class StartMenu extends eui.Skin{
+}
+declare class TestTest extends eui.Skin{
 }

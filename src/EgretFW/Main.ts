@@ -49,9 +49,9 @@ class Main extends eui.UILayer {
 
         //inject the custom material parser
         //注入自定义的素材解析器
-        // let assetAdapter = new AssetAdapter();
-        // egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
-        // egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
+        let assetAdapter = new AssetAdapter();
+        egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
+        egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
 
 
         // this.runGame().catch(e => {
@@ -166,7 +166,6 @@ class Main extends eui.UILayer {
         button.verticalCenter = 0;
         this.addChild(button);
         button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
-
 
 
     }
@@ -488,6 +487,10 @@ class Main extends eui.UILayer {
         this.createWorld();
         this.createBodies();
         this.createDebug();
+
+        let tui = new mytestui();
+        tui.Show();
+        this.addChild(tui);
 
 
         var src = this;

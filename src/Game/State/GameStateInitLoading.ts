@@ -21,6 +21,10 @@ class GameStateInitLoading extends GameStateBase
 
     private async Loading()
     {
+        // 注入自定义的素材解析器
+        egret.registerImplementation("eui.IAssetAdapter", new AssetAdapter());
+        egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
+        
         // 加载
         let loading = new Loading();
         await loading.Run(this.SMachine.GameMain.stage);
