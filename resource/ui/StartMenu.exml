@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="StartMenu" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="GameIcon" source="com-spr_json.title_cn" verticalCenter="-300" horizontalCenter="0"/>
-	<e:Group id="SoundBtnRoot" width="128" height="88" anchorOffsetX="128" anchorOffsetY="0" right="0" top="0">
-		<e:Image id="SoundBtnBG" source="com-spr_json.Btn_Green" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0"/>
-		<e:Image id="SoundBtnIcon" source="com-spr_json.IconSound" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0"/>
+	<e:Group id="StartMenu" anchorOffsetY="0" left="0" right="0" verticalCenter="0">
+
+		<e:Group id="StartBattleBtn" verticalCenter="111" horizontalCenter="0">
+			<e:Image source="com-spr_json.Btn_Green" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0" scale9Grid="58,33,37,16" width="400" height="120"/>
+			<e:Label text="开始游戏" textColor="0x000000" size="60" verticalCenter="0" horizontalCenter="0"/>
+		</e:Group>
+		<e:Image id="GameIcon" source="com-spr_json.title_cn" horizontalCenter="0" verticalCenter="-300" x="64" y="-219" scaleX="1" scaleY="1"/>
 	</e:Group>
-	<e:Group height="200" y="512.21" anchorOffsetY="0" left="0" right="0">
-		<e:Button label="开始游戏" anchorOffsetX="0" width="324.24" anchorOffsetY="0" height="98.48" verticalCenter="0" horizontalCenter="-5" skinName="skins.GreenButtonSkin">
-		</e:Button>
+	<e:Group id="Top" left="0" right="0" top="0">
+		<e:Group id="SoundBtn" right="10" top="10" x="502" y="10" scaleX="1" scaleY="1">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0" source="com-spr_json.Bar" width="128" height="100"/>
+		<e:Image source="com-spr_json.IconSound" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0"/>
+		</e:Group>
 	</e:Group>
-	<e:Group height="200" left="0" right="0" bottom="0"/>
+	<e:Group id="Bottom" left="0" right="0" bottom="0">
+		<e:Group id="RankBtn" horizontalCenter="0" bottom="20">
+			<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0" source="com-spr_json.Bar" scale9Grid="20,14,22,7" width="128" height="100"/>
+			<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0" source="com-spr_json.IconBottom1"/>
+		</e:Group>
+	</e:Group>
 	
 </e:Skin>

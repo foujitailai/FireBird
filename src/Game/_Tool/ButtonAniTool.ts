@@ -11,7 +11,7 @@ class ButtonAniTool
     //     this.ball.y = (1 - value) * (1 - value) * 100 + 2 * value * (1 - value) * 300 + value * value * 500;
     // }
 
-    public static AddScaleAni(btn: egret.DisplayObject)
+    public static SetAnchorCenter(btn: egret.DisplayObject)
     {
         let anchorX = btn.width >> 1;
         let anchorY = btn.height >> 1;
@@ -25,7 +25,18 @@ class ButtonAniTool
             btn.y += (anchorY - btn.anchorOffsetY);
             btn.anchorOffsetY = anchorY;
         }
+    }
+
+    public static AddScaleAni(btn: egret.DisplayObject)
+    {
+        ButtonAniTool.SetAnchorCenter(btn);
         btn.addEventListener(egret.TouchEvent.TOUCH_BEGIN, ButtonAniTool.onBtnDown, null);
+    }
+    public static RemoveScaleAni(btn: egret.DisplayObject)
+    {
+        btn.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, ButtonAniTool.onBtnDown, null);
+        btn.removeEventListener(egret.TouchEvent.TOUCH_END, ButtonAniTool.onBtnUp, null);
+        btn.removeEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, ButtonAniTool.onBtnUp, null);
     }
 
     private static onBtnDown(e: egret.TouchEvent)

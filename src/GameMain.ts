@@ -6,6 +6,12 @@ class GameMain extends egret.DisplayObjectContainer
     private _stateMachine: GameStateMachine;
     private _startpper: Startupper;
 
+    private static _instance: GameMain;
+    public static get Instance():GameMain
+    {
+        return GameMain._instance;
+    }
+
     public get StateMachine():GameStateMachine
     {
         return this._stateMachine;
@@ -14,6 +20,9 @@ class GameMain extends egret.DisplayObjectContainer
     public constructor()
     {
         super();
+
+        GameMain._instance = this;
+
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
         this.once(egret.Event.REMOVED_FROM_STAGE, this.onRemoveToStage, this);
 
