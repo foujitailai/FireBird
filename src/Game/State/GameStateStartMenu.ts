@@ -15,12 +15,12 @@ class GameStateStartMenu extends GameStateBase
         ui.Open();
         ui.PlayEnterAni();
 
-        // let tui = new mytestui();
-        // tui.Show();
-        // this.SMachine.GameMain.addChild(tui);
-
+        // show scene
         // show actor
+
+
         // play music
+        ModuleCenter.Get(SoundModule).PlayMusic(EnumGameMusic.Main);
 
         this.SMachine.GameMain.addEventListener(GameEvent.START_BATTLE, this.OnStartBattle, this);
 

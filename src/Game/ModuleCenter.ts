@@ -2,32 +2,32 @@ class ModuleCenter extends ModuleCenterBase
 {
     private static _instance: ModuleCenter;
 
-    private _stage: egret.Stage;
-
-    public constructor(stage: egret.Stage)
+    public constructor()
     {
         super();
         ModuleCenter._instance = this;
 
-        this._stage = stage;
         this.Initialize();
     }
 
     protected Register(): void
     {
+        let stage = egret.MainContext.instance.stage;
+
+        let sceneModule = new SceneModule();
+        sceneModule._RealConstructor(stage);
         let uiModule = new UIModule();
-        uiModule._RealConstructor(this._stage, _GameUIRegister.Run);
+        uiModule._RealConstructor(stage, _GameUIRegister.Run);
 
         this.Add(new ResourceModule());
         this.Add(new MasterModule());
         this.Add(new SoundModule());
+        this.Add(sceneModule);
         this.Add(uiModule);
 
         this.Add(new BattleModule());
         this.Add(new AIModule());
         this.Add(new FrameSyncModule());
-
-        this._stage = null;
     }
 
     public static Get<T extends IModule>(t: { new(): T; }): T

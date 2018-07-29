@@ -27,4 +27,9 @@ class SoundModule implements IModule
     {
         //TODO PLAYSOUND
     }
+
+    public PlayMusic(music: string)
+    {
+
+    }
 }

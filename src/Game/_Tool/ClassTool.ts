@@ -30,4 +30,19 @@ class ClassTool
 
         return "";
     }
+
+    public static EnumToStringArray(t:any)
+    {
+        let layerArray: Array<string> = [];
+        for (let layerValue in t)
+        {
+            let layerIntValue = parseInt(layerValue);
+            if (isNaN(layerIntValue))
+            {
+                layerArray.push(layerValue);
+            }
+        }
+
+        return layerArray;
+    }
 }

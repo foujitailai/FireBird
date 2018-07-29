@@ -15,23 +15,24 @@ class UIModule extends egret.EventDispatcher implements IModule
     }
 
     private _uis: Map<string, UIBase>;
-    private _layerCenter : UILayerCenter;
+    private _layerCenter: UILayerCenter;
 
     public constructor()
     {
         super();
     }
 
-    public _RealConstructor(stage: egret.Stage, registerFunc:Function)
+    public _RealConstructor(stage: egret.Stage, registerFunc: Function)
     {
-        this._layerCenter = new UILayerCenter(this.GetLayerArray(), stage);
+        let array = ClassTool.EnumToStringArray(EnumUILayer);
+        this._layerCenter = new UILayerCenter(array, stage);
 
         this._uis = new Map<string, UIBase>();
 
         registerFunc(this._uis);
     }
 
-    public Dispose() : void
+    public Dispose(): void
     {
         if (this._uis)
         {
@@ -63,7 +64,7 @@ class UIModule extends egret.EventDispatcher implements IModule
      * @param ui UI对象
      * @param layerName 层名字
      */
-    public AddUIToLayer(ui : UIBase, layerName : string) : void
+    public AddUIToLayer(ui: UIBase, layerName: string): void
     {
         this._layerCenter.AddUIToLayer(ui, layerName);
     }
@@ -73,7 +74,7 @@ class UIModule extends egret.EventDispatcher implements IModule
      * @param ui UI对象
      * @param layerName 层名字
      */
-    public RemoveUIFromLayer(ui : UIBase, layerName : string) : void
+    public RemoveUIFromLayer(ui: UIBase, layerName: string): void
     {
         this._layerCenter.RemoveUIFromLayer(ui, layerName);
     }
@@ -83,16 +84,16 @@ class UIModule extends egret.EventDispatcher implements IModule
      * @param uiClass UI类型
      * @return UI对象
      */
-    public FindUI<UIClass extends UIBase>(uiClass : {new() : UIClass;}) : UIClass
+    public FindUI<UIClass extends UIBase>(uiClass: { new(): UIClass; }): UIClass
     {
         let uiClassID = ClassTool.GetTypeName(uiClass);
         return <UIClass>this._uis.get(uiClassID);
     }
 
 
-    private GetLayerArray()
+    private GetLayerArray(): Array<string>
     {
-        let layerArray : Array<string> = [];
+        let layerArray: Array<string> = [];
         for (let layerValue in EnumUILayer)
         {
             let layerIntValue = parseInt(layerValue);

@@ -1,6 +1,6 @@
 enum EnumGameSound
 {
-    Normal = "Normal",
+    Normal = "Normal.wav",
     Fire = "Fire",
     Injured = "Injured",
 }

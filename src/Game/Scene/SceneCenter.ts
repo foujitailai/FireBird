@@ -1,19 +1,16 @@
-/**
- * UI层管理中心
- */
-class UILayerCenter implements IDisposable
+class SceneCenter
 {
-    private _layerRoot : eui.UILayer;
+    private _layerRoot : egret.DisplayObjectContainer;
     private _layerArray : Array<string>;
-    private _layers : Map<string, UILayer>;
+    private _layers : Map<string, SceneLayer>;
 
 
     public constructor(layerArray : Array<string>, stage: egret.Stage)
     {
         this._layerArray = layerArray;
-        this._layerRoot = new eui.UILayer();
-        this._layerRoot.name = "UI";
-        this._layers = new Map<string, UILayer>();
+        this._layerRoot = new egret.DisplayObjectContainer();
+        this._layerRoot.name = "Scene";
+        this._layers = new Map<string, SceneLayer>();
 
         this.Initialize(stage);
     }
@@ -38,10 +35,6 @@ class UILayerCenter implements IDisposable
         }
     }
 
-    /**
-     * 初始化
-     * @param stage 舞台对象
-     */
     private Initialize(stage : egret.Stage) : void
     {
         if (this._layerArray &&
@@ -59,16 +52,13 @@ class UILayerCenter implements IDisposable
             let layerCount : number = this._layerArray.length;
             for (let i : number = 0; i < layerCount; ++i)
             {
-                let layerName : string = this._layerArray[i];
-                let layer : UILayer = new UILayer(layerName, this._layerRoot);
+                let layerName = this._layerArray[i];
+                let layer = new SceneLayer(layerName, this._layerRoot);
                 this._layers.set(layerName, layer);
             }
         }
     }
 
-    /**
-     * 反初始化
-     */
     private Uninitialize() : void
     {
         if (this._layers)
@@ -81,39 +71,8 @@ class UILayerCenter implements IDisposable
         }
     }
 
-    /**
-     * 添加UI对象到层上
-     * @param ui UI对象
-     * @param layerName 层名字
-     */
-    public AddUIToLayer(ui : UIBase, layerName : string) : void
+    public GetLayer(layer:string):SceneLayer
     {
-        if (this._layers &&
-            ui)
-        {
-            let layer : UILayer = this._layers.get(layerName);
-            if (layer)
-            {
-                layer.AddUI(ui);
-            }
-        }
-    }
-
-    /**
-     * 从层上移除UI对象
-     * @param ui UI对象
-     * @param layerName 层名字
-     */
-    public RemoveUIFromLayer(ui : UIBase, layerName : string) : void
-    {
-        if (this._layers &&
-            ui)
-        {
-            let layer : UILayer = this._layers.get(layerName);
-            if (layer)
-            {
-                layer.RemoveUI(ui);
-            }
-        }
+        return this._layers.get(layer);
     }
 }

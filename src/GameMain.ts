@@ -24,7 +24,7 @@ class GameMain extends egret.DisplayObjectContainer
         GameMain._instance = this;
 
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-        this.once(egret.Event.REMOVED_FROM_STAGE, this.onRemoveToStage, this);
+        // this.once(egret.Event.REMOVED_FROM_STAGE, this.onRemoveToStage, this);
 
     }
 
@@ -36,13 +36,13 @@ class GameMain extends egret.DisplayObjectContainer
         });
     }
 
-    private onRemoveToStage(): void
-    {
-        //TODO 哪里去做销毁工作
-        // if (this._battle)
-        //     this._battle.Dispose();
-        // this._battle = null;
-    }
+    // private onRemoveToStage(): void
+    // {
+    //     //TODO 哪里去做销毁工作
+    //     // if (this._battle)
+    //     //     this._battle.Dispose();
+    //     // this._battle = null;
+    // }
 
     private async Run()
     {
@@ -55,6 +55,6 @@ class GameMain extends egret.DisplayObjectContainer
         this._startpper = new Startupper();
 
         // 初始化整个模块系统
-        new ModuleCenter(this.stage);
+        new ModuleCenter();
     }
 }
