@@ -40,5 +40,12 @@ class SceneModule extends egret.EventDispatcher implements IModule
     public OnModuleRemoved(): void
     {
     }
+
+    public GetLayer(layer:string):SceneLayer
+    {
+        return this._sceneCenter.GetLayer(layer);
+    }
+
+
 }
 
