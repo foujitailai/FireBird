@@ -13,7 +13,7 @@ class GameStateStartMenu extends GameStateBase
         // show ui
         let ui = ModuleCenter.Get(UIModule).FindUI(StartMenuUI);
         ui.Open();
-        ui.EnterAni();
+        ui.PlayEnterAni();
 
         // let tui = new mytestui();
         // tui.Show();
@@ -39,7 +39,7 @@ class GameStateStartMenu extends GameStateBase
 
         // 播放界面隐藏动画
         let ui = ModuleCenter.Get(UIModule).FindUI(StartMenuUI);
-        ui.LeaveAni();
+        ui.PlayLeaveAni();
     }
 
     private OnStartBattle():void

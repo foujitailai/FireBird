@@ -54,10 +54,6 @@ declare module skins{
 	class VSliderSkin extends eui.Skin{
 	}
 }
-declare module skins{
-	class YellowButtonSkin extends eui.Skin{
-	}
-}
 declare class StartMenu extends eui.Skin{
 }
 declare class TestTest extends eui.Skin{
