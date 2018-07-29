@@ -24,11 +24,14 @@ class GameStateInitLoading extends GameStateBase
         // 注入自定义的素材解析器
         egret.registerImplementation("eui.IAssetAdapter", new AssetAdapter());
         egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
-        
+
         // 加载
         let loading = new Loading();
         await loading.Run(this.SMachine.GameMain.stage);
         loading = null;
+
+        // 设置全局变量
+        ModuleCenter.Get(MasterModule).Setting.IsMusicMute;
 
         EventTool.Disp(this.SMachine, GameEvent.LOADED);
     }
