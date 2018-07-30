@@ -16,6 +16,9 @@ class GameStateStartMenu extends GameStateBase
         ui.PlayEnterAni();
 
         // show scene
+        //let sceneCfg = RES.getRes("scene-20180730164855_json");
+
+
         let stage = egret.MainContext.instance.stage;
         let bgl = ModuleCenter.Get(SceneModule).GetLayer(EnumSceneLayer.Background);
 
