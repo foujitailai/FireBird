@@ -20,6 +20,7 @@ class ModuleCenter extends ModuleCenterBase
         uiModule._RealConstructor(stage, _GameUIRegister.Run);
 
         this.Add(new ResourceModule());
+        this.Add(new ConfigModule());
         this.Add(new MasterModule());
         this.Add(new SoundModule());
         this.Add(sceneModule);

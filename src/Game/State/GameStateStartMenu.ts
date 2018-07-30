@@ -16,21 +16,22 @@ class GameStateStartMenu extends GameStateBase
         ui.PlayEnterAni();
 
         // show scene
-        //let sceneCfg = RES.getRes("Map1_json");
-
-
         let stage = egret.MainContext.instance.stage;
         let bgl = ModuleCenter.Get(SceneModule).GetLayer(EnumSceneLayer.Background);
 
-        let bg1 = new LoopImageLayer(100000, "Map01_json.Map01_Far");
-        let bg2 = new LoopImageLayer(50000, "Map01_json.Map01_Mid");
-        let bg3 = new LoopImageLayer(15000, "Map01_json.Map01_Near");
-        let bg4 = new LoopImageLayer(10000, "Map01_json.Map01_Ground");
-        bgl.addChild(bg1);
-        bgl.addChild(bg2);
-        bgl.addChild(bg3);
-        bgl.addChild(bg4);
-        bg4.y = stage.stageHeight - 300;
+        let config = ModuleCenter.Get(ConfigModule).GetConfig("Map1_json");
+        let sceneDisObj = SceneBuilder.Run(config);
+        bgl.addChild(sceneDisObj);
+
+        // let bg1 = new LoopImageLayer(100000, "Map01_json.Map01_Far");
+        // let bg2 = new LoopImageLayer(50000, "Map01_json.Map01_Mid");
+        // let bg3 = new LoopImageLayer(15000, "Map01_json.Map01_Near");
+        // let bg4 = new LoopImageLayer(10000, "Map01_json.Map01_Ground");
+        // bgl.addChild(bg1);
+        // bgl.addChild(bg2);
+        // bgl.addChild(bg3);
+        // bgl.addChild(bg4);
+        // bg4.y = stage.stageHeight - 300;
 
         // show actor
 

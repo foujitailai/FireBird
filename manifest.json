@@ -10,19 +10,19 @@
 		"libs/modules/physics/physics.js"
 	],
 	"game": [
-		"bin-debug/Game/Battle/Process/Frame/CollisionTable.js",
 		"bin-debug/Game/Battle/Content/Base/GameObjectDisplay.js",
+		"bin-debug/Game/UIs/UIAnimationBase.js",
+		"bin-debug/Game/_Core/Processor/ProcessorCenter.js",
 		"bin-debug/Game/AI/State/AIStateBase.js",
 		"bin-debug/Game/Battle/Content/Actor/State/ActorStateBase.js",
 		"bin-debug/Game/Battle/Content/Base/GameObject.js",
 		"bin-debug/Game/_Core/Module/ModuleCenterBase.js",
-		"bin-debug/Game/_Core/Processor/ProcessorCenter.js",
+		"bin-debug/Game/Battle/Process/Frame/CollisionTable.js",
 		"bin-debug/Game/Battle/State/BattleStateBase.js",
 		"bin-debug/Game/FrameSync/EnumFrameSyncDataType.js",
 		"bin-debug/Game/State/GameStateBase.js",
 		"bin-debug/Game/UI/UIBase.js",
-		"bin-debug/Game/UIs/UIAnimationBase.js",
-		"bin-debug/Game/Battle/Data/Context/BattleContextAI.js",
+		"bin-debug/Game/Battle/Data/Context/BattleSceneData.js",
 		"bin-debug/Game/_Core/Pool.js",
 		"bin-debug/Game/_Core/Module/IModule.js",
 		"bin-debug/GameMain.js",
@@ -86,8 +86,8 @@
 		"bin-debug/Game/Battle/Content/Scene/GameScene.js",
 		"bin-debug/Game/Battle/Data/BattleData.js",
 		"bin-debug/Game/Battle/Data/Context/BattleContext.js",
-		"bin-debug/TestPy/scene/TearableScene.js",
-		"bin-debug/Game/Battle/Data/Context/BattleSceneData.js",
+		"bin-debug/Game/Battle/Data/Context/BattleContextAI.js",
+		"bin-debug/EgretFW/AssetAdapter.js",
 		"bin-debug/Game/Battle/Process/BattleProcess.js",
 		"bin-debug/Game/Battle/Process/Frame/AIProcessor.js",
 		"bin-debug/Game/Battle/Process/Frame/CollisionAction.js",
@@ -127,6 +127,7 @@
 		"bin-debug/Game/Resource/ResourceModule.js",
 		"bin-debug/Game/Scene/EnumSceneLayer.js",
 		"bin-debug/Game/Scene/LoopImageLayer.js",
+		"bin-debug/Game/Scene/SceneBuilder.js",
 		"bin-debug/Game/Scene/SceneCenter.js",
 		"bin-debug/Game/Scene/SceneLayer.js",
 		"bin-debug/Game/Scene/SceneModule.js",
@@ -162,6 +163,6 @@
 		"bin-debug/TestPy/scene/RestitutionScene.js",
 		"bin-debug/TestPy/scene/SleepScene.js",
 		"bin-debug/TestPy/scene/SpringsScene.js",
-		"bin-debug/EgretFW/AssetAdapter.js"
+		"bin-debug/TestPy/scene/TearableScene.js"
 	]
 }
