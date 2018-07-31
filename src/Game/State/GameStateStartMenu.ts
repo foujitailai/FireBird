@@ -24,6 +24,18 @@ class GameStateStartMenu extends GameStateBase
         Helper.SetToStageCenter(sceneDisObj);
         bgl.addChild(sceneDisObj);
 
+
+        let msl = ModuleCenter.Get(SceneModule).GetLayer(EnumSceneLayer.Master);
+        let actorDisObj = new ActorDisplay(null);
+        actorDisObj.width = 0;
+        actorDisObj.height = 0;
+        Helper.SetAnchorCenter(actorDisObj);
+        actorDisObj.SetAnimation("Normal");
+        let actorOnSelectNode = new ActorOnSelectNode(actorDisObj);
+        msl.addChild(actorOnSelectNode);
+        Helper.SetToStageCenter(actorOnSelectNode);
+
+
         // let bg1 = new LoopImageLayer(100000, "Map01_json.Map01_Far");
         // let bg2 = new LoopImageLayer(50000, "Map01_json.Map01_Mid");
         // let bg3 = new LoopImageLayer(15000, "Map01_json.Map01_Near");

@@ -42,7 +42,7 @@ enum EnumSceneLayer
     /**
      * 主角层
      */
-    Master = "Player",
+    Master = "Master",
 
     /**
      * 最高层
