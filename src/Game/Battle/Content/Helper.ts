@@ -190,4 +190,16 @@ class Helper
         // hell.Display.addChild(pic);
         return hell;
     }
+
+    public static SetAnchorCenter(disObj:egret.DisplayObject)
+    {
+        disObj.anchorOffsetX = disObj.width / 2;
+        disObj.anchorOffsetY = disObj.height / 2;
+    }
+
+    public static SetToStageCenter(disObj:egret.DisplayObject)
+    {
+        disObj.x = egret.MainContext.instance.stage.stageWidth / 2;
+        disObj.y = egret.MainContext.instance.stage.stageHeight / 2;
+    }
 }

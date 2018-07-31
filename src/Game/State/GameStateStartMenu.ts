@@ -21,6 +21,7 @@ class GameStateStartMenu extends GameStateBase
 
         let config = ModuleCenter.Get(ConfigModule).GetConfig("Map1_json");
         let sceneDisObj = SceneBuilder.Run(config);
+        Helper.SetToStageCenter(sceneDisObj);
         bgl.addChild(sceneDisObj);
 
         // let bg1 = new LoopImageLayer(100000, "Map01_json.Map01_Far");

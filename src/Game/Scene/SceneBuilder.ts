@@ -91,38 +91,63 @@ class SceneNodeInfo implements IDisposable
         this._transform = new TransformInfo(configObj.position);
         this._loopImage = configObj.node ? new LoopImageInfo(configObj.node) : null;
         this._children = null;
+
         if (configObj.children && configObj.children.length)
         {
             this._children = [];
 
             // 由于 egret.DisplayObjectContainer 不能直接显示图像，需要将图像放到子节点里面去
-            if (this._image)
-            {
-                // clone 一个 node 出来，修改上面的节点属性，让它只会是一个 Image
-                let tmpNode = {children:null, position:null, node:null};
-                Object.assign(tmpNode, configObj);
-                Object.assign(tmpNode.position, configObj.position);
-                tmpNode.children = null;
-                tmpNode.node = null;
-                tmpNode.position.x = 0;
-                tmpNode.position.y = 0;
+            this.ConvertContainerImageToChild(configObj);
 
-                let fakeChild = new SceneNodeInfo(tmpNode);
-                this._children.push(fakeChild);
-
-                this._image = null;
-            }
-
+            // 加载子节点
             for (let i = 0; i < configObj.children.length; ++i)
             {
                 let child = new SceneNodeInfo(configObj.children[i]);
                 this._children.push(child);
             }
         }
+        else if (!this._image)
+        {
+            // 没有图像，那就是容器
+            this.NormalizeContainer();
+        }
     }
 
     public Dispose(): void
     {
+    }
+
+    private ConvertContainerImageToChild(configObj:any):void
+    {
+        // 由于 egret.DisplayObjectContainer 不能直接显示图像，需要将图像放到子节点里面去
+        if (this._image)
+        {
+            // clone 一个 node 出来，修改上面的节点属性，让它只会是一个 Image
+            let tmpNode = {children:null, position:null, node:null};
+            Object.assign(tmpNode, configObj);
+            Object.assign(tmpNode.position, configObj.position);
+            tmpNode.children = null;
+            tmpNode.node = null;
+            tmpNode.position.x = 0;
+            tmpNode.position.y = 0;
+
+            let fakeChild = new SceneNodeInfo(tmpNode);
+            this._children.push(fakeChild);
+
+            this._image = null;
+
+            this.NormalizeContainer();
+        }
+    }
+
+    private NormalizeContainer():void
+    {
+        // 容器节点，不要宽高 不要宽高 不要宽高
+        // egret与unity在锚点系统应用上不同
+        //   unity里面设置了锚点在中心点，它的子节点会在以这个锚点为原点，而
+        //   egret里面，子节点会以节点的左上角为原点
+        //   有了宽高，位置就出错了
+        this._transform.Set(this._transform.X, this._transform.Y, 0, 0);
     }
 
     public get Name():string
@@ -163,6 +188,13 @@ class TransformInfo implements IDisposable
         this._y = configObj.y;
         this._width = configObj.w;
         this._height = configObj.h;
+    }
+    public Set(x:number, y:number, width:number, height:number):void
+    {
+        this._x = x;
+        this._y = y;
+        this._width = width;
+        this._height = height;
     }
 
     public Dispose(): void
@@ -303,10 +335,15 @@ class SceneBuilder
         {
             disObj.name = node.Name;
 
-            disObj.x = node.Transform.X;
-            disObj.y = node.Transform.Y;
-            disObj.width = node.Transform.Width;
-            disObj.height = node.Transform.Height;
+            disObj.x = Number(node.Transform.X);
+            disObj.y = -Number(node.Transform.Y);
+            disObj.width = Number(node.Transform.Width);
+            disObj.height = Number(node.Transform.Height);
+
+            // 固定成锚点在中心点对齐，egret与unity在锚点系统应用上不同
+            //   unity里面设置了锚点在中心点，它的子节点会在以这个锚点为原点，而
+            //   egret里面，子节点会以节点的左上角为原点
+            Helper.SetAnchorCenter(disObj);
         }
 
         return disObj;
