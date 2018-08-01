@@ -35,7 +35,7 @@ class ActorStateFire extends ActorStateBase
         // 玩家的话，跳一下
         if (this.Actor.Data.ActorType == EnumActorType.Player)
         {
-            ModuleCenter.Get(BattleModule).Battle.ControllerData.Jump();
+            this.Actor.SetJump();
         }
 
         // this._changeStateTimer.start();

@@ -50,7 +50,7 @@ class GameSceneActorManager implements IDisposable
     {
         let self = this.FindActor(this._data.Context.SelfId);
 
-        self.VelocityY = this._battle.ControllerData.CalcVelocityY(delta);
+        ActorMoveUtility.CalcVelocity(delta, self);
         //console.log("self:" + self.VelocityY + ", p:" + self.Body.position[1]);
 
         // 测试功能，先让怪物先动起来
@@ -58,7 +58,7 @@ class GameSceneActorManager implements IDisposable
         {
             if (actor.Data.ActorId != self.Data.ActorId)
             {
-                actor.VelocityY = ControllerData.GRAVITY_VELOCITY;
+                actor.VelocityY = ActorMoveUtility.GRAVITY_VELOCITY;
             }
         });
     }

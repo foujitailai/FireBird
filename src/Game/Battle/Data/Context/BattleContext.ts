@@ -7,6 +7,7 @@ class BattleContext implements IDisposable, IClearable
     private _ai: BattleContextAI;
     private _actorIdGenerator:number=0;
     private _scene: BattleSceneData;
+    private _isPlayAni: boolean;
 
     public get SelfId(): number
     {
@@ -34,12 +35,23 @@ class BattleContext implements IDisposable, IClearable
         return this._scene;
     }
 
+    public get IsPlayAni():boolean
+    {
+        return this._isPlayAni;
+    }
+
+    public set SetIsPlayAni(value:boolean)
+    {
+        this._isPlayAni = value;
+    }
+
     public constructor()
     {
         this._selfId = 0;
         this._actors = new Map<number, ActorData>();
         this._ai = new BattleContextAI();
         this._scene = new BattleSceneData();
+        this._isPlayAni = false;
     }
 
     public Dispose(): void
@@ -51,6 +63,7 @@ class BattleContext implements IDisposable, IClearable
         this._ai = null;
         this._scene.Dispose();
         this._scene = null;
+        this._isPlayAni = false;
     }
 
     public Clear(): void
@@ -58,6 +71,7 @@ class BattleContext implements IDisposable, IClearable
         this._actors.clear();
         this._ai.Clear();
         this._scene.Clear();
+        this._isPlayAni = false;
     }
 
     public GenerateActorId():number

@@ -65,7 +65,7 @@ class Actor extends GameObject
 
     public SetJump()
     {
-
+        this.VelocityY = -ActorMoveUtility.JUMP_VELOCITY;
     }
 
     public ChangeState<T extends ActorStateBase>(t: { new(): T }): void

@@ -11,10 +11,10 @@ enum EnumCollisionTableType
     COUNT,
 }
 
+type CollisionTableAction = (a:GameObject, b:GameObject) => void;
 class CollisionTable implements IDisposable
 {
-    //(a:GameObject, b:GameObject) => void
-    private _actionTable: Array<Array<(a: GameObject, b: GameObject) => void>>;
+    private _actionTable: Array<Array<CollisionTableAction>>;
 
     public constructor()
     {
@@ -34,13 +34,13 @@ class CollisionTable implements IDisposable
         this._actionTable = null;
     }
 
-    public Add(a: EnumCollisionTableType, b: EnumCollisionTableType, action: (a: GameObject, b: GameObject) => void): void
+    public Add(a: EnumCollisionTableType, b: EnumCollisionTableType, action: CollisionTableAction): void
     {
         this._actionTable[a][b] = action;//, obj:any
     }
 
 
-    public FindAction(a: EnumCollisionTableType, b: EnumCollisionTableType): (a: GameObject, b: GameObject) => void
+    public FindAction(a: EnumCollisionTableType, b: EnumCollisionTableType): CollisionTableAction
     {
         return this._actionTable[a][b];
     }

@@ -1,14 +1,13 @@
 class PlayerMoveLogic implements IFrameProcessor
 {
     private _self: Actor;
-    private _controllerData: ControllerData;
+    private _controllerData: ActorMoveUtility;
     private _border: egret.Rectangle;
 
     public constructor()
     {
         let bm = ModuleCenter.Get(BattleModule);
         this._self = bm.Battle.GameSceneContent.ActorMgr.FindActor(bm.Data.Context.SelfId);
-        this._controllerData = bm.Battle.ControllerData;
         this._border = bm.Data.Context.Scene.Border;
     }
 
@@ -33,7 +32,7 @@ class PlayerMoveLogic implements IFrameProcessor
 
     private OnMyActor2TopGround(actor: Actor, topGround:number): void
     {
-        this._controllerData.ForceVertical = ControllerData.JUMP_VELOCITY*1.3;
+        actor.VelocityY = ActorMoveUtility.JUMP_VELOCITY*1.3;
 
 
         // 位置要修正回来
@@ -47,7 +46,7 @@ class PlayerMoveLogic implements IFrameProcessor
 
     private OnMyActor2BottomGround(actor: Actor, bottomGround:number): void
     {
-        this._controllerData.ForceVertical = -(ControllerData.JUMP_VELOCITY * 1.2);
+        actor.VelocityY = -(ActorMoveUtility.JUMP_VELOCITY * 1.2);
 
         // 位置要修正回来
         let collisionPos = bottomGround - (actor.Height/2) - 1;

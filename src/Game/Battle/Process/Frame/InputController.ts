@@ -1,4 +1,4 @@
-class Controller implements IDisposable
+class InputController implements IDisposable
 {
     private _onKeyDownHandle;
     private _onKeyUpHandle;

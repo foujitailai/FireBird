@@ -1,18 +1,5 @@
-
-//TODO 怪物应该也有一个这样的数据，然后就可以像玩家一起跳来跳去了
-class ControllerData implements IDisposable
+class ActorMoveUtility
 {
-    public constructor()
-    {
-
-    }
-
-    public Dispose()
-    {
-
-    }
-
-
     /**
      * 跳起时给的力
      * @type {number}
@@ -30,26 +17,20 @@ class ControllerData implements IDisposable
     public static readonly GRAVITY_VELOCITY: number = 60/10*1136;
 
 
-    private forceVertical: number = 0;
-    public get ForceVertical(): number
+    public static CalcVelocity(delta: number, go: GameObject):void
     {
-        return this.forceVertical;
-    }
-    public set ForceVertical(v:number)
-    {
-        this.forceVertical = v;
-    }
-
-    public CalcVelocityY(delta: number):number
-    {
-        this.forceVertical += (delta/EnumFrameSyncDefine.INT_FLOAT_RATE) * ControllerData.GRAVITY_VELOCITY;
-        return this.forceVertical;
+        // 播放动画？
+        if (ModuleCenter.Get(BattleModule).Data.Context.IsPlayAni)
+        {
+            //go.VelocityY;
+        }
+        // 正常游戏中
+        else
+        {
+            go.VelocityY += (delta/EnumFrameSyncDefine.INT_FLOAT_RATE) * ActorMoveUtility.GRAVITY_VELOCITY;
+        }
     }
 
-    public Jump(): void
-    {
-        this.forceVertical = -ControllerData.JUMP_VELOCITY;
-    }
 
 
 

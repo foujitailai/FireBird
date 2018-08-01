@@ -2,10 +2,9 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
 {
     private _battleStateMachine: BattleStateMachine;
     private _collisionAction: CollisionAction;
-    private _controller: Controller;
+    private _controller: InputController;
     private _gameScene: GameScene;
     private _gameSceneDebug: GameSceneDebug;
-    private _controllerData: ControllerData;
     private _gameSceneContent: GameSceneContent;
     private _collisionTable: CollisionTable;
     private _battleTimer: BattleTimer;
@@ -23,11 +22,6 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
     public get AIFrameSyncDataAsset(): AIDataAsset
     {
         return this._aiFrameSyncDataAsset;
-    }
-
-    public get ControllerData(): ControllerData
-    {
-        return this._controllerData;
     }
 
     public get GameSceneContent(): GameSceneContent
@@ -59,7 +53,7 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
 
     private onAddToStage(): void
     {
-        this.AddTestIcon();
+        // this.AddTestIcon();
 
         // 进入战斗模块开启状态
         this.Start();
@@ -80,11 +74,10 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
 
         this._aiFrameSyncDataAsset = new AIDataAsset();
 
-        this._controllerData = new ControllerData();
-        this._controller = new Controller(this);
+        this._controller = new InputController(this);
 
         this._collisionTable = new CollisionTable();
-        this._collisionAction = new CollisionAction(this, this._collisionTable, this._controllerData);
+        this._collisionAction = new CollisionAction(this, this._collisionTable);
 
         this._gameScene = new GameScene(this, this._collisionTable);
         this._gameSceneDebug = new GameSceneDebug(this, this._gameScene.World);

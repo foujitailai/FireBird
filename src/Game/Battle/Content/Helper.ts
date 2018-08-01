@@ -202,4 +202,9 @@ class Helper
         disObj.x = egret.MainContext.instance.stage.stageWidth / 2;
         disObj.y = egret.MainContext.instance.stage.stageHeight / 2;
     }
+    public static GetStageCenter():number[]
+    {
+        return [egret.MainContext.instance.stage.stageWidth / 2,
+            egret.MainContext.instance.stage.stageHeight / 2];
+    }
 }
