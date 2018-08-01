@@ -141,11 +141,11 @@ class Helper
         body.damping = 0;
         body.addShape(shape);
 
-        let pic: egret.Bitmap = Helper.CreateBitmapByName(data.SpriteName);
-        pic.width = shape.width;
-        pic.height = shape.height;
-        pic.anchorOffsetX = pic.width / 2;
-        pic.anchorOffsetY = pic.height / 2;
+        // let pic: egret.Bitmap = Helper.CreateBitmapByName(data.SpriteName);
+        // pic.width = shape.width;
+        // pic.height = shape.height;
+        // pic.anchorOffsetX = pic.width / 2;
+        // pic.anchorOffsetY = pic.height / 2;
 
         // body.displays = [pic];
 
@@ -153,7 +153,7 @@ class Helper
         ground.Body = body;
         ground.Data = data;
         ground.Display = new GameObjectDisplay();
-        ground.Display.addChild(pic);
+        // ground.Display.addChild(pic);
         return ground;
     }
 

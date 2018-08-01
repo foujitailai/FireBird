@@ -8,7 +8,7 @@ class Actor extends GameObject
     /**
      * 发射子弹最小间隔时间
      */
-    private static _FIRE_CD: number = 1000;
+    private static _FIRE_CD: number = 10;
 
     /**
      * 最后一次发射子弹的时间

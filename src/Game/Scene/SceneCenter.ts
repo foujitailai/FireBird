@@ -1,9 +1,13 @@
-class SceneCenter
+class SceneCenter implements IDisposable
 {
     private _layerRoot : egret.DisplayObjectContainer;
     private _layerArray : Array<string>;
     private _layers : Map<string, SceneLayer>;
 
+    public get LayerRoot():egret.DisplayObjectContainer
+    {
+        return this._layerRoot;
+    }
 
     public constructor(layerArray : Array<string>, stage: egret.Stage)
     {

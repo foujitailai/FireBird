@@ -12,9 +12,17 @@ class GameStateBattling extends GameStateBase
         // 创建战斗
         let battle = ModuleCenter.Get(BattleModule);
 
+
+        // 清除sceneModule的master层（展示用的主角被清掉）
+        let scene = ModuleCenter.Get(SceneModule);
+        let layer = scene.GetLayer(EnumSceneLayer.Master);
+        layer.removeChildren();
+
+        // 使用测试数据
         this.CreateTestData(battle.Data);
 
-        battle.Start(this.SMachine.GameMain);
+        // 启动战斗模块
+        battle.Start(scene.LayerRoot);
     }
 
     public OnLeave(newState: GameStateBase): void

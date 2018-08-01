@@ -12,18 +12,28 @@ class ActorDisplay extends GameObjectDisplay implements IDisposable
 
         this._mc = ModuleCenter.Get(ResourceModule).GetMovieClip("com", "Bird");
         this.addChild(this._mc.MovieClip);
+
+        this._mc.MovieClip.addEventListener(egret.Event.COMPLETE, this.OnAniComplate, this);
     }
 
     public Dispose()
     {
+        this._mc.MovieClip.removeEventListener(egret.Event.COMPLETE, this.OnAniComplate, this);
+
         this.removeChild(this._mc.MovieClip);
         ModuleCenter.Get(ResourceModule).Free(this._mc);
         this._mc = null;
     }
 
+    public OnAniComplate()
+    {
+        EventTool.Disp(this, egret.Event.COMPLETE);
+    }
+
     public SetAnimation(ani: string)
     {
         let aniName = "normal";
+        let playTimes = -1;
         if (ani == "Normal")
         {
             aniName = "normal";
@@ -31,13 +41,14 @@ class ActorDisplay extends GameObjectDisplay implements IDisposable
         else if (ani == "Fire")
         {
             aniName = "fire";
+            playTimes = 1;
         }
         else if (ani == "Injured")
         {
             aniName = "dead";
         }
 
-        this._mc.MovieClip.gotoAndPlay(aniName, -1);
+        this._mc.MovieClip.gotoAndPlay(aniName, playTimes);
 
         // let pic: egret.Bitmap = Helper.CreateBitmapByName(spriteName);
         // let shape = <p2.Box>this._actor.Body.shapes[0];

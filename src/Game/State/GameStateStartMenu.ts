@@ -19,12 +19,15 @@ class GameStateStartMenu extends GameStateBase
         let stage = egret.MainContext.instance.stage;
         let bgl = ModuleCenter.Get(SceneModule).GetLayer(EnumSceneLayer.Background);
 
-        let config = ModuleCenter.Get(ConfigModule).GetConfig("Map1_json");
+        let maps = ["Map1_json", "Map2_json", "Map3_json"];
+        let mapIndex =  Math.floor( Math.random() * 100) % 3;
+
+        let config = ModuleCenter.Get(ConfigModule).GetConfig(maps[mapIndex]);
         let sceneDisObj = SceneBuilder.Run(config);
         Helper.SetToStageCenter(sceneDisObj);
         bgl.addChild(sceneDisObj);
 
-
+        // show actor
         let msl = ModuleCenter.Get(SceneModule).GetLayer(EnumSceneLayer.Master);
         let actorDisObj = new ActorDisplay(null);
         actorDisObj.width = 0;
@@ -34,20 +37,6 @@ class GameStateStartMenu extends GameStateBase
         let actorOnSelectNode = new ActorOnSelectNode(actorDisObj);
         msl.addChild(actorOnSelectNode);
         Helper.SetToStageCenter(actorOnSelectNode);
-
-
-        // let bg1 = new LoopImageLayer(100000, "Map01_json.Map01_Far");
-        // let bg2 = new LoopImageLayer(50000, "Map01_json.Map01_Mid");
-        // let bg3 = new LoopImageLayer(15000, "Map01_json.Map01_Near");
-        // let bg4 = new LoopImageLayer(10000, "Map01_json.Map01_Ground");
-        // bgl.addChild(bg1);
-        // bgl.addChild(bg2);
-        // bgl.addChild(bg3);
-        // bgl.addChild(bg4);
-        // bg4.y = stage.stageHeight - 300;
-
-        // show actor
-
 
         // play music
         ModuleCenter.Get(SoundModule).PlayMusic(EnumGameMusic.Main);
@@ -70,6 +59,8 @@ class GameStateStartMenu extends GameStateBase
         // 播放界面隐藏动画
         let ui = ModuleCenter.Get(UIModule).FindUI(StartMenuUI);
         ui.PlayLeaveAni();
+
+        // 角色换成真正的游戏里面的
     }
 
     private OnStartBattle():void

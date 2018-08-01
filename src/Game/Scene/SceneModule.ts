@@ -46,6 +46,11 @@ class SceneModule extends egret.EventDispatcher implements IModule
         return this._sceneCenter.GetLayer(layer);
     }
 
+    public get LayerRoot():egret.DisplayObjectContainer
+    {
+        return this._sceneCenter.LayerRoot;
+    }
+
 
 }
 
