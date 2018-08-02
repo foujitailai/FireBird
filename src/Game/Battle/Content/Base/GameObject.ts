@@ -1,5 +1,5 @@
 
-class GameObject implements IDisposable
+class GameObject extends egret.EventDispatcher implements IDisposable
 {
     public readonly Id: number;
 
@@ -7,6 +7,8 @@ class GameObject implements IDisposable
 
     public constructor()
     {
+        super();
+
         this.Id = ++GameObject.IdGenerate;
     }
 

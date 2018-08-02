@@ -44,6 +44,13 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
         return this._showDebug;
     }
 
+    public get Controller(): InputController
+    {
+        return this._controller;
+    }
+
+
+
     public constructor()
     {
         super();
@@ -75,6 +82,7 @@ class Battle extends egret.DisplayObjectContainer implements IDisposable
         this._aiFrameSyncDataAsset = new AIDataAsset();
 
         this._controller = new InputController(this);
+        this._controller.IsEnable = false;
 
         this._collisionTable = new CollisionTable();
         this._collisionAction = new CollisionAction(this, this._collisionTable);

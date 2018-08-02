@@ -1,3 +1,5 @@
+import tr = egret.sys.tr;
+
 class InputController implements IDisposable
 {
     private _onKeyDownHandle;
@@ -10,6 +12,17 @@ class InputController implements IDisposable
     private _keyLeft: number = 0;
     private _keyRight: number = 0;
 
+    private _isEnable: boolean = false;
+
+    public get IsEnable():boolean
+    {
+        return this._isEnable;
+    }
+    public set IsEnable(value:boolean)
+    {
+        this._isEnable = value;
+    }
+
     public constructor(battle: Battle)
     {
         this._battle = battle;
@@ -20,6 +33,8 @@ class InputController implements IDisposable
         document.addEventListener("keydown", this._onKeyDownHandle);
         document.addEventListener("keyup", this._onKeyUpHandle);
         this._battle.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
+
+        this._isEnable = true;
     }
 
     public Dispose()
@@ -31,10 +46,15 @@ class InputController implements IDisposable
         this._battle.stage.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
 
         this._battle = null;
+        this._isEnable = false;
     }
 
     private onTouch(e: egret.TouchEvent): void
     {
+        if (!this._isEnable)
+        {
+            return;
+        }
         // console.log("clicked");
         this.SendFireEvent();
     }
@@ -46,6 +66,10 @@ class InputController implements IDisposable
 
     private onKeyDown(evt): void
     {
+        if (!this._isEnable)
+        {
+            return;
+        }
         // console.log("evt.keyCode:" + evt.keyCode);
         // keycode 38 = Up ↑
         // keycode 40 = Down ↓
@@ -79,6 +103,10 @@ class InputController implements IDisposable
 
     private onKeyUp(evt): void
     {
+        if (!this._isEnable)
+        {
+            return;
+        }
         switch (evt.keyCode)
         {
         case 38:

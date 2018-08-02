@@ -35,6 +35,12 @@ class StateMachine<T extends TState<T>> implements IDisposable
         {
             this._curState.OnLeave(state);
         }
+
+        // if (ClassTool.GetTypeName(oldState) == "ActorStateEntrance" &&
+        //     ClassTool.GetTypeName(state) == "ActorStateNormal")
+        // {
+        //     debugger;
+        // }
         console.log(ClassTool.GetTypeName(oldState) + " => " + ClassTool.GetTypeName(state) );
         this._curState = state;
         this._curState.OnEnter(oldState);
