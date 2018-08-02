@@ -30,7 +30,7 @@ class LoopImageLayer extends egret.DisplayObjectContainer implements IDisposable
         // 创建这些图片，并设置y坐标，让它们连接起来
         for (let i = 0; i < colCount; i++)
         {
-            var bmp = Helper.CreateBitmapByName(resName);
+            let bmp = Helper.CreateBitmapByName(resName);
             bmp.x = textureWidth * i;
             this.addChild(bmp);
         }

@@ -5,7 +5,7 @@ abstract class ModuleCenterBase implements IDisposable
 
     protected abstract Register(): void;
 
-    public constructor()
+    protected constructor()
     {
         this._modules = new Map<string, IModule>();
     }

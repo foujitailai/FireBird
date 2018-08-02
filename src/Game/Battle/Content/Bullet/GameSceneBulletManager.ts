@@ -13,7 +13,9 @@ class GameSceneBulletManager implements IDisposable
 
     public Dispose()
     {
-
+        this._battle = null;
+        this._content = null;
+        this._world = null;
     }
 
     public CreateBullet(sourceActor: Actor)

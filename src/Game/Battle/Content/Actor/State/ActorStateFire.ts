@@ -23,7 +23,7 @@ class ActorStateFire extends ActorStateBase
     public OnEnter(oldState: ActorStateBase): void
     {
         // 监听动画完成事件
-        this.Actor.Display.addEventListener(egret.Event.COMPLETE, this.OnAniComplate, this);
+        this.Actor.Display.addEventListener(egret.Event.COMPLETE, this.OnAniComplete, this);
 
         this.Actor.SetFire();
 
@@ -48,14 +48,14 @@ class ActorStateFire extends ActorStateBase
 
     public OnLeave(newState: ActorStateBase): void
     {
-        this.Actor.Display.removeEventListener(egret.Event.COMPLETE, this.OnAniComplate, this);
+        this.Actor.Display.removeEventListener(egret.Event.COMPLETE, this.OnAniComplete, this);
 
         // this._changeStateTimer.stop();
     }
 
-    private OnAniComplate()
+    private OnAniComplete()
     {
-        // console.log(`${ClassTool.GetTypeName(this)}  OnAniComplate`);
+        // console.log(`${ClassTool.GetTypeName(this)}  OnAniComplete`);
         this.OnChangeState();
     }
 }

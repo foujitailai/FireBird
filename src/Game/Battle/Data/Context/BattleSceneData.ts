@@ -22,6 +22,7 @@ class BattleSceneData implements IDisposable, IClearable
     public Clear(): void
     {
         this._border.setEmpty();
+        this._border = null;
     }
 
     public Dispose(): void

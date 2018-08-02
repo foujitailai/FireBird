@@ -21,7 +21,7 @@ class SceneBuilder
         }
     }
 
-    private static BuildNode(node:SceneNodeInfo)
+    private static BuildNode(node:SceneNodeInfo):egret.DisplayObject
     {
         let disObj = null;
         if (node.Image &&
@@ -70,7 +70,11 @@ class SceneBuilder
 
     private static BuildParent(node: SceneNodeInfo):egret.DisplayObjectContainer
     {
-        let objCon = SceneBuilder.BuildNode(node);
+        let objCon = <egret.DisplayObjectContainer>SceneBuilder.BuildNode(node);
+        if (!objCon)
+        {
+            console.error("怎么能不是容器(egret.DisplayObjectContainer)呢？")
+        }
 
         // // 自已身上的图形节点，做为第一个子节点添加进来
         // if (disObj)

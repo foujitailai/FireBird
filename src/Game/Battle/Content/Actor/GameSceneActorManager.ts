@@ -24,8 +24,13 @@ class GameSceneActorManager implements IDisposable
 
     public Dispose()
     {
+        this._actors.forEach(v=>v.Dispose());
+        this._actors.clear();
+        this._actors = null;
+        this._battle = null;
+        this._content = null;
+        this._world = null;
         this._data = null;
-
     }
 
     public CreateActor(data:ActorData):Actor

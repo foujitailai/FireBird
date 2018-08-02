@@ -7,7 +7,7 @@ class UIBase extends eui.Component implements IDisposable
     private _resUrls: Array<string>;
     private _exmlUrl: string;
     private _layer: string;
-    private _uiName: string;
+    private readonly _uiName: string;
 
     public get Name(): string
     {
@@ -48,6 +48,7 @@ class UIBase extends eui.Component implements IDisposable
      */
     public Open(): void
     {
+        // noinspection JSIgnoredPromiseFromCall
         switch (this._state)
         {
         case EnumUIState.FREE:

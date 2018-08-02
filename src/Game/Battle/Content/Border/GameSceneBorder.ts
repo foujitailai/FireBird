@@ -24,6 +24,10 @@ class GameSceneBorder implements IDisposable
     {
         this.DestroyWallOnLeftRight();
         this.DestroyWallOnTopBottom();
+
+        this._battle = null;
+        this._content = null;
+        this._world = null;
     }
 
     private CreateWallOnTopBottom(): void

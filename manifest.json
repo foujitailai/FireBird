@@ -123,7 +123,7 @@
 		"bin-debug/Game/FrameSync/FrameSyncServerData.js",
 		"bin-debug/Game/FrameSync/FrameSyncServerDataAsset.js",
 		"bin-debug/Game/FrameSync/FrameSyncServerProxy.js",
-		"bin-debug/Game/FrameSync/FrameSyncServerSimulater.js",
+		"bin-debug/Game/FrameSync/FrameSyncServerSimulator.js",
 		"bin-debug/Game/FrameSync/IFrameSyncServerImpl.js",
 		"bin-debug/Game/Master/MasterModule.js",
 		"bin-debug/Game/Master/MasterSettingData.js",

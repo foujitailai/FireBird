@@ -3,8 +3,7 @@ class Helper
     public static CreateBitmapByName(name: string): egret.Bitmap
     {
         let result = new egret.Bitmap();
-        let texture: egret.Texture = RES.getRes(name);
-        result.texture = texture;
+        result.texture = RES.getRes(name);
         return result;
     }
 
@@ -67,9 +66,8 @@ class Helper
         // body.displays = [pic];
 
 
-        let actor = new Actor(data, body);
 
-        return actor;
+        return new Actor(data, body);
     }
 
     public static CreateBullet(actor: Actor, world: p2.World, con: egret.DisplayObjectContainer): Bullet

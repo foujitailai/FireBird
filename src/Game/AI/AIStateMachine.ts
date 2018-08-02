@@ -30,6 +30,7 @@ class AIStateMachine extends egret.EventDispatcher implements IDisposable
     {
         this._sm.Dispose();
         this._sm = null;
+        this._id = 0;
     }
 
     private Add<T extends AIStateBase>(t: { new(): T }): void

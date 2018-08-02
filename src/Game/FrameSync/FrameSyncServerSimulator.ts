@@ -1,4 +1,4 @@
-class FrameSyncServerSimulater implements IFrameSyncServerImpl
+class FrameSyncServerSimulator implements IFrameSyncServerImpl
 {
     private _renderHandle: Function;
     private _frameHandle: Function;
@@ -130,7 +130,7 @@ class FrameSyncServerSimulater implements IFrameSyncServerImpl
             let fsData = this._dataAsset.Take();
             fsData.SetFire(reqData.Fire.Id);
 
-            // 帧数据加入到帧集合里面，通过FrameSyncServerSimulater.OnUpdate来进行逻辑帧派发
+            // 帧数据加入到帧集合里面，通过FrameSyncServerSimulator.OnUpdate来进行逻辑帧派发
             this._dataAsset.AddData(frame, fsData);
         }
     }

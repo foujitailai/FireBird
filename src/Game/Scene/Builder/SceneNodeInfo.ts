@@ -56,6 +56,24 @@ class SceneNodeInfo implements IDisposable
 
     public Dispose(): void
     {
+        this._name = null;
+        this._image = null;
+        if (this._transform)
+        {
+            this._transform.Dispose();
+            this._transform = null;
+        }
+        if (this._loopImage)
+        {
+            this._loopImage.Dispose();
+            this._loopImage = null;
+        }
+        if (this._children)
+        {
+            this._children.forEach(v=>v.Dispose());
+            this._children.splice(0, this._children.length);
+            this._children = null;
+        }
     }
 
     private ConvertContainerImageToChild(configObj: any): void

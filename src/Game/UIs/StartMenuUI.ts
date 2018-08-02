@@ -40,7 +40,7 @@ class StartMenuUI extends UIBase
         this._ani = new StartMenuUIAnimation(this);
 
         ButtonAniTool.AddScaleAni(this.StartBattleBtn);
-        this.StartBattleBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.OnStartBattonBtnClicked, this);
+        this.StartBattleBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.OnStartBattleBtnClicked, this);
     }
 
     protected Uninitialize(): void
@@ -53,7 +53,7 @@ class StartMenuUI extends UIBase
 
 
     private _enterOrLeave:boolean=true;
-    protected OnStartBattonBtnClicked(): void
+    protected OnStartBattleBtnClicked(): void
     {
         EventTool.Disp(GameMain.Instance, GameEvent.START_BATTLE);
 

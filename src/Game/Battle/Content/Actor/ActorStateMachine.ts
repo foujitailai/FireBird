@@ -26,6 +26,7 @@ class ActorStateMachine extends egret.EventDispatcher implements IDisposable
     {
         this._sm.Dispose();
         this._sm = null;
+        this._actor = null;
     }
 
     private Add<T extends ActorStateBase>(t: { new(): T }): void

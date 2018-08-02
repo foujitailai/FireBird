@@ -19,7 +19,8 @@ class FrameSyncClient extends egret.EventDispatcher implements IDisposable
 
     public Dispose()
     {
-
+        this.ClearData();
+        this._requestData = null;
     }
 
     public ClearData()

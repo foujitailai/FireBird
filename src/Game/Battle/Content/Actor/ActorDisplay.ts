@@ -13,19 +13,19 @@ class ActorDisplay extends GameObjectDisplay implements IDisposable
         this._mc = ModuleCenter.Get(ResourceModule).GetMovieClip("com", "Bird");
         this.addChild(this._mc.MovieClip);
 
-        this._mc.MovieClip.addEventListener(egret.Event.COMPLETE, this.OnAniComplate, this);
+        this._mc.MovieClip.addEventListener(egret.Event.COMPLETE, this.OnAniComplete, this);
     }
 
     public Dispose()
     {
-        this._mc.MovieClip.removeEventListener(egret.Event.COMPLETE, this.OnAniComplate, this);
+        this._mc.MovieClip.removeEventListener(egret.Event.COMPLETE, this.OnAniComplete, this);
 
         this.removeChild(this._mc.MovieClip);
         ModuleCenter.Get(ResourceModule).Free(this._mc);
         this._mc = null;
     }
 
-    public OnAniComplate()
+    public OnAniComplete()
     {
         EventTool.Disp(this, egret.Event.COMPLETE);
     }

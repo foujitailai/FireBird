@@ -20,6 +20,7 @@ class GameLogicProcessor implements IFrameProcessor
     {
         this._monsterCreator.Dispose();
         this._monsterCreator = null;
+        this._battle = null;
     }
 
     public OnFrameSync(frame: number, data: FrameSyncServerDataAsset): void

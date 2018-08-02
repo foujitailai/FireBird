@@ -9,7 +9,7 @@ class GameSceneDebug implements IDisposable
 
         // 创建调试试图
         this._debugDraw = new p2DebugDraw(world);
-        var sprite: egret.Sprite = new egret.Sprite();
+        let sprite: egret.Sprite = new egret.Sprite();
         this._battle.addChild(sprite);
         this._debugDraw.setSprite(sprite);
     }

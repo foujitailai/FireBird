@@ -25,6 +25,7 @@ class ActorOnSelectNode extends egret.DisplayObjectContainer implements IDisposa
     {
         egret.Tween.get(this._node).pause();
         this._node.removeChildren();
+        this._node = null;
         this.removeChildren();
     }
 

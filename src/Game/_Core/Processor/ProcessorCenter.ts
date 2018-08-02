@@ -2,7 +2,7 @@ abstract class ProcessorCenter<TProcessor extends IDisposable> implements IDispo
 {
     protected _processors: Array<TProcessor>;
 
-    public constructor()
+    protected constructor()
     {
         this._processors = [];
 

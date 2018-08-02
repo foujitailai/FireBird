@@ -5,7 +5,7 @@ class DragHelper extends egret.EventDispatcher{
     private stage: egret.Stage;
     private sceneCtn: egret.DisplayObjectContainer;
 
-    private nullBody: p2.Body;
+    private readonly nullBody: p2.Body;
     private mouseConstraint:p2.RevoluteConstraint;
 
     private pickPrecision:number = 5;

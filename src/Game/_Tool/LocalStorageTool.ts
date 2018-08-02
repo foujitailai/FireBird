@@ -11,8 +11,7 @@ class LocalStorageTool
     {
         let strValue = egret.localStorage.getItem(key);
         console.log(`GET  key=${key}, value=${strValue}`);
-        let value = JSON.parse(strValue);
-        return value;
+        return JSON.parse(strValue);
     }
 
     public static Clear()

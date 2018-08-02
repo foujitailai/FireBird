@@ -42,7 +42,9 @@ class FrameSyncModule implements IModule
     public Dispose()
     {
         this._client.Dispose();
+        this._client = null;
         this._server.Dispose();
+        this._server = null;
     }
 
     public ClearData()
