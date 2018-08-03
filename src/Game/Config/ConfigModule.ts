@@ -4,7 +4,7 @@
 class ConfigModule implements IModule
 {
     private static _className: string;
-    private _configs: Map<string, SceneConfig>;
+    private _configs: Map<string, IConfigable>;
 
     public get Name(): string
     {
@@ -17,7 +17,7 @@ class ConfigModule implements IModule
 
     public constructor()
     {
-        this._configs = new Map<string, SceneConfig>();
+        this._configs = new Map<string, IConfigable>();
     }
 
     public Dispose(): void
@@ -35,7 +35,7 @@ class ConfigModule implements IModule
     {
     }
 
-    public GetConfig(name: string)
+    public GetConfig<T extends IConfigable>(t: {new(v:any): T}, name: string):T
     {
         let config = this._configs.get(name);
         if (!config)
@@ -48,10 +48,10 @@ class ConfigModule implements IModule
             }
             else
             {
-                config = new SceneConfig(res);
+                config = new t(res);
                 this._configs.set(name, config);
             }
         }
-        return config;
+        return <T>config;
     }
 }

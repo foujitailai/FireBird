@@ -1,0 +1,37 @@
+{
+  "list":[
+    {
+      "ID":1,
+      "Hurt":3,
+      "IsThrough":0,
+      "YinYang":9,
+      "Radius":30,
+      "PowRadius":60,
+      "Speed":1,
+      "RotSpeed":0,
+      "AvatarResUrl":"HeroRedBall"
+    },
+    {
+      "ID":11,
+      "Hurt":3,
+      "IsThrough":0,
+      "YinYang":9,
+      "Radius":30,
+      "PowRadius":60,
+      "Speed":1,
+      "RotSpeed":0,
+      "AvatarResUrl":"fire_e_big"
+    },
+    {
+      "ID":12,
+      "Hurt":3,
+      "IsThrough":0,
+      "YinYang":9,
+      "Radius":30,
+      "PowRadius":60,
+      "Speed":1,
+      "RotSpeed":0,
+      "AvatarResUrl":"fire_e_green"
+    }
+  ]
+}

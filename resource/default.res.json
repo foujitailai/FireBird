@@ -194,6 +194,16 @@
 			"name": "globalValues_json",
 			"type": "json",
 			"url": "config/globalValues.json"
+		},
+		{
+			"name": "actor_json",
+			"type": "json",
+			"url": "config/actor.json"
+		},
+		{
+			"name": "bullet_json",
+			"type": "json",
+			"url": "config/bullet.json"
 		}
 	]
 }

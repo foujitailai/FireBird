@@ -1,0 +1,19 @@
+{
+  "list":[
+    {
+      "ID":"1",
+      "AvatarResUrl":"Bird",
+      "Bullet":"1"
+    },
+    {
+      "ID":"11",
+      "AvatarResUrl":"Boss1",
+      "Bullet":"11"
+    },
+    {
+      "ID":"12",
+      "AvatarResUrl":"Boss2",
+      "Bullet":"12"
+    }
+  ]
+}

@@ -1,7 +1,11 @@
+interface IConfigable extends IDisposable
+{
+}
+
 /**
  * 场景配置文件解释器
  */
-class SceneConfig implements IDisposable
+class SceneConfig implements IConfigable
 {
     private _configObj: any;
     private _rootNode: SceneNodeInfo;

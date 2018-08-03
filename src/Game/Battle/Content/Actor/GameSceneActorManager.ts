@@ -36,7 +36,14 @@ class GameSceneActorManager implements IDisposable
     public CreateActor(data:ActorData):Actor
     {
         let actor = Helper.CreateActor(data, this._world, this._battle);
-        this._content.AddGameObject(actor, EnumSceneLayer.Master);
+        if (data.ActorType == EnumActorType.Player)
+        {
+            this._content.AddGameObject(actor, EnumSceneLayer.Master);
+        }
+        else
+        {
+            this._content.AddGameObject(actor, EnumSceneLayer.Gear);
+        }
         this._actors.set(actor.Data.ActorId, actor);
         return actor;
     }
