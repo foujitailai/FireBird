@@ -3,6 +3,12 @@
  */
 class LoopImage extends egret.DisplayObjectContainer implements IDisposable
 {
+    /**
+     * 构造函数
+     * @param {number} speed 刷新一屏的速度是多少毫秒
+     * @param {number} loopUnit 循环一次的单位长度是多少（几个像素）
+     * @param disObj 被循环的对象
+     */
     constructor(speed: number, loopUnit: number, disObj: egret.DisplayObject)
     {
         super();

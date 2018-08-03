@@ -56,9 +56,9 @@ class GameSceneContent implements IDisposable
         return this._gameSceneGameObjectMgr.GetGameObjectByP2Id(p2Id);
     }
 
-    public AddGameObject(go: GameObject)
+    public AddGameObject(go: GameObject, layerName: string)
     {
-        this._gameSceneGameObjectMgr.AddGameObject(go);
+        this._gameSceneGameObjectMgr.AddGameObject(go, layerName);
     }
 
     public RemoveGameObject(go: GameObject)

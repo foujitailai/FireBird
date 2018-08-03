@@ -45,6 +45,11 @@ enum EnumSceneLayer
     Master = "Master",
 
     /**
+     * 子弹层
+     */
+    Bullet = "Bullet",
+
+    /**
      * 最高层
      */
     Top = "Top",

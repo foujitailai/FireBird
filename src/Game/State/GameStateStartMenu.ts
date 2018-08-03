@@ -26,6 +26,7 @@ class GameStateStartMenu extends GameStateBase
         let sceneDisObj = SceneBuilder.Run(config);
         Helper.SetToStageCenter(sceneDisObj);
         bgl.addChild(sceneDisObj);
+        //TODO GameObject不是从DisplayObject上面派生下来的，这样也就无法直接通过GetLayer().AddGameObject来进行统一管理了，怎么弄呢？
 
         // show actor
         let msl = ModuleCenter.Get(SceneModule).GetLayer(EnumSceneLayer.Master);

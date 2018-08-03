@@ -75,10 +75,10 @@ class Helper
         //TODO 通过id得到对应的配置数据
         let data = new BulletData();
         data.BulletType = EnumBulletType.Normal;
-        data.SpriteName = "thumb_png";
+        data.SpriteName = "com-spr_json.HeroRedBall";
         data.Actor = actor;
 
-        let shape = new p2.Circle({radius: 10});
+        let shape = new p2.Circle({radius: 30});
         shape.sensor = true;
 
         Helper.SetCollision(actor.Data.ActorType, shape, false);
@@ -106,7 +106,7 @@ class Helper
         bullet.Body = body;
         bullet.Data = data;
         bullet.Display = new GameObjectDisplay();
-        bullet.Display.addChild(pic);
+        bullet.Display.addChild(new RotateImage(360, pic));
 
 
         let offsetX = 0;
@@ -151,6 +151,10 @@ class Helper
         ground.Body = body;
         ground.Data = data;
         ground.Display = new GameObjectDisplay();
+        ground.Display.name = "Ground";
+        ground.Display.width = shape.width;
+        ground.Display.height = shape.height;
+        Helper.SetAnchorCenter(ground.Display);
         // ground.Display.addChild(pic);
         return ground;
     }
@@ -183,8 +187,10 @@ class Helper
         hell.Body = body;
         hell.Data = data;
         hell.Display = new GameObjectDisplay();
+        hell.Display.name = "Hell";
         hell.Display.width = shape.width;
         hell.Display.height = shape.height;
+        Helper.SetAnchorCenter(hell.Display);
         // hell.Display.addChild(pic);
         return hell;
     }
