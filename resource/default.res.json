@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,gameEui_json,Map01_json,Map02_json,Map03_json,com-spr_json,com-comp_png,com-mc_json,Map3_json,Map1_json,Map2_json,globalValues_json",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,gameEui_json,Map01_json,Map02_json,Map03_json,com-spr_json,com-comp_png,com-mc_json,Map3_json,Map1_json,Map2_json,globalValues_json,actor_json,bullet_json",
 			"name": "preload"
 		}
 	],
@@ -176,34 +176,34 @@
 			"name": "com-mc_json"
 		},
 		{
-			"name": "Map3_json",
+			"url": "config/Map3.json",
 			"type": "json",
-			"url": "config/Map3.json"
+			"name": "Map3_json"
 		},
 		{
-			"name": "Map1_json",
+			"url": "config/Map1.json",
 			"type": "json",
-			"url": "config/Map1.json"
+			"name": "Map1_json"
 		},
 		{
-			"name": "Map2_json",
+			"url": "config/Map2.json",
 			"type": "json",
-			"url": "config/Map2.json"
+			"name": "Map2_json"
 		},
 		{
-			"name": "globalValues_json",
+			"url": "config/globalValues.json",
 			"type": "json",
-			"url": "config/globalValues.json"
+			"name": "globalValues_json"
 		},
 		{
-			"name": "actor_json",
+			"url": "config/actor.json",
 			"type": "json",
-			"url": "config/actor.json"
+			"name": "actor_json"
 		},
 		{
-			"name": "bullet_json",
+			"url": "config/bullet.json",
 			"type": "json",
-			"url": "config/bullet.json"
+			"name": "bullet_json"
 		}
 	]
 }

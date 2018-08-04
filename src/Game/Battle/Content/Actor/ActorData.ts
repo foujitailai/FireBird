@@ -1,31 +1,33 @@
 class ActorData implements IClearable
 {
     public ActorType: EnumActorType;
-    public SpriteName: string;
     public ActorId: number;
-    public ResId: number;
     public Direct: EnumDirect;
-    public Height: number;
-    public Width: number;
+    private _config: ActorInfo;
+
+    public get Config(): ActorInfo
+    {
+        return this._config;
+    }
 
     public constructor(actorId: number, actorType: EnumActorType, resId: number)
     {
         this.ActorId = actorId;
         this.ActorType = actorType;
-        this.ResId = resId;
+
+        let config = ModuleCenter.Get(ConfigModule).GetConfig(ActorConfig, "actor_json");
+        this._config = config.Actors.get(resId);
+
         this.Direct = this.ActorType == EnumActorType.Player ?
             EnumDirect.RIGHT :
             EnumDirect.LEFT;
-        this.Height = 50;
-        this.Width = 100;
     }
 
     public Clear(): void
     {
         this.ActorId = 0;
         this.ActorType = null;
-        this.ResId = 0;
-        this.Height = 0;
-        this.Width = 0;
+        this._config = null;
+
     }
 }

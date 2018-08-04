@@ -17,7 +17,7 @@ class Actor extends GameObject
 
     public get Height(): number
     {
-        return this.Data.Height;
+        return this.Data.Config.Radius*2;
     }
 
     public constructor(data:ActorData, body:p2.Body)

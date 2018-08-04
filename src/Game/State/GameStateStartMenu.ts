@@ -22,7 +22,7 @@ class GameStateStartMenu extends GameStateBase
         let maps = ["Map1_json", "Map2_json", "Map3_json"];
         let mapIndex =  Math.floor( Math.random() * 100) % 3;
 
-        let config = ModuleCenter.Get(ConfigModule).GetConfig(maps[mapIndex]);
+        let config = ModuleCenter.Get(ConfigModule).GetConfig(SceneConfig, maps[mapIndex]);
         let sceneDisObj = SceneBuilder.Run(config);
         Helper.SetToStageCenter(sceneDisObj);
         bgl.addChild(sceneDisObj);

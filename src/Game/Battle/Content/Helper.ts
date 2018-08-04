@@ -44,16 +44,9 @@ class Helper
 
     public static CreateActor(data:ActorData, world: p2.World, con: egret.DisplayObjectContainer): Actor
     {
-        let config = ModuleCenter.Get(ConfigModule).GetConfig(ActorConfig, "actor_json");
-        let actorCfg = config.Actors.get(data.ResId);
-        // actorCfg.AvatarRes
-
-
-        //TODO 通过id得到对应的配置数据
-        data.SpriteName = "checkbox_select_disabled_png";
-
-
-        let shape = new p2.Box({width: data.Width, height: data.Height});
+        // config.Actors.get(resId);
+        // let shape = new p2.Box({width: data.Config.Radius*2, height: data.Config.Radius*2});
+        let shape = new p2.Circle({radius: data.Config.Radius});
         shape.sensor = true;
 
         Helper.SetCollision(data.ActorType, shape, true);

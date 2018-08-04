@@ -1,3 +1,24 @@
+class MathTool
+{
+    public static GetRandomKey<T1, T2>(map:Map<T1,T2>):T1
+    {
+        let index = Math.floor(Math.random() * map.size);
+        // for (let [key, value] of map)
+
+        let array = Array.from(map.keys());
+        return array[index];
+        //
+        // for (let key of map.keys())
+        // {
+        //     if (cntr++ === index)
+        //     {
+        //         return key;
+        //     }
+        // }
+        // return null;
+    }
+}
+
 class MonsterCreator implements IDisposable
 {
     private _createMonsterTimer: egret.Timer;
@@ -36,7 +57,16 @@ class MonsterCreator implements IDisposable
         if (this._data.Context.MonsterCount < this._monsterMax)
         {
             let actorId = this._data.Context.GenerateActorId();
-            let actorData = new ActorData(actorId, EnumActorType.Npc, 1);
+
+            let actors = ModuleCenter.Get(ConfigModule).GetConfig(ActorConfig, "actor_json").Actors;
+            if (actors.size <= 0)
+            {
+                return;
+            }
+
+            let actorsItKey = MathTool.GetRandomKey(actors);
+
+            let actorData = new ActorData(actorId, EnumActorType.Npc, actorsItKey);
             this._data.Context.AddActor(actorId, actorData);
 
             let actor = this._battle.GameSceneContent.CreateActor(actorData);

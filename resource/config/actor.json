@@ -3,16 +3,19 @@
     {
       "ID":"1",
       "AvatarResUrl":"Bird",
+      "Radius":40,
       "Bullet":"1"
     },
     {
       "ID":"11",
       "AvatarResUrl":"Boss1",
+      "Radius":40,
       "Bullet":"11"
     },
     {
       "ID":"12",
       "AvatarResUrl":"Boss2",
+      "Radius":40,
       "Bullet":"12"
     }
   ]

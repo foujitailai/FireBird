@@ -3,17 +3,24 @@ class ActorInfo implements IDisposable
     private _id: number;
     private _avatarResUrl: string;
     private _bullet: number;
+    private _redius: number;
 
     public get ID():number
     {
         return this._id;
     }
 
+    public get Radius():number
+    {
+        return this._redius;
+    }
+
     constructor(config: any)
     {
-        this._id = config.ID;
+        this._id = Number(config.ID);
         this._avatarResUrl = config.AvatarResUrl;
-        this._bullet = config.Bullet;
+        this._bullet = Number(config.Bullet);
+        this._redius = Number(config.Redius);
     }
 
     public Dispose(): void
