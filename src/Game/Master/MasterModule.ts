@@ -1,7 +1,6 @@
 class MasterModule implements IModule
 {
     private static _className: string;
-    private _setting: MasterSettingData;
 
     public get Name(): string
     {
@@ -10,6 +9,16 @@ class MasterModule implements IModule
             MasterModule._className = ClassTool.GetTypeName(MasterModule);
         }
         return MasterModule._className;
+    }
+
+    private _setting: MasterSettingData;
+    private _selfResId: number;
+
+    public get SelfResId(): number
+    {
+        //TODO 之后要将这个数据转移到真正的角色存储数据里面去
+        //return this._selfResId;
+        return 11;
     }
 
     public get Setting():MasterSettingData

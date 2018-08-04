@@ -26,8 +26,7 @@ class MyMovieClip implements IDisposable, IPoolObject
     {
         this._mc = mc;
 
-        this._mc.anchorOffsetX = this._mc.width / 2;
-        this._mc.anchorOffsetY = this._mc.height / 2;
+        Helper.SetAnchorCenter(this._mc);
     }
 
     public Uninitialize()

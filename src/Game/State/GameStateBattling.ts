@@ -34,9 +34,11 @@ class GameStateBattling extends GameStateBase
 
     private CreateTestData(data:BattleData):void
     {
+        let selfResId = ModuleCenter.Get(MasterModule).SelfResId;
         // 自己的角色
         data.Context.SetSelfId(data.Context.GenerateActorId());
-        data.Context.AddActor(data.Context.SelfId, new ActorData(data.Context.SelfId, EnumActorType.Player, 1));
+        let actorData = new ActorData(data.Context.SelfId, EnumActorType.Player, selfResId);
+        data.Context.AddActor(data.Context.SelfId, actorData);
 
         // 其它怪物的角色
         // data.Context.AddActor(2, new ActorData())

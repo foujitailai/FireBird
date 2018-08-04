@@ -1,6 +1,20 @@
+enum EnumAvatarType
+{
+    /**
+     * 位图
+     */
+    Bitmap = 0,
+
+    /**
+     * 序列帧
+     */
+    MovieClip = 1,
+}
+
 class BulletInfo implements IDisposable
 {
     private _id: number;
+    private _avatarType: EnumAvatarType;
     private _avatarResUrl: string;
     private _hurt: number;
     private _isThrough: boolean;
@@ -9,10 +23,46 @@ class BulletInfo implements IDisposable
     private _powRadius: number;
     private _speed: number;
     private _rotSpeed: number;
+    private _flipY: boolean;
 
     public get ID():number
     {
         return this._id;
+    }
+
+    public get AvatarType():EnumAvatarType
+    {
+        return this._avatarType;
+    }
+
+    public get FlipY():boolean
+    {
+        return this._flipY;
+    }
+
+    public get AvatarResUrl():string
+    {
+        return this._avatarResUrl;
+    }
+
+    public get Radius():number
+    {
+        return this._radius;
+    }
+
+    public get Speed():number
+    {
+        return this._speed;
+    }
+
+    public get RotSpeed():number
+    {
+        return this._rotSpeed;
+    }
+
+    public get Hurt():number
+    {
+        return this._hurt;
     }
 
     constructor(config: any)
@@ -26,6 +76,8 @@ class BulletInfo implements IDisposable
         this._speed = config.Speed;
         this._rotSpeed = config.RotSpeed;
         this._avatarResUrl = config.AvatarResUrl;
+        this._avatarType = config.AvatarType;
+        this._flipY = config.FlipY;
     }
 
     public Dispose(): void
@@ -42,6 +94,11 @@ class BulletConfig implements IConfigable
 {
     private _configObj: any;
     private _bullets: Map<number, BulletInfo>;
+
+    public get Bullets():Map<number, BulletInfo>
+    {
+        return this._bullets;
+    }
 
     public constructor(configObj: any)
     {
@@ -62,7 +119,7 @@ class BulletConfig implements IConfigable
     {
         if (this._configObj.list && this._configObj.list.length)
         {
-            for (let i = 0; i < this._configObj.length; ++i)
+            for (let i = 0; i < this._configObj.list.length; ++i)
             {
                 let bullet = new BulletInfo(this._configObj.list[i]);
                 this._bullets.set(bullet.ID, bullet);

@@ -10,7 +10,18 @@ class ActorDisplay extends GameObjectDisplay implements IDisposable
         super();
         this._actor = actor;
 
-        this._mc = ModuleCenter.Get(ResourceModule).GetMovieClip("com", "Bird");
+        this._mc = ModuleCenter.Get(ResourceModule).GetMovieClip("com", this._actor.Data.Config.AvatarResUrl);
+
+        // 必须是两个值中只有一个值为真才行
+        if (actor.Data.Config.FlipY || actor.Data.ActorType == EnumActorType.Npc)
+        {
+            if (!(actor.Data.Config.FlipY && actor.Data.ActorType == EnumActorType.Npc))
+            {
+                // 垂直翻转
+                this._mc.MovieClip.skewY = 180;
+            }
+        }
+
         this.addChild(this._mc.MovieClip);
 
         this._mc.MovieClip.addEventListener(egret.Event.COMPLETE, this.OnAniComplete, this);
@@ -23,6 +34,8 @@ class ActorDisplay extends GameObjectDisplay implements IDisposable
         this.removeChild(this._mc.MovieClip);
         ModuleCenter.Get(ResourceModule).Free(this._mc);
         this._mc = null;
+
+        super.Dispose();
     }
 
     public OnAniComplete()

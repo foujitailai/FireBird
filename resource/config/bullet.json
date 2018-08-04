@@ -7,8 +7,9 @@
       "YinYang":9,
       "Radius":30,
       "PowRadius":60,
-      "Speed":1,
-      "RotSpeed":0,
+      "Speed":1000,
+      "RotSpeed":360,
+      "AvatarType":0,
       "AvatarResUrl":"HeroRedBall"
     },
     {
@@ -18,8 +19,10 @@
       "YinYang":9,
       "Radius":30,
       "PowRadius":60,
-      "Speed":1,
+      "Speed":600,
       "RotSpeed":0,
+      "AvatarType":1,
+      "FlipY":true,
       "AvatarResUrl":"fire_e_big"
     },
     {
@@ -29,8 +32,10 @@
       "YinYang":9,
       "Radius":30,
       "PowRadius":60,
-      "Speed":1,
+      "Speed":600,
       "RotSpeed":0,
+      "AvatarType":1,
+      "FlipY":true,
       "AvatarResUrl":"fire_e_green"
     }
   ]

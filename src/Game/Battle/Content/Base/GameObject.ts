@@ -15,6 +15,7 @@ class GameObject extends egret.EventDispatcher implements IDisposable
     public Dispose(): void
     {
         this.Body = null;
+        this.Display.Dispose();
         this.Display = null;
     }
 

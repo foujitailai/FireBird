@@ -85,6 +85,7 @@
 		"bin-debug/Game/Battle/Content/Bullet/Bullet.js",
 		"bin-debug/Game/Battle/Content/Bullet/BulletConfig.js",
 		"bin-debug/Game/Battle/Content/Bullet/BulletData.js",
+		"bin-debug/Game/Battle/Content/Bullet/BulletDisplay.js",
 		"bin-debug/Game/Battle/Content/Bullet/EnumBulletType.js",
 		"bin-debug/Game/Battle/Content/Bullet/GameSceneBulletManager.js",
 		"bin-debug/Game/Battle/Content/Scene/EnumCollisionType.js",

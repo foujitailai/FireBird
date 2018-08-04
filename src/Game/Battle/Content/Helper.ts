@@ -70,13 +70,9 @@ class Helper
 
     public static CreateBullet(actor: Actor, world: p2.World, con: egret.DisplayObjectContainer): Bullet
     {
-        //TODO 通过id得到对应的配置数据
-        let data = new BulletData();
-        data.BulletType = EnumBulletType.Normal;
-        data.SpriteName = "com-spr_json.HeroRedBall";
-        data.Actor = actor;
+        let data = new BulletData(actor, actor.Data.Config.BulletId);
 
-        let shape = new p2.Circle({radius: 30});
+        let shape = new p2.Circle({radius: data.Config.Radius});
         shape.sensor = true;
 
         Helper.SetCollision(actor.Data.ActorType, shape, false);
@@ -85,41 +81,15 @@ class Helper
         body.damping = 0;
         body.addShape(shape);
 
-        let pic: egret.Bitmap = Helper.CreateBitmapByName(data.SpriteName);
-        pic.width = shape.radius * 2;
-        pic.height = pic.width;
-        pic.anchorOffsetX = pic.width / 2;
-        pic.anchorOffsetY = pic.height / 2;
         // 先放在屏幕外面，不显示出来
         //pic.x = -2000;
 
         // body.displays = [pic];
 
 
-
         //body.velocity = [1000, 0];
 
-
-        let bullet = new Bullet();
-        bullet.Body = body;
-        bullet.Data = data;
-        bullet.Display = new GameObjectDisplay();
-        bullet.Display.addChild(new RotateImage(360, pic));
-
-
-        let offsetX = 0;
-        if (actor.Data.Direct == EnumDirect.LEFT)
-        {
-            offsetX += -50;
-        }
-        else if (actor.Data.Direct == EnumDirect.RIGHT)
-        {
-            offsetX += 50;
-        }
-
-        bullet.SetPosition(actor.Body.position[0] + offsetX, actor.Body.position[1]);
-
-        return bullet;
+        return new Bullet(data, body);
     }
 
     public static CreateGround(world: p2.World, con: egret.DisplayObjectContainer): Ground
